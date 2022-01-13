@@ -7,4 +7,50 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="assets\background.png" />
+    <None Remove="assets\CleanBox.png" />
+    <None Remove="assets\fullbox\CleanBox.png" />
+    <None Remove="assets\fullbox\coal_block.png" />
+    <None Remove="assets\fullbox\diamond_block.png" />
+    <None Remove="assets\fullbox\emerald_block.png" />
+    <None Remove="assets\fullbox\gold_block.png" />
+    <None Remove="assets\fullbox\iron_block.png" />
+    <None Remove="assets\fullbox\lapis_block.png" />
+    <None Remove="assets\fullbox\redstone_block.png" />
+    <None Remove="assets\GameOverBackground" />
+    <None Remove="assets\GameOverBackground.png" />
+    <None Remove="assets\GameOverBG.png" />
+    <None Remove="assets\tetramino\cleanTetramino.png" />
+    <None Remove="assets\tetramino\IDiamound.png" />
+    <None Remove="assets\tetramino\JLapilazuli.png" />
+    <None Remove="assets\tetramino\LRedStone.png" />
+    <None Remove="assets\tetramino\OGold.png" />
+    <None Remove="assets\tetramino\SCharbon.png" />
+    <None Remove="assets\tetramino\TEmerald.png" />
+    <None Remove="assets\tetramino\ZIron.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="assets\background.png" />
+    <EmbeddedResource Include="assets\fullbox\CleanBox.png" />
+    <EmbeddedResource Include="assets\fullbox\coal_block.png" />
+    <EmbeddedResource Include="assets\fullbox\diamond_block.png" />
+    <EmbeddedResource Include="assets\fullbox\emerald_block.png" />
+    <EmbeddedResource Include="assets\fullbox\gold_block.png" />
+    <EmbeddedResource Include="assets\fullbox\iron_block.png" />
+    <EmbeddedResource Include="assets\fullbox\lapis_block.png" />
+    <EmbeddedResource Include="assets\fullbox\redstone_block.png" />
+    <EmbeddedResource Include="assets\GameOverBackground.png" />
+    <EmbeddedResource Include="assets\GameOverBG.png" />
+    <EmbeddedResource Include="assets\tetramino\cleanTetramino.png" />
+    <EmbeddedResource Include="assets\tetramino\IDiamound.png" />
+    <EmbeddedResource Include="assets\tetramino\JLapilazuli.png" />
+    <EmbeddedResource Include="assets\tetramino\LRedStone.png" />
+    <EmbeddedResource Include="assets\tetramino\OGold.png" />
+    <EmbeddedResource Include="assets\tetramino\SCharbon.png" />
+    <EmbeddedResource Include="assets\tetramino\TEmerald.png" />
+    <EmbeddedResource Include="assets\tetramino\ZIron.png" />
+  </ItemGroup>
+
 </Project>

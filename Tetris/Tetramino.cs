@@ -8,20 +8,20 @@ namespace Tetris
 {
     public abstract class Tetramino
     {
-        public Position[][] boxRotation { get; set; }
-        public Position spawnPoint { get; set; }
-        public int tetraminoId {  get; set; }
-        public int rotate { get; set; }
-        public Position offSet { get; set; }
+        protected abstract Position[][] BoxRotation { get;}
+        protected  abstract Position SpawnPoint { get; }
+        public abstract int tetraminoId {  get;}
+        private int rotate;
+        private Position offSet;
 
         public Tetramino()
         {
-            offSet = new Position(spawnPoint.row, spawnPoint.column);
+            offSet = new Position(SpawnPoint.row, SpawnPoint.column);
         }
 
         public IEnumerable<Position> positionsOfRotation()
         {
-            foreach (Position p in boxRotation[rotate])
+            foreach (Position p in BoxRotation[rotate])
             {
                 yield return new Position(p.row + offSet.row, p.column + offSet.column);
             }
@@ -29,13 +29,13 @@ namespace Tetris
 
         public void NextRotate()
         {
-            rotate = (rotate + 1) % boxRotation.Length;
+            rotate = (rotate + 1) % BoxRotation.Length;
         }
         public void PrevRotate()
         {
             if (rotate == 0)
             {
-                rotate = boxRotation.Length - 1;
+                rotate = BoxRotation.Length - 1;
             }
             else
             {
@@ -44,13 +44,13 @@ namespace Tetris
         }
         public void MoveTetramino(int r, int c)
         {
-            offSet.row = r;
-            offSet.column = c;
+            offSet.row += r;
+            offSet.column += c;
         }
         public void reset()
         {
             rotate = 0;
-            offSet = new Position(spawnPoint.row, spawnPoint.column);
+            offSet = new Position(SpawnPoint.row, SpawnPoint.column);
         }
 
     }

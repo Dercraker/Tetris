@@ -5,7 +5,102 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tetris"
         mc:Ignorable="d"
-        Title="Tetris" Height="450" Width="800">
+        Title="TetraCaft"
+        MinWidth="800" MinHeight="600"
+        Foreground="White"
+        FontFamily="Segoe UI Light" FontSize="28"
+        KeyDown="KeyInput">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\Dercraker\OneDrive - Ynov\Cours\Tetris\Tetris\Tetris\assets\background.png"/>
+        </Grid.Background>
+
+        <Viewbox
+            Grid.Column="0" Grid.RowSpan="3">
+            <Canvas 
+                x:Name="GameGridCanvas"
+                Opacity="0.9"
+                Background="Black"
+                Width="250"
+                Height="510"
+                Margin="0,20,0,20"
+                ClipToBounds="True"
+                Loaded="GameGridCanvas_Load"
+                />
+        </Viewbox>
+        <TextBlock 
+            x:Name="ScoreText"
+            Grid.Row="0"
+            Grid.Column="1"
+            Text="Score : "
+            TextAlignment="Center"
+            Foreground="Black"
+            FontWeight="UltraBold"
+            />
         
+        <StackPanel 
+            Grid.Column="1"
+            Grid.Row="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <TextBlock
+                x:Name="NextTetraminoText"
+                Text="Next Tetramino"
+                TextAlignment="Center"
+                Foreground="Black"
+                FontWeight="UltraBold"/>
+            <Image x:Name="NextImage"
+                   Width="128"
+                   Margin="0,10,0,0"/>
+        </StackPanel>
+        <Grid
+            x:Name="MenuGameOver"
+            Grid.RowSpan="3"
+            Grid.ColumnSpan="2"
+            Visibility="Hidden">
+            <Grid.Background>
+                <ImageBrush ImageSource="C:\Users\Dercraker\OneDrive - Ynov\Cours\Tetris\Tetris\Tetris\assets\GameOverBG.png"/>
+            </Grid.Background>
+            <StackPanel
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+                <TextBlock
+                    x:Name="GameOverResult"
+                    Text="Score : "
+                    FontSize="40"
+                    TextAlignment="Center"/>
+
+                <TextBlock 
+                    Text="Oh Snap!"
+                    TextAlignment="Center"
+                    FontWeight="UltraBlack"
+                    FontSize="60"
+                    Foreground="Red"
+                    TextDecorations="Underline"/>
+
+                <Button
+                    Content="Let's Go to Bim"
+                    Foreground="White"
+                    Background="Green"
+                    Margin="0,20,0,0"
+                    Click="RestartGame"
+                    />
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+
 
 </Window>
