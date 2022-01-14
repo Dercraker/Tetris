@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Tetris
 {
@@ -32,10 +33,13 @@ namespace Tetris
             }
             return true;
         }
-
         public bool IsFullRow(int r)
         {
-            return !IsEmptyRow(r);
+            for (int c = 0; c < colums; c++)
+            {
+                if (grid[r,c] == 0) return false;
+            }
+            return true;
         }
 
         public void CleanRow(int r)
@@ -58,14 +62,14 @@ namespace Tetris
         {
             int nbRowClear = 0;
 
-            for (int i = rows-1; i >= 0; i--)
+            for (int r = rows-1; r >= 0; r--)
             {
-                if (IsFullRow(i))
+                if (IsFullRow(r))
                 {
                     nbRowClear++;
-                    CleanRow(i);
+                    CleanRow(r);
                 } else if (nbRowClear > 0 ) {
-                    DownRow(i, nbRowClear);
+                    DownRow(r, nbRowClear);
                 }
             }
             return nbRowClear;

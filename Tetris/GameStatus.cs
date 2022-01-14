@@ -20,16 +20,24 @@ namespace Tetris
             }
         }
         public GameGird gameGrid { get; }
+        public int Score { get; private set; }
         public WaitingLine waitingLine { get; }
         public bool gameOver { get; private set; }
-
         public GameStatus()
         {
             gameGrid = new GameGird(22, 10);
             waitingLine = new WaitingLine();
             currentTetramino = waitingLine.UpdateTetramino();
         }
-
+        public void DisplayLine(int r)
+        {
+            String str = String.Format("Line {0}",r);
+            for (int c = 0; c < gameGrid.colums; c++)
+            {
+                str = String.Concat(str, ", ", gameGrid[r, c]);
+            }
+            MessageBox.Show(String.Format("{0}", str));
+        }
         private bool IsValidTetramino()
         {
             foreach (Position p in currentTetramino.positionsOfRotation())
@@ -41,7 +49,6 @@ namespace Tetris
             }
             return true;
         }
-
         public void RotateNextTetramino()
         {
             currentTetramino.NextRotate();
@@ -50,7 +57,6 @@ namespace Tetris
                 currentTetramino.PrevRotate();
             }
         }
-
         public void RotatePrevTetramino()
         {
             currentTetramino.PrevRotate();
@@ -59,7 +65,6 @@ namespace Tetris
                 currentTetramino.NextRotate();
             }
         }
-
         public void MoveRightTetramino()
         {
             currentTetramino.MoveTetramino(0, 1);
@@ -76,16 +81,14 @@ namespace Tetris
                 currentTetramino.MoveTetramino(0, 1);
             }
         }
-
         public bool IsGameOver()
         {
             if (!gameGrid.IsEmptyRow(0) && !gameGrid.IsEmptyRow(1))
             {
                 return true;
             }
-            return true;
+            return false;
         }
-
         private void PlaceItem()
         {
             foreach (Position p in currentTetramino.positionsOfRotation())
@@ -93,19 +96,16 @@ namespace Tetris
                 gameGrid[p.row, p.column] = currentTetramino.tetraminoId;
             }
 
-            gameGrid.ClearGrid();
-
+            Score += gameGrid.ClearGrid();
             if (IsGameOver())
             {
                 gameOver = true;
             }
             else
             {
-                MessageBox.Show(String.Format("{0}", "PlaceItem"));
                 currentTetramino = waitingLine.UpdateTetramino();
             }
         }
-
         public void MoveDownTetramino()
         {
             currentTetramino.MoveTetramino(1, 0);

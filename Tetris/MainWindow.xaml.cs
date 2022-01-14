@@ -100,13 +100,14 @@ namespace Tetris
         {
             DrawGrid(g.gameGrid);
             DrawBox(g.CurrentTetramino);
+            ScoreText.Text = String.Format("Score : {0}", gameStatus.Score);
             GetNextBlock(gameStatus.waitingLine);
         }
         private async void GameGridCanvas_Load(object sender, RoutedEventArgs e)
         {
-            //await Game();
-            //MessageBox.Show("Hello, world!");
-            Draw(gameStatus);
+            await Game();
+            
+            //Draw(gameStatus);
         }
         private async void KeyInput(object sender, KeyEventArgs e)
         {
@@ -138,14 +139,14 @@ namespace Tetris
         }
         public async Task Game()
         {
-            MessageBox.Show(String.Format("{0}", gameStatus.gameOver));
             Draw(gameStatus);
             while (!gameStatus.gameOver)
             {
                 await Task.Delay(500);
-                gameStatus.RotateNextTetramino();
+                gameStatus.MoveDownTetramino();
                 Draw(gameStatus);
             }
+            GameOverResult.Text = String.Format("Score : {0}", gameStatus.Score);
             MenuGameOver.Visibility = Visibility.Visible;
 
         }
