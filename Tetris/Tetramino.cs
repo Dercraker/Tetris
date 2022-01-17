@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,13 +11,17 @@ namespace Tetris
     {
         protected abstract Position[][] BoxRotation { get;}
         protected  abstract Position SpawnPoint { get; }
-        public abstract int tetraminoId {  get;}
+        public abstract int tetraminoId { get;}
         private int rotate;
-        private Position offSet;
+        public Position offSet { get; set; }
 
         public Tetramino()
         {
             offSet = new Position(SpawnPoint.row, SpawnPoint.column);
+        }
+        public Tetramino DeepCopy()
+        {
+            return (Tetramino)this.MemberwiseClone();
         }
 
         public IEnumerable<Position> positionsOfRotation()
@@ -50,7 +55,10 @@ namespace Tetris
         public void reset()
         {
             rotate = 0;
-            offSet = new Position(SpawnPoint.row, SpawnPoint.column);
+            //MessageBox.Show(String.Format("{0}", offSet));
+            offSet.row = SpawnPoint.row;
+            offSet.column = SpawnPoint.column;
+            //MessageBox.Show(String.Format("{0}", offSet));
         }
 
     }

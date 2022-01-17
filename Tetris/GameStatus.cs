@@ -36,7 +36,7 @@ namespace Tetris
             {
                 str = String.Concat(str, ", ", gameGrid[r, c]);
             }
-            MessageBox.Show(String.Format("{0}", str));
+            //MessageBox.Show(String.Format("{0}", str));
         }
         private bool IsValidTetramino()
         {
@@ -95,7 +95,6 @@ namespace Tetris
             {
                 gameGrid[p.row, p.column] = currentTetramino.tetraminoId;
             }
-
             Score += gameGrid.ClearGrid();
             if (IsGameOver())
             {
@@ -103,7 +102,9 @@ namespace Tetris
             }
             else
             {
+                //MessageBox.Show(String.Format("1 OffSet row :{0} , OffSet column :{1}", currentTetramino.offSet.row,currentTetramino.offSet.column));
                 currentTetramino = waitingLine.UpdateTetramino();
+                //MessageBox.Show(String.Format("2 OffSet row :{0} , OffSet column :{1}", currentTetramino.offSet.row,currentTetramino.offSet.column));
             }
         }
         public void MoveDownTetramino()

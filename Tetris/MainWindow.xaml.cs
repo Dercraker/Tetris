@@ -142,6 +142,7 @@ namespace Tetris
             Draw(gameStatus);
             while (!gameStatus.gameOver)
             {
+                //MessageBox.Show(String.Format("Current pos {0},{1}", gameStatus.CurrentTetramino.offSet.row, gameStatus.CurrentTetramino.offSet.column));
                 await Task.Delay(500);
                 gameStatus.MoveDownTetramino();
                 Draw(gameStatus);
