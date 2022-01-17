@@ -68,7 +68,7 @@
             x:Name="MenuGameOver"
             Grid.RowSpan="3"
             Grid.ColumnSpan="2"
-            Visibility="Hidden">
+            Visibility="Visible">
             <Grid.Background>
                 <ImageBrush ImageSource="C:\Users\Dercraker\OneDrive - Ynov\Cours\Tetris\Tetris\Tetris\assets\GameOverBG.png"/>
             </Grid.Background>
@@ -96,6 +96,13 @@
                     Background="Green"
                     Margin="0,20,0,0"
                     Click="RestartGame"
+                    />
+                <Button
+                    Content="Kill Program"
+                    Foreground="Black"
+                    Background="Red"
+                    Margin="0,20,0,0"
+                    Click="KillProgram"
                     />
             </StackPanel>
         </Grid>

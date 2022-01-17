@@ -157,5 +157,9 @@ namespace Tetris
             MenuGameOver.Visibility= Visibility.Hidden;
             await Game();
         }
+        private void KillProgram(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }
