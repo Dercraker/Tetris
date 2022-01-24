@@ -5,14 +5,16 @@ using System.Windows.Controls;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
+
 
 namespace Tetris
 {
     public class GameStatus
     {
         private Tetramino currentTetramino;
-        public Tetramino CurrentTetramino { 
-            get => currentTetramino; 
+        public Tetramino CurrentTetramino {
+            get => currentTetramino;
             private set
             {
                 currentTetramino = value;
@@ -23,12 +25,30 @@ namespace Tetris
         public int Score { get; private set; }
         public WaitingLine waitingLine { get; }
         public bool gameOver { get; private set; }
+
+        public int time { get; private set; }
+
+        private DispatcherTimer Timer;
         public GameStatus()
         {
             gameGrid = new GameGird(22, 10);
             waitingLine = new WaitingLine();
             currentTetramino = waitingLine.UpdateTetramino();
         }
+
+        public void SetTimer()
+        {
+            Timer = new DispatcherTimer();
+            Timer.Interval = new TimeSpan(0, 0, 1);
+            Timer.Tick += Timer_Tick;
+            Timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            time++;
+        }
+
         public void DisplayLine(int r)
         {
             String str = String.Format("Line {0}",r);

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Tetris
 {
@@ -22,7 +23,10 @@ namespace Tetris
     {
         public ImageSource[] tetraminoImages = new ImageSource[]
         {
+<<<<<<< Dev
 <<<<<<< HEAD
+=======
+>>>>>>> timer fonctionnel
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/cleanTetramino.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/IDiamound.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/JLapilazuli.png")),
@@ -31,6 +35,7 @@ namespace Tetris
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/SCharbon.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/TEmerald.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/ZIron.png"))
+<<<<<<< Dev
 =======
             new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/cleanTetramino.png")),
             new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/IDiamound.png")),
@@ -41,11 +46,16 @@ namespace Tetris
             new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/TEmerald.png")),
             new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/ZIron.png"))
 >>>>>>> Dev
+=======
+>>>>>>> timer fonctionnel
         };
 
         public ImageSource[] boxImages = new ImageSource[]
         {
+<<<<<<< Dev
 <<<<<<< HEAD
+=======
+>>>>>>> timer fonctionnel
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/CleanBox.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/diamond_block.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/lapis_block.png")),
@@ -54,6 +64,7 @@ namespace Tetris
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/coal_block.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/emerald_block.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/iron_block.png"))
+<<<<<<< Dev
 =======
              new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/CleanBox.png")),
             new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/diamond_block.png")),
@@ -64,6 +75,8 @@ namespace Tetris
             new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/emerald_block.png")),
             new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/iron_block.png"))
 >>>>>>> Dev
+=======
+>>>>>>> timer fonctionnel
         };
 
 
@@ -75,6 +88,7 @@ namespace Tetris
             InitializeComponent();
             imgControls = SetUpGameGridCanvas(gameStatus.gameGrid);
         }
+
         public Image[,] SetUpGameGridCanvas(GameGird g)
         {
             Image[,] imgControls = new Image[g.rows,g.colums];
@@ -124,8 +138,12 @@ namespace Tetris
             DrawGrid(g.gameGrid);
             DrawBox(g.CurrentTetramino);
             ScoreText.Text = String.Format("Score : {0}", gameStatus.Score);
+
+            TimerCount.Text = String.Format("Timer : {0}'{1}''", gameStatus.time/60, gameStatus.time%60);
             GetNextBlock(gameStatus.waitingLine);
         }
+
+       
         private async void GameGridCanvas_Load(object sender, RoutedEventArgs e)
         {
             await Game();
@@ -165,6 +183,7 @@ namespace Tetris
             int speed = 500;
             int speedLevel = 0;
             Draw(gameStatus);
+            gameStatus.SetTimer();
             while (!gameStatus.gameOver)
             {
                 //MessageBox.Show(String.Format("Current pos {0},{1}", gameStatus.CurrentTetramino.offSet.row, gameStatus.CurrentTetramino.offSet.column));

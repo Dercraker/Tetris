@@ -20,7 +20,10 @@ C:\Users\Dercraker\OneDrive - Ynov\Cours\Tetris\Tetris\Tetris\obj\Debug\net5.0-w
 C:\Users\Dercraker\OneDrive - Ynov\Cours\Tetris\Tetris\Tetris\obj\Debug\net5.0-windows\ref\Tetris.dll
 C:\Users\Dercraker\OneDrive - Ynov\Cours\Tetris\Tetris\Tetris\obj\Debug\net5.0-windows\Tetris.pdb
 C:\Users\Dercraker\OneDrive - Ynov\Cours\Tetris\Tetris\Tetris\obj\Debug\net5.0-windows\Tetris.genruntimeconfig.cache
+<<<<<<< Dev
 <<<<<<< HEAD
+=======
+>>>>>>> timer fonctionnel
 C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\bin\Debug\net5.0-windows\Tetris.exe
 C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\bin\Debug\net5.0-windows\Tetris.deps.json
 C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\bin\Debug\net5.0-windows\Tetris.runtimeconfig.json
@@ -43,6 +46,7 @@ C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\obj\Debug\net5.0-windows\Te
 C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\obj\Debug\net5.0-windows\ref\Tetris.dll
 C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\obj\Debug\net5.0-windows\Tetris.pdb
 C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\obj\Debug\net5.0-windows\Tetris.genruntimeconfig.cache
+<<<<<<< Dev
 =======
 C:\Users\Tim\source\repos\Tetris_02\Tetris\obj\Debug\net5.0-windows\Tetris.csproj.AssemblyReference.cache
 C:\Users\Tim\source\repos\Tetris_02\Tetris\obj\Debug\net5.0-windows\MainWindow.g.cs
@@ -67,3 +71,5 @@ C:\Users\Tim\source\repos\Tetris_02\Tetris\obj\Debug\net5.0-windows\Tetris.genru
 C:\Users\Tim\source\repos\Tetris_02\Tetris\obj\Debug\net5.0-windows\MainWindow.baml
 C:\Users\Tim\source\repos\Tetris_02\Tetris\obj\Debug\net5.0-windows\Tetris.g.resources
 >>>>>>> Dev
+=======
+>>>>>>> timer fonctionnel
