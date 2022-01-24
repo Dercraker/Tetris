@@ -8,32 +8,26 @@
     "net5.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Dercraker\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\FAILLER\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dercraker\\OneDrive - Ynov\\Cours\\Tetris\\Tetris\\Tetris\\Tetris.csproj",
+      "projectUniqueName": "C:\\Users\\FAILLER\\Documents\\Cours\\B2\\C#\\Tetris\\Tetris\\Tetris.csproj",
       "projectName": "Tetris",
-      "projectPath": "C:\\Users\\Dercraker\\OneDrive - Ynov\\Cours\\Tetris\\Tetris\\Tetris\\Tetris.csproj",
-      "packagesPath": "C:\\Users\\Dercraker\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dercraker\\OneDrive - Ynov\\Cours\\Tetris\\Tetris\\Tetris\\obj\\",
+      "projectPath": "C:\\Users\\FAILLER\\Documents\\Cours\\B2\\C#\\Tetris\\Tetris\\Tetris.csproj",
+      "packagesPath": "C:\\Users\\FAILLER\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\FAILLER\\Documents\\Cours\\B2\\C#\\Tetris\\Tetris\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Dercraker\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\FAILLER\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0-windows7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
       },
       "frameworks": {
         "net5.0-windows7.0": {
