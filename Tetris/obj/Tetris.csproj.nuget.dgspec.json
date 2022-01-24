@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dercraker\\OneDrive - Ynov\\Cours\\Tetris\\Tetris\\Tetris\\Tetris.csproj": {}
+    "C:\\Users\\Tim\\source\\repos\\Tetris_02\\Tetris\\Tetris.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dercraker\\OneDrive - Ynov\\Cours\\Tetris\\Tetris\\Tetris\\Tetris.csproj": {
+    "C:\\Users\\Tim\\source\\repos\\Tetris_02\\Tetris\\Tetris.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dercraker\\OneDrive - Ynov\\Cours\\Tetris\\Tetris\\Tetris\\Tetris.csproj",
+        "projectUniqueName": "C:\\Users\\Tim\\source\\repos\\Tetris_02\\Tetris\\Tetris.csproj",
         "projectName": "Tetris",
-        "projectPath": "C:\\Users\\Dercraker\\OneDrive - Ynov\\Cours\\Tetris\\Tetris\\Tetris\\Tetris.csproj",
-        "packagesPath": "C:\\Users\\Dercraker\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dercraker\\OneDrive - Ynov\\Cours\\Tetris\\Tetris\\Tetris\\obj\\",
+        "projectPath": "C:\\Users\\Tim\\source\\repos\\Tetris_02\\Tetris\\Tetris.csproj",
+        "packagesPath": "C:\\Users\\Tim\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Tim\\source\\repos\\Tetris_02\\Tetris\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Dercraker\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Tim\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -61,7 +57,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }
