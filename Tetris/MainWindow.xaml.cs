@@ -23,10 +23,13 @@ namespace Tetris
     {
         public ImageSource[] tetraminoImages = new ImageSource[]
         {
+<<<<<<< HEAD
 <<<<<<< Dev
 <<<<<<< HEAD
 =======
 >>>>>>> timer fonctionnel
+=======
+>>>>>>> Timer-AmauryF
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/cleanTetramino.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/IDiamound.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/JLapilazuli.png")),
@@ -35,6 +38,7 @@ namespace Tetris
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/SCharbon.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/TEmerald.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/ZIron.png"))
+<<<<<<< HEAD
 <<<<<<< Dev
 =======
             new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/cleanTetramino.png")),
@@ -48,14 +52,19 @@ namespace Tetris
 >>>>>>> Dev
 =======
 >>>>>>> timer fonctionnel
+=======
+>>>>>>> Timer-AmauryF
         };
 
         public ImageSource[] boxImages = new ImageSource[]
         {
+<<<<<<< HEAD
 <<<<<<< Dev
 <<<<<<< HEAD
 =======
 >>>>>>> timer fonctionnel
+=======
+>>>>>>> Timer-AmauryF
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/CleanBox.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/diamond_block.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/lapis_block.png")),
@@ -64,6 +73,7 @@ namespace Tetris
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/coal_block.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/emerald_block.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/iron_block.png"))
+<<<<<<< HEAD
 <<<<<<< Dev
 =======
              new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/CleanBox.png")),
@@ -77,6 +87,8 @@ namespace Tetris
 >>>>>>> Dev
 =======
 >>>>>>> timer fonctionnel
+=======
+>>>>>>> Timer-AmauryF
         };
 
 

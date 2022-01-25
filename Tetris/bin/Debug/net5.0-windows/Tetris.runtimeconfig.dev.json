@@ -1,6 +1,7 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
+<<<<<<< HEAD
 <<<<<<< Dev
 <<<<<<< HEAD
       "C:\\Users\\FAILLER\\.dotnet\\store\\|arch|\\|tfm|",
@@ -13,6 +14,10 @@
       "C:\\Users\\FAILLER\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\FAILLER\\.nuget\\packages"
 >>>>>>> timer fonctionnel
+=======
+      "C:\\Users\\FAILLER\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\FAILLER\\.nuget\\packages"
+>>>>>>> Timer-AmauryF
     ]
   }
 }

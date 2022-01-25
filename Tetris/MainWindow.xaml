@@ -22,6 +22,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.Background>
+<<<<<<< HEAD
 <<<<<<< Dev
 <<<<<<< HEAD
             <ImageBrush ImageSource="C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\Assets\background.png"/>
@@ -31,6 +32,9 @@
 =======
             <ImageBrush ImageSource="C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\Assets\background.png"/>
 >>>>>>> timer fonctionnel
+=======
+            <ImageBrush ImageSource="C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\Assets\background.png"/>
+>>>>>>> Timer-AmauryF
         </Grid.Background>
 
         <Viewbox
@@ -88,6 +92,7 @@
             Grid.ColumnSpan="2"
             Visibility="Hidden">
             <Grid.Background>
+<<<<<<< HEAD
 <<<<<<< Dev
 <<<<<<< HEAD
                 <ImageBrush ImageSource="C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\Assets\GameOverBG.png"/>
@@ -97,6 +102,9 @@
 =======
                 <ImageBrush ImageSource="C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\Assets\GameOverBG.png"/>
 >>>>>>> timer fonctionnel
+=======
+                <ImageBrush ImageSource="C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\Assets\GameOverBG.png"/>
+>>>>>>> Timer-AmauryF
             </Grid.Background>
             <StackPanel
                 HorizontalAlignment="Center"

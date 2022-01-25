@@ -4,17 +4,26 @@
 winexe
 C#
 .cs
+<<<<<<< HEAD:Tetris/obj/Debug/net5.0-windows/Tetris_mxs5fdq1_wpftmp_MarkupCompile.cache
 C:\Users\Tim\source\repos\Tetris_02\Tetris\obj\Debug\net5.0-windows\
 Tetris_mxs5fdq1_wpftmp
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 C:\Users\Tim\source\repos\Tetris_02\Tetris\App.xaml
+=======
+C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\obj\Debug\net5.0-windows\
+Tetris
+none
+false
+TRACE;DEBUG;NET;NET5_0;NETCOREAPP
+C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\App.xaml
+>>>>>>> Timer-AmauryF:Tetris/obj/Debug/net5.0-windows/Tetris_MarkupCompile.i.cache
 11407045341
 
 17-328969860
 386511515088
 MainWindow.xaml;
 
-True
+False
 

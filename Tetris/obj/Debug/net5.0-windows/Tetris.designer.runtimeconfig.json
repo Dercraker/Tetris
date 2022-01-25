@@ -6,6 +6,7 @@
       "version": "5.0.0"
     },
     "additionalProbingPaths": [
+<<<<<<< HEAD
 <<<<<<< Dev
 <<<<<<< HEAD
       "C:\\Users\\FAILLER\\.dotnet\\store\\|arch|\\|tfm|",
@@ -18,6 +19,10 @@
       "C:\\Users\\FAILLER\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\FAILLER\\.nuget\\packages"
 >>>>>>> timer fonctionnel
+=======
+      "C:\\Users\\FAILLER\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\FAILLER\\.nuget\\packages"
+>>>>>>> Timer-AmauryF
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true

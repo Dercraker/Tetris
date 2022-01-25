@@ -4,6 +4,7 @@
 winexe
 C#
 .cs
+<<<<<<< HEAD
 <<<<<<< Dev
 <<<<<<< HEAD
 C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\obj\Debug\net5.0-windows\
@@ -13,10 +14,14 @@ C:\Users\Tim\source\repos\Tetris_02\Tetris\obj\Debug\net5.0-windows\
 =======
 C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\obj\Debug\net5.0-windows\
 >>>>>>> timer fonctionnel
+=======
+C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\obj\Debug\net5.0-windows\
+>>>>>>> Timer-AmauryF
 Tetris
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
+<<<<<<< HEAD
 <<<<<<< Dev
 <<<<<<< HEAD
 C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\App.xaml
@@ -26,6 +31,9 @@ C:\Users\Tim\source\repos\Tetris_02\Tetris\App.xaml
 =======
 C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\App.xaml
 >>>>>>> timer fonctionnel
+=======
+C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\App.xaml
+>>>>>>> Timer-AmauryF
 11407045341
 
 15-1204931205

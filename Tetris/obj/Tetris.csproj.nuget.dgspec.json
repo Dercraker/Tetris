@@ -1,10 +1,13 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
 <<<<<<< Dev
 <<<<<<< HEAD
 =======
 >>>>>>> timer fonctionnel
+=======
+>>>>>>> Timer-AmauryF
     "C:\\Users\\FAILLER\\Documents\\Cours\\B2\\C#\\Tetris\\Tetris\\Tetris.csproj": {}
   },
   "projects": {
@@ -16,6 +19,7 @@
         "projectPath": "C:\\Users\\FAILLER\\Documents\\Cours\\B2\\C#\\Tetris\\Tetris\\Tetris.csproj",
         "packagesPath": "C:\\Users\\FAILLER\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\FAILLER\\Documents\\Cours\\B2\\C#\\Tetris\\Tetris\\obj\\",
+<<<<<<< HEAD
 <<<<<<< Dev
         "projectStyle": "PackageReference",
         "configFilePaths": [
@@ -41,6 +45,11 @@
         "configFilePaths": [
           "C:\\Users\\FAILLER\\AppData\\Roaming\\NuGet\\NuGet.Config",
 >>>>>>> timer fonctionnel
+=======
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\FAILLER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> Timer-AmauryF
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

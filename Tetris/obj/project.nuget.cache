@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
 <<<<<<< Dev
 <<<<<<< HEAD
   "dgSpecHash": "zvELqxtgauCaTAI4Hk4DiWr8ck8HxCNOd5ax/82Y2rkDGmoHnIZzTxU9T+dICLQhNxvQeGrn+9L7UMfDgpLjHQ==",
@@ -15,6 +16,11 @@
   "success": true,
   "projectFilePath": "C:\\Users\\FAILLER\\Documents\\Cours\\B2\\C#\\Tetris\\Tetris\\Tetris.csproj",
 >>>>>>> timer fonctionnel
+=======
+  "dgSpecHash": "zvELqxtgauCaTAI4Hk4DiWr8ck8HxCNOd5ax/82Y2rkDGmoHnIZzTxU9T+dICLQhNxvQeGrn+9L7UMfDgpLjHQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\FAILLER\\Documents\\Cours\\B2\\C#\\Tetris\\Tetris\\Tetris.csproj",
+>>>>>>> Timer-AmauryF
   "expectedPackageFiles": [],
   "logs": []
 }
