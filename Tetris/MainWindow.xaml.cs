@@ -22,26 +22,26 @@ namespace Tetris
     {
         public ImageSource[] tetraminoImages = new ImageSource[]
         {
-            new BitmapImage(new Uri("C:/Users/Dercraker/OneDrive - Ynov/Cours/Tetris/Tetris/Tetris/assets/tetramino/cleanTetramino.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/OneDrive - Ynov/Cours/Tetris/Tetris/Tetris/assets/tetramino/IDiamound.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/OneDrive - Ynov/Cours/Tetris/Tetris/Tetris/assets/tetramino/JLapilazuli.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/OneDrive - Ynov/Cours/Tetris/Tetris/Tetris/assets/tetramino/LRedStone.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/OneDrive - Ynov/Cours/Tetris/Tetris/Tetris/assets/tetramino/OGold.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/OneDrive - Ynov/Cours/Tetris/Tetris/Tetris/assets/tetramino/SCharbon.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/OneDrive - Ynov/Cours/Tetris/Tetris/Tetris/assets/tetramino/TEmerald.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/OneDrive - Ynov/Cours/Tetris/Tetris/Tetris/assets/tetramino/ZIron.png"))
+            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/cleanTetramino.png")),
+            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/IDiamound.png")),
+            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/JLapilazuli.png")),
+            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/LRedStone.png")),
+            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/OGold.png")),
+            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/SCharbon.png")),
+            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/TEmerald.png")),
+            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/ZIron.png"))
         };
 
         public ImageSource[] boxImages = new ImageSource[]
         {
-            new BitmapImage(new Uri("C:/Users/Dercraker/OneDrive - Ynov/Cours/Tetris/Tetris/Tetris/assets/fullbox/CleanBox.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/OneDrive - Ynov/Cours/Tetris/Tetris/Tetris/assets/fullbox/diamond_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/OneDrive - Ynov/Cours/Tetris/Tetris/Tetris/assets/fullbox/lapis_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/OneDrive - Ynov/Cours/Tetris/Tetris/Tetris/assets/fullbox/redstone_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/OneDrive - Ynov/Cours/Tetris/Tetris/Tetris/assets/fullbox/gold_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/OneDrive - Ynov/Cours/Tetris/Tetris/Tetris/assets/fullbox/coal_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/OneDrive - Ynov/Cours/Tetris/Tetris/Tetris/assets/fullbox/emerald_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/OneDrive - Ynov/Cours/Tetris/Tetris/Tetris/assets/fullbox/iron_block.png"))
+            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/CleanBox.png")),
+            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/diamond_block.png")),
+            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/lapis_block.png")),
+            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/redstone_block.png")),
+            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/gold_block.png")),
+            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/coal_block.png")),
+            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/emerald_block.png")),
+            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/iron_block.png"))
         };
 
         public Image[,] imgControls;

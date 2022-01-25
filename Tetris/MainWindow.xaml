@@ -23,7 +23,7 @@
 
 
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\Dercraker\OneDrive - Ynov\Cours\Tetris\Tetris\Tetris\assets\background.png"/>
+            <ImageBrush ImageSource="C:\Users\Dercraker\Documents\Tetris\Tetris\assets\background.png"/>
         </Grid.Background>
 
         <Viewbox
@@ -68,9 +68,9 @@
             x:Name="MenuGameOver"
             Grid.RowSpan="3"
             Grid.ColumnSpan="2"
-            Visibility="Visible">
+            Visibility="Hidden">
             <Grid.Background>
-                <ImageBrush ImageSource="C:\Users\Dercraker\OneDrive - Ynov\Cours\Tetris\Tetris\Tetris\assets\GameOverBG.png"/>
+                <ImageBrush ImageSource="C:\Users\Dercraker\Documents\Tetris\Tetris\assets\GameOverBG.png"/>
             </Grid.Background>
             <StackPanel
                 HorizontalAlignment="Center"
