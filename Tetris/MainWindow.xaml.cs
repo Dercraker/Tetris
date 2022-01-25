@@ -23,26 +23,26 @@ namespace Tetris
     {
         public ImageSource[] tetraminoImages = new ImageSource[]
         {
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/cleanTetramino.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/IDiamound.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/JLapilazuli.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/LRedStone.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/OGold.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/SCharbon.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/TEmerald.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/ZIron.png"))
+            new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/cleanTetramino.png")),
+            new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/IDiamound.png")),
+            new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/JLapilazuli.png")),
+            new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/LRedStone.png")),
+            new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/OGold.png")),
+            new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/SCharbon.png")),
+            new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/TEmerald.png")),
+            new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/ZIron.png"))
         };
 
         public ImageSource[] boxImages = new ImageSource[]
         {
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/CleanBox.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/diamond_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/lapis_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/redstone_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/gold_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/coal_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/emerald_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/iron_block.png"))
+            new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/CleanBox.png")),
+            new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/diamond_block.png")),
+            new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/lapis_block.png")),
+            new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/redstone_block.png")),
+            new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/gold_block.png")),
+            new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/coal_block.png")),
+            new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/emerald_block.png")),
+            new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/iron_block.png"))
         };
 
 
@@ -159,10 +159,11 @@ namespace Tetris
                     {
                         speed -= 50;
                         speedLevel += 1;
+                        MessageBox.Show(String.Format("ze spid : {0}, speed2 : {1} ", speed, speedLevel));
                         if (speed < 50)
                         {
                             speed = 50;
-                            MessageBox.Show(String.Format("ze spid : {0} ", speed));
+                            //MessageBox.Show(String.Format("ze spid : {0} ", speed));
                         }
                     }
                     
@@ -172,6 +173,7 @@ namespace Tetris
                 Draw(gameStatus);
             }
             GameOverResult.Text = String.Format("Score : {0}", gameStatus.Score);
+            GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.time/60, gameStatus.time%60);
             MenuGameOver.Visibility = Visibility.Visible;
 
         }

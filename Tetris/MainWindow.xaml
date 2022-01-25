@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\Dercraker\Documents\Tetris\Tetris\assets\background.png"/>
+            <ImageBrush ImageSource="C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\Assets\background.png"/>
         </Grid.Background>
 
         <Viewbox
@@ -80,7 +80,7 @@
             Grid.ColumnSpan="2"
             Visibility="Hidden">
             <Grid.Background>
-                <ImageBrush ImageSource="C:\Users\Dercraker\Documents\Tetris\Tetris\assets\GameOverBG.png"/>
+                <ImageBrush ImageSource="C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\Assets\GameOverBG.png"/>
             </Grid.Background>
             <StackPanel
                 HorizontalAlignment="Center"
@@ -91,7 +91,12 @@
                     Text="Score : "
                     FontSize="40"
                     TextAlignment="Center"/>
-
+                <TextBlock
+                    x:Name="GameOverTimer"
+                    Text="Timer : "
+                    HorizontalAlignment="Center"
+                    FontSize="40"
+                    />
                 <TextBlock 
                     Text="Oh Snap!"
                     TextAlignment="Center"
