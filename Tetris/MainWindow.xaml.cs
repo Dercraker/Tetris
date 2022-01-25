@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Tetris
 {
@@ -44,6 +45,7 @@ namespace Tetris
             new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/iron_block.png"))
         };
 
+
         public Image[,] imgControls;
         public GameStatus gameStatus = new GameStatus();
 
@@ -52,6 +54,7 @@ namespace Tetris
             InitializeComponent();
             imgControls = SetUpGameGridCanvas(gameStatus.gameGrid);
         }
+
         public Image[,] SetUpGameGridCanvas(GameGird g)
         {
             Image[,] imgControls = new Image[g.rows,g.colums];
@@ -101,8 +104,12 @@ namespace Tetris
             DrawGrid(g.gameGrid);
             DrawBox(g.CurrentTetramino);
             ScoreText.Text = String.Format("Score : {0}", gameStatus.Score);
+
+            TimerCount.Text = String.Format("Timer : {0}'{1}''", gameStatus.time/60, gameStatus.time%60);
             GetNextBlock(gameStatus.waitingLine);
         }
+
+       
         private async void GameGridCanvas_Load(object sender, RoutedEventArgs e)
         {
             await Game();
@@ -139,11 +146,28 @@ namespace Tetris
         }
         public async Task Game()
         {
+            int speed = 500;
+            int speedLevel = 0;
             Draw(gameStatus);
+            gameStatus.SetTimer();
             while (!gameStatus.gameOver)
             {
                 //MessageBox.Show(String.Format("Current pos {0},{1}", gameStatus.CurrentTetramino.offSet.row, gameStatus.CurrentTetramino.offSet.column));
-                await Task.Delay(500);
+                if (gameStatus.Score%5 == 1 && gameStatus.Score != 1)
+                {
+                    if (gameStatus.Score/5 == speedLevel + 1)
+                    {
+                        speed -= 50;
+                        speedLevel += 1;
+                        if (speed < 50)
+                        {
+                            speed = 50;
+                            MessageBox.Show(String.Format("ze spid : {0} ", speed));
+                        }
+                    }
+                    
+                }
+                await Task.Delay(speed);
                 gameStatus.MoveDownTetramino();
                 Draw(gameStatus);
             }
