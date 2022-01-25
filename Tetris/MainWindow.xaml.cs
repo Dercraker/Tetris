@@ -22,6 +22,7 @@ namespace Tetris
     {
         public ImageSource[] tetraminoImages = new ImageSource[]
         {
+<<<<<<< HEAD
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/cleanTetramino.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/IDiamound.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/JLapilazuli.png")),
@@ -30,10 +31,21 @@ namespace Tetris
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/SCharbon.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/TEmerald.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/tetramino/ZIron.png"))
+=======
+            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/cleanTetramino.png")),
+            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/IDiamound.png")),
+            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/JLapilazuli.png")),
+            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/LRedStone.png")),
+            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/OGold.png")),
+            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/SCharbon.png")),
+            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/TEmerald.png")),
+            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/ZIron.png"))
+>>>>>>> Dev
         };
 
         public ImageSource[] boxImages = new ImageSource[]
         {
+<<<<<<< HEAD
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/CleanBox.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/diamond_block.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/lapis_block.png")),
@@ -42,6 +54,16 @@ namespace Tetris
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/coal_block.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/emerald_block.png")),
             new BitmapImage(new Uri("C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/fullbox/iron_block.png"))
+=======
+             new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/CleanBox.png")),
+            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/diamond_block.png")),
+            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/lapis_block.png")),
+            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/redstone_block.png")),
+            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/gold_block.png")),
+            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/coal_block.png")),
+            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/emerald_block.png")),
+            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/iron_block.png"))
+>>>>>>> Dev
         };
 
 
@@ -140,11 +162,27 @@ namespace Tetris
         }
         public async Task Game()
         {
+            int speed = 500;
+            int speedLevel = 0;
             Draw(gameStatus);
             while (!gameStatus.gameOver)
             {
                 //MessageBox.Show(String.Format("Current pos {0},{1}", gameStatus.CurrentTetramino.offSet.row, gameStatus.CurrentTetramino.offSet.column));
-                await Task.Delay(500);
+                if (gameStatus.Score%5 == 1 && gameStatus.Score != 1)
+                {
+                    if (gameStatus.Score/5 == speedLevel + 1)
+                    {
+                        speed -= 50;
+                        speedLevel += 1;
+                        if (speed < 50)
+                        {
+                            speed = 50;
+                            MessageBox.Show(String.Format("ze spid : {0} ", speed));
+                        }
+                    }
+                    
+                }
+                await Task.Delay(speed);
                 gameStatus.MoveDownTetramino();
                 Draw(gameStatus);
             }

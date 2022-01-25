@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "zvELqxtgauCaTAI4Hk4DiWr8ck8HxCNOd5ax/82Y2rkDGmoHnIZzTxU9T+dICLQhNxvQeGrn+9L7UMfDgpLjHQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\FAILLER\\Documents\\Cours\\B2\\C#\\Tetris\\Tetris\\Tetris.csproj",
+=======
+  "dgSpecHash": "Y/aTx4Oo6L7iQIDipT2FCz7/nzKl+UkLeK2oqRFE+F7jdIzE50sQbVhwon6Y2lXwD+LFUwF+RrkTrlcnLwbggg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Tim\\source\\repos\\Tetris_02\\Tetris\\Tetris.csproj",
+>>>>>>> Dev
   "expectedPackageFiles": [],
   "logs": []
 }
