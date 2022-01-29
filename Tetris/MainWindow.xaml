@@ -8,7 +8,7 @@
         Title="TetraCaft"
         MinWidth="800" MinHeight="600"
         Foreground="White"
-        FontFamily="Segoe UI Light" FontSize="28"
+        FontSize="28"
         KeyDown="KeyInput">
     <Grid>
         <Grid.RowDefinitions>
@@ -47,7 +47,6 @@
             Foreground="Black"
             FontWeight="UltraBold"
             />
-
         <StackPanel 
             Grid.Column="1"
             Grid.Row="1"
@@ -63,7 +62,6 @@
                    Width="128"
                    Margin="0,10,0,0"/>
         </StackPanel>
-
         <TextBlock
             Grid.Row="2"
             Grid.Column="1"
@@ -74,6 +72,7 @@
             FontWeight="UltraBold"
             Text="Time : 0">
         </TextBlock>
+        
         <Grid
             x:Name="MenuGameOver"
             Grid.RowSpan="3"
@@ -115,6 +114,27 @@
                     Click="KillProgram"
                     />
             </StackPanel>
+        </Grid>
+
+        <Grid
+             x:Name="MainMenu"
+            Grid.RowSpan="3"
+            Grid.ColumnSpan="2"
+            Visibility="Visible">
+            <Grid.Background>
+                <ImageBrush ImageSource="C:\Users\Dercraker\Documents\Tetris\Tetris\assets\LaunchScreen.png"/>
+            </Grid.Background>
+
+            <StackPanel
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+                <TextBlock
+                    x:Name="GameName"
+                    Text="TetraCraft"/>
+
+            </StackPanel>
+            
         </Grid>
 
     </Grid>
