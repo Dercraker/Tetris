@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\Assets\background.png"/>
+            <ImageBrush ImageSource="D:\Tetris\Tetris\assets\background.png"/>
         </Grid.Background>
 
         <Viewbox
@@ -79,7 +79,7 @@
             Grid.ColumnSpan="2"
             Visibility="Hidden">
             <Grid.Background>
-                <ImageBrush ImageSource="C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\Assets\GameOverBG.png"/>
+                <ImageBrush ImageSource="D:\Tetris\Tetris\assets\GameOverBG.png"/>
             </Grid.Background>
             <StackPanel
                 HorizontalAlignment="Center"
@@ -127,17 +127,30 @@
             Grid.ColumnSpan="2"
             Visibility="Visible">
             <Grid.Background>
-                <ImageBrush ImageSource="C:\Users\Dercraker\Documents\Tetris\Tetris\assets\LaunchScreen.png"/>
+                <ImageBrush ImageSource="D:\Tetris\Tetris\Assets\LaunchScreen.png"/>
             </Grid.Background>
 
             <StackPanel
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center">
 
-                <TextBlock
-                    x:Name="GameName"
-                    Text="TetraCraft"/>
-
+                <Button Content="New Game()"
+                    Foreground="Black"
+                    Background="Green"
+                    Margin="0,20,0,0"
+                    Click="LaunchGame"/>
+                
+                <Button Content="tetris.getOptions()"
+                    Foreground="Black"
+                    Background="Blue"
+                    Margin="0,20,0,0"
+                    Click="Options"/>
+                
+                <Button Content="Kill Program"
+                    Foreground="Black"
+                    Background="Red"
+                    Margin="0,20,0,0"
+                    Click="KillProgram"/>
             </StackPanel>
             
         </Grid>
