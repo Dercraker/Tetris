@@ -23,26 +23,26 @@ namespace Tetris
     {
         public ImageSource[] tetraminoImages = new ImageSource[]
         {
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/cleanTetramino.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/IDiamound.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/JLapilazuli.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/LRedStone.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/OGold.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/SCharbon.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/TEmerald.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/tetramino/ZIron.png"))
+            new BitmapImage(new Uri("D:/Tetris/Tetris/assets/tetramino/cleanTetramino.png")),
+            new BitmapImage(new Uri("D:/Tetris/Tetris/assets/tetramino/IDiamound.png")),
+            new BitmapImage(new Uri("D:/Tetris/Tetris/assets/tetramino/JLapilazuli.png")),
+            new BitmapImage(new Uri("D:/Tetris/Tetris/assets/tetramino/LRedStone.png")),
+            new BitmapImage(new Uri("D:/Tetris/Tetris/assets/tetramino/OGold.png")),
+            new BitmapImage(new Uri("D:/Tetris/Tetris/assets/tetramino/SCharbon.png")),
+            new BitmapImage(new Uri("D:/Tetris/Tetris/assets/tetramino/TEmerald.png")),
+            new BitmapImage(new Uri("D:/Tetris/Tetris/assets/tetramino/ZIron.png"))
         };
 
         public ImageSource[] boxImages = new ImageSource[]
         {
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/CleanBox.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/diamond_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/lapis_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/redstone_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/gold_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/coal_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/emerald_block.png")),
-            new BitmapImage(new Uri("C:/Users/Dercraker/Documents/Tetris/Tetris/assets/fullbox/iron_block.png"))
+            new BitmapImage(new Uri("D:/Tetris/Tetris/assets/fullbox/CleanBox.png")),
+            new BitmapImage(new Uri("D:/Tetris/Tetris/assets/fullbox/diamond_block.png")),
+            new BitmapImage(new Uri("D:/Tetris/Tetris/assets/fullbox/lapis_block.png")),
+            new BitmapImage(new Uri("D:/Tetris/Tetris/assets/fullbox/redstone_block.png")),
+            new BitmapImage(new Uri("D:/Tetris/Tetris/assets/fullbox/gold_block.png")),
+            new BitmapImage(new Uri("D:/Tetris/Tetris/assets/fullbox/coal_block.png")),
+            new BitmapImage(new Uri("D:/Tetris/Tetris/assets/fullbox/emerald_block.png")),
+            new BitmapImage(new Uri("D:/Tetris/Tetris/assets/fullbox/iron_block.png"))
         };
 
 
@@ -182,6 +182,14 @@ namespace Tetris
             await Game();
         }
         private void KillProgram(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
+        private void LaunchGame(object sender, RoutedEventArgs e)
+        {
+            MainMenu.Visibility = Visibility.Hidden;
+        }
+        private void Options(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
         }
