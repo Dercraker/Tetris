@@ -109,13 +109,6 @@ namespace Tetris
             GetNextBlock(gameStatus.waitingLine);
         }
 
-       
-        private async void GameGridCanvas_Load(object sender, RoutedEventArgs e)
-        {
-            await Game();
-            
-            //Draw(gameStatus);
-        }
         private async void KeyInput(object sender, KeyEventArgs e)
         {
             if (gameStatus.gameOver)
@@ -181,17 +174,29 @@ namespace Tetris
             MenuGameOver.Visibility= Visibility.Hidden;
             await Game();
         }
+        private void ReturnMainMenu(object sender, RoutedEventArgs e)
+        {
+            gameStatus = new GameStatus();
+            MainMenu.Visibility= Visibility.Visible;
+            MenuGameOver.Visibility = Visibility.Hidden;
+        }
+        private void OutOption(object sender, RoutedEventArgs e)
+        {
+            OptionPage.Visibility= Visibility.Hidden;
+        }
         private void KillProgram(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
         }
-        private void LaunchGame(object sender, RoutedEventArgs e)
+        private async void LaunchGame(object sender, RoutedEventArgs e)
         {
             MainMenu.Visibility = Visibility.Hidden;
+            await Game();
+
         }
         private void Options(object sender, RoutedEventArgs e)
         {
-            System.Windows.Application.Current.Shutdown();
+            OptionPage.Visibility = Visibility.Visible;
         }
     }
 }
