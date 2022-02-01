@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,11 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-<<<<<<< HEAD
 using System.Windows.Threading;
-=======
-using System.Resources;
->>>>>>> ressource
+
+
 
 namespace Tetris
 {
@@ -147,27 +145,9 @@ namespace Tetris
 
             while (!gameStatus.gameOver)
             {
-<<<<<<< HEAD
+
                 await Task.Delay(gameStatus.GameSpeed);
-=======
-                //MessageBox.Show(String.Format("Current pos {0},{1}", gameStatus.CurrentTetramino.offSet.row, gameStatus.CurrentTetramino.offSet.column));
-                if (gameStatus.Score%5 == 1 && gameStatus.Score != 1)
-                {
-                    if (gameStatus.Score/5 == speedLevel + 1)
-                    {
-                        speed -= 50;
-                        speedLevel += 1;
-                        //MessageBox.Show(String.Format("ze spid : {0}, speedlevel : {1} ", speed, speedLevel));
-                        if (speed < 50)
-                        {
-                            speed = 50;
-                            //MessageBox.Show(String.Format("ze spid : {0} ", speed));
-                        }
-                    }
-                    
-                }
-                await Task.Delay(speed);
->>>>>>> ressource
+
                 gameStatus.MoveDownTetramino();
                 Draw(gameStatus);
             }
