@@ -48,6 +48,8 @@ namespace Tetris
 
         public Image[,] imgControls;
         public GameStatus gameStatus = new GameStatus();
+        public int speed = 402;
+        public int speedLevel = 0;
 
         public MainWindow()
         {
@@ -104,7 +106,6 @@ namespace Tetris
             DrawGrid(g.gameGrid);
             DrawBox(g.CurrentTetramino);
             ScoreText.Text = String.Format("Score : {0}", gameStatus.Score);
-
             TimerCount.Text = String.Format("Timer : {0}'{1}''", gameStatus.time/60, gameStatus.time%60);
             GetNextBlock(gameStatus.waitingLine);
         }
@@ -139,14 +140,12 @@ namespace Tetris
         }
         public async Task Game()
         {
-            int speed = 500;
-            int speedLevel = 0;
             Draw(gameStatus);
             gameStatus.SetTimer();
+
             while (!gameStatus.gameOver)
             {
-                //MessageBox.Show(String.Format("Current pos {0},{1}", gameStatus.CurrentTetramino.offSet.row, gameStatus.CurrentTetramino.offSet.column));
-                if (gameStatus.Score%5 == 1 && gameStatus.Score != 1)
+                if (gameStatus.Score%5 == 0 && gameStatus.Score != 0)
                 {
                     if (gameStatus.Score/5 == speedLevel + 1)
                     {
@@ -156,7 +155,6 @@ namespace Tetris
                         if (speed < 50)
                         {
                             speed = 50;
-                            //MessageBox.Show(String.Format("ze spid : {0} ", speed));
                         }
                     }
                     
@@ -170,6 +168,7 @@ namespace Tetris
             MenuGameOver.Visibility = Visibility.Visible;
 
         }
+        
         private async void RestartGame(object sender, RoutedEventArgs e)
         {
             gameStatus = new GameStatus();

@@ -115,7 +115,7 @@ namespace Tetris
             {
                 gameGrid[p.row, p.column] = currentTetramino.tetraminoId;
             }
-            Score += gameGrid.ClearGrid();
+            Score += CombosBonus(gameGrid.ClearGrid());
             if (IsGameOver())
             {
                 gameOver = true;
@@ -126,6 +126,15 @@ namespace Tetris
                 currentTetramino = waitingLine.UpdateTetramino();
                 //MessageBox.Show(String.Format("2 OffSet row :{0} , OffSet column :{1}", currentTetramino.offSet.row,currentTetramino.offSet.column));
             }
+        }
+        public int CombosBonus(int line)
+        {
+            int result = 0;
+            for(int i = 0; i <= line; i++)
+            {
+                result += i;
+            }
+            return result;
         }
         public void MoveDownTetramino()
         {
