@@ -25,12 +25,16 @@ namespace Tetris
         public int Score { get; private set; }
         public WaitingLine waitingLine { get; }
         public bool gameOver { get; private set; }
+        public int GameSpeed { get; set; }
+        public int SpeedLevel { get; set; }
 
         public int time { get; private set; }
 
         private DispatcherTimer Timer;
         public GameStatus()
         {
+            GameSpeed = 400;
+            SpeedLevel = 0;
             gameGrid = new GameGird(22, 10);
             waitingLine = new WaitingLine();
             currentTetramino = waitingLine.UpdateTetramino();
@@ -116,6 +120,7 @@ namespace Tetris
                 gameGrid[p.row, p.column] = currentTetramino.tetraminoId;
             }
             Score += CombosBonus(gameGrid.ClearGrid());
+            NewGameSpeed(Score);
             if (IsGameOver())
             {
                 gameOver = true;
@@ -125,6 +130,14 @@ namespace Tetris
                 //MessageBox.Show(String.Format("1 OffSet row :{0} , OffSet column :{1}", currentTetramino.offSet.row,currentTetramino.offSet.column));
                 currentTetramino = waitingLine.UpdateTetramino();
                 //MessageBox.Show(String.Format("2 OffSet row :{0} , OffSet column :{1}", currentTetramino.offSet.row,currentTetramino.offSet.column));
+            }
+        }
+        public void NewGameSpeed(int score)
+        {
+            while (GameSpeed >= 50 && score > SpeedLevel * 5)
+            {
+                SpeedLevel++;
+                GameSpeed -= 50;
             }
         }
         public int CombosBonus(int line)
