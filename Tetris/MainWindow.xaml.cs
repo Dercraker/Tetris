@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Resources;
 
 namespace Tetris
 {
@@ -22,26 +23,26 @@ namespace Tetris
     {
         public ImageSource[] tetraminoImages = new ImageSource[]
         {
-            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/cleanTetramino.png")),
-            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/IDiamound.png")),
-            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/JLapilazuli.png")),
-            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/LRedStone.png")),
-            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/OGold.png")),
-            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/SCharbon.png")),
-            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/TEmerald.png")),
-            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/tetramino/ZIron.png"))
+            new BitmapImage(new Uri("../assets/tetramino/cleanTetramino.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../assets/tetramino/IDiamound.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../assets/tetramino/JLapilazuli.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../assets/tetramino/LRedStone.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../assets/tetramino/OGold.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../assets/tetramino/SCharbon.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../assets/tetramino/TEmerald.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../assets/tetramino/ZIron.png", System.UriKind.Relative))
         };
 
         public ImageSource[] boxImages = new ImageSource[]
         {
-             new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/CleanBox.png")),
-            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/diamond_block.png")),
-            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/lapis_block.png")),
-            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/redstone_block.png")),
-            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/gold_block.png")),
-            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/coal_block.png")),
-            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/emerald_block.png")),
-            new BitmapImage(new Uri("C:/Users/Tim/Source/Repos/Tetris_02/Tetris/assets/fullbox/iron_block.png"))
+            new BitmapImage(new Uri("../assets/fullbox/CleanBox.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../assets/fullbox/diamond_block.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../assets/fullbox/lapis_block.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../assets/fullbox/redstone_block.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../assets/fullbox/gold_block.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../assets/fullbox/coal_block.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../assets/fullbox/emerald_block.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../assets/fullbox/iron_block.png", System.UriKind.Relative))
         };
 
         public Image[,] imgControls;
@@ -151,10 +152,11 @@ namespace Tetris
                     {
                         speed -= 50;
                         speedLevel += 1;
+                        //MessageBox.Show(String.Format("ze spid : {0}, speedlevel : {1} ", speed, speedLevel));
                         if (speed < 50)
                         {
                             speed = 50;
-                            MessageBox.Show(String.Format("ze spid : {0} ", speed));
+                            //MessageBox.Show(String.Format("ze spid : {0} ", speed));
                         }
                     }
                     

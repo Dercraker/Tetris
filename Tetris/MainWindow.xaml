@@ -9,7 +9,8 @@
         MinWidth="800" MinHeight="600"
         Foreground="White"
         FontFamily="Segoe UI Light" FontSize="28"
-        KeyDown="KeyInput">
+        KeyDown="KeyInput"
+        xmlns:properties="clr-namespace:Tetris">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -23,7 +24,7 @@
 
 
         <Grid.Background>
-			<ImageBrush ImageSource="C:\Users\Tim\Source\Repos\Tetris_02\Tetris\assets\background.png"/>
+            <ImageBrush ImageSource= "{Binding Source={x:Static properties:Resource1.background}}"/>
         </Grid.Background>
 
         <Viewbox
@@ -70,7 +71,7 @@
             Grid.ColumnSpan="2"
             Visibility="Hidden">
             <Grid.Background>
-				<ImageBrush ImageSource="C:\Users\Tim\Source\Repos\Tetris_02\Tetris\assets\GameOverBackground.png"/>
+                <ImageBrush ImageSource="{Binding Source={x:Static properties:Resource1.GameOverBG}}"/>
             </Grid.Background>
             <StackPanel
                 HorizontalAlignment="Center"
