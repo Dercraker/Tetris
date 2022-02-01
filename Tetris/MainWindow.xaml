@@ -8,8 +8,9 @@
         Title="TetraCaft"
         MinWidth="800" MinHeight="600"
         Foreground="White"
-        FontSize="28"
-        KeyDown="KeyInput">
+        FontFamily="Segoe UI Light" FontSize="28"
+        KeyDown="KeyInput"
+        xmlns:properties="clr-namespace:Tetris">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -22,7 +23,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.Background>
-            <ImageBrush ImageSource="D:\Tetris\Tetris\assets\background.png"/>
+            <ImageBrush ImageSource= "{Binding Source={x:Static properties:Resource1.background}}"/>
         </Grid.Background>
 
         <Viewbox
@@ -78,7 +79,7 @@
             Grid.ColumnSpan="2"
             Visibility="Hidden">
             <Grid.Background>
-                <ImageBrush ImageSource="D:\Tetris\Tetris\assets\GameOverBG.png"/>
+                <ImageBrush ImageSource="{Binding Source={x:Static properties:Resource1.GameOverBG}}"/>
             </Grid.Background>
             
             <StackPanel
