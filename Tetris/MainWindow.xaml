@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\Assets\background.png"/>
+            <ImageBrush ImageSource="C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/background.png"/>
         </Grid.Background>
 
         <Viewbox
@@ -80,7 +80,7 @@
             Grid.ColumnSpan="2"
             Visibility="Hidden">
             <Grid.Background>
-                <ImageBrush ImageSource="C:\Users\FAILLER\Documents\Cours\B2\C#\Tetris\Tetris\Assets\GameOverBG.png"/>
+                <ImageBrush ImageSource="C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/GameOverBG.png"/>
             </Grid.Background>
             <StackPanel
                 HorizontalAlignment="Center"

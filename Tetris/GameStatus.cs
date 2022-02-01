@@ -29,6 +29,7 @@ namespace Tetris
         public int time { get; private set; }
 
         private DispatcherTimer Timer;
+
         public GameStatus()
         {
             gameGrid = new GameGird(22, 10);
@@ -42,6 +43,11 @@ namespace Tetris
             Timer.Interval = new TimeSpan(0, 0, 1);
             Timer.Tick += Timer_Tick;
             Timer.Start();
+        }
+
+        public void StopTimer()
+        {
+            Timer.Stop();
         }
 
         private void Timer_Tick(object sender, EventArgs e)

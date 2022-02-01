@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Media;
 
 namespace Tetris
 {
@@ -150,6 +151,9 @@ namespace Tetris
             int speedLevel = 0;
             Draw(gameStatus);
             gameStatus.SetTimer();
+            SoundPlayer sp = new SoundPlayer();
+            sp.SoundLocation = "C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Sound/Tetris 99MainTheme.wav";
+            sp.PlayLooping();
             while (!gameStatus.gameOver)
             {
                 //MessageBox.Show(String.Format("Current pos {0},{1}", gameStatus.CurrentTetramino.offSet.row, gameStatus.CurrentTetramino.offSet.column));
@@ -159,7 +163,7 @@ namespace Tetris
                     {
                         speed -= 50;
                         speedLevel += 1;
-                        MessageBox.Show(String.Format("ze spid : {0}, speed2 : {1} ", speed, speedLevel));
+                        //MessageBox.Show(String.Format("ze spid : {0}, speed2 : {1} ", speed, speedLevel));
                         if (speed < 50)
                         {
                             speed = 50;
@@ -172,6 +176,8 @@ namespace Tetris
                 gameStatus.MoveDownTetramino();
                 Draw(gameStatus);
             }
+            sp.Stop();
+            gameStatus.StopTimer();
             GameOverResult.Text = String.Format("Score : {0}", gameStatus.Score);
             GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.time/60, gameStatus.time%60);
             MenuGameOver.Visibility = Visibility.Visible;
