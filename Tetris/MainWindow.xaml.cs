@@ -14,8 +14,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Media;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> MUSIC-AmauryF
 
 namespace Tetris
 {
@@ -143,6 +146,7 @@ namespace Tetris
         {
             Draw(gameStatus);
             gameStatus.SetTimer();
+<<<<<<< HEAD
 <<<<<<< Dev
 
             while (!gameStatus.gameOver)
@@ -151,6 +155,8 @@ namespace Tetris
                 await Task.Delay(gameStatus.GameSpeed);
 
 =======
+=======
+>>>>>>> MUSIC-AmauryF
             SoundPlayer sp = new SoundPlayer();
             sp.SoundLocation = "C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Sound/Tetris 99MainTheme.wav";
             sp.PlayLooping();
