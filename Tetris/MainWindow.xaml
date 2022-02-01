@@ -23,11 +23,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.Background>
-<<<<<<< HEAD
             <ImageBrush ImageSource= "{Binding Source={x:Static properties:Resource1.background}}"/>
-=======
-            <ImageBrush ImageSource="C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/background.png"/>
->>>>>>> MUSIC-AmauryF
         </Grid.Background>
 
         <Viewbox
@@ -83,11 +79,7 @@
             Grid.ColumnSpan="2"
             Visibility="Hidden">
             <Grid.Background>
-<<<<<<< HEAD
                 <ImageBrush ImageSource="{Binding Source={x:Static properties:Resource1.GameOverBG}}"/>
-=======
-                <ImageBrush ImageSource="C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Assets/GameOverBG.png"/>
->>>>>>> MUSIC-AmauryF
             </Grid.Background>
             
             <StackPanel

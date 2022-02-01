@@ -14,11 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Media;
-<<<<<<< HEAD
-
-
-=======
->>>>>>> MUSIC-AmauryF
 
 namespace Tetris
 {
@@ -146,43 +141,18 @@ namespace Tetris
         {
             Draw(gameStatus);
             gameStatus.SetTimer();
-<<<<<<< HEAD
-<<<<<<< Dev
+            SoundPlayer sp = new SoundPlayer();
+            sp.SoundLocation = "../Assets/Sound/Tetris 99MainTheme.wav";
+            sp.PlayLooping();
 
             while (!gameStatus.gameOver)
             {
 
                 await Task.Delay(gameStatus.GameSpeed);
-
-=======
-=======
->>>>>>> MUSIC-AmauryF
-            SoundPlayer sp = new SoundPlayer();
-            sp.SoundLocation = "C:/Users/FAILLER/Documents/Cours/B2/C#/Tetris/Tetris/Sound/Tetris 99MainTheme.wav";
-            sp.PlayLooping();
-            while (!gameStatus.gameOver)
-            {
-                //MessageBox.Show(String.Format("Current pos {0},{1}", gameStatus.CurrentTetramino.offSet.row, gameStatus.CurrentTetramino.offSet.column));
-                if (gameStatus.Score%5 == 1 && gameStatus.Score != 1)
-                {
-                    if (gameStatus.Score/5 == speedLevel + 1)
-                    {
-                        speed -= 50;
-                        speedLevel += 1;
-                        //MessageBox.Show(String.Format("ze spid : {0}, speed2 : {1} ", speed, speedLevel));
-                        if (speed < 50)
-                        {
-                            speed = 50;
-                            //MessageBox.Show(String.Format("ze spid : {0} ", speed));
-                        }
-                    }
-                    
-                }
-                await Task.Delay(speed);
->>>>>>> Background music et timer stop
                 gameStatus.MoveDownTetramino();
                 Draw(gameStatus);
             }
+
             sp.Stop();
             gameStatus.StopTimer();
             GameOverResult.Text = String.Format("Score : {0}", gameStatus.Score);
