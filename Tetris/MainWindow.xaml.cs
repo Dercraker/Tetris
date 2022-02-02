@@ -141,16 +141,14 @@ namespace Tetris
         {
             Draw(gameStatus);
             gameStatus.SetTimer();
-            //var mp = new MediaPlayer();         
-            //mp.Open = Uri;
-            //mp.PlayLooping();           
-            var player = new MediaPlayer();
-            Uri uri = new Uri("..assets/Sound/Tetris 99MainTheme.wav", System.UriKind.Relative);
-            player.Open(uri);
+
+            System.IO.Stream mainThemeTetris = Resource1.Tetris_99_Main_Theme;
+            SoundPlayer player = new SoundPlayer(mainThemeTetris);
             player.Play();
+            player.PlayLooping();
+
             while (!gameStatus.gameOver)
             {
-
                 await Task.Delay(gameStatus.GameSpeed);
                 gameStatus.MoveDownTetramino();
                 Draw(gameStatus);

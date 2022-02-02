@@ -30,7 +30,6 @@
     <None Remove="assets/tetramino/TEmerald.png" />
     <None Remove="assets/tetramino/ZIron.png" />
     <None Remove="Assets\LaunchScreen.png" />
-    <None Remove="Assets\Sound\Tetris 99MainTheme.wav" />
   </ItemGroup>
 
   <ItemGroup>
@@ -92,9 +91,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\LaunchScreen.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Sound\Tetris 99MainTheme.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

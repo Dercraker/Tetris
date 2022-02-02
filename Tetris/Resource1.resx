@@ -172,6 +172,9 @@
   <data name="TEmerald" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\tetramino\TEmerald.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Tetris_99_Main_Theme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Tetris-99-Main-Theme.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="ZIron" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\tetramino\ZIron.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
