@@ -123,6 +123,16 @@ namespace Tetris {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] GameOverBackground {
+            get {
+                object obj = ResourceManager.GetObject("GameOverBackground", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] GameOverBG {
             get {
                 object obj = ResourceManager.GetObject("GameOverBG", resourceCulture);
