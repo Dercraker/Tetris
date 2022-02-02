@@ -8,107 +8,96 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="assets/background.png" />
-    <None Remove="assets/CleanBox.png" />
-    <None Remove="assets/fullbox/CleanBox.png" />
-    <None Remove="assets/fullbox/coal_block.png" />
-    <None Remove="assets/fullbox/diamond_block.png" />
-    <None Remove="assets/fullbox/emerald_block.png" />
-    <None Remove="assets/fullbox/gold_block.png" />
-    <None Remove="assets/fullbox/iron_block.png" />
-    <None Remove="assets/fullbox/lapis_block.png" />
-    <None Remove="assets/fullbox/redstone_block.png" />
-    <None Remove="assets/GameOverBackground" />
-    <None Remove="assets/GameOverBackground.png" />
-    <None Remove="assets/GameOverBG.png" />
-    <None Remove="assets/tetramino/cleanTetramino.png" />
-    <None Remove="assets/tetramino/IDiamound.png" />
-    <None Remove="assets/tetramino/JLapilazuli.png" />
-    <None Remove="assets/tetramino/LRedStone.png" />
-    <None Remove="assets/tetramino/OGold.png" />
-    <None Remove="assets/tetramino/SCharbon.png" />
-    <None Remove="assets/tetramino/TEmerald.png" />
-    <None Remove="assets/tetramino/ZIron.png" />
-    <None Remove="Assets\LaunchScreen.png" />
+    <Compile Remove="assets\**" />
+    <EmbeddedResource Remove="assets\**" />
+    <None Remove="assets\**" />
+    <Page Remove="assets\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="assets/background.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/fullbox/CleanBox.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/fullbox/coal_block.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/fullbox/diamond_block.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/fullbox/emerald_block.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/fullbox/gold_block.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/fullbox/iron_block.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/fullbox/lapis_block.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/fullbox/redstone_block.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/GameOverBackground.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/GameOverBG.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/tetramino/cleanTetramino.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/tetramino/IDiamound.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/tetramino/JLapilazuli.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/tetramino/LRedStone.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/tetramino/OGold.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/tetramino/SCharbon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/tetramino/TEmerald.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets/tetramino/ZIron.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\LaunchScreen.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <None Remove="Resources\background.png" />
+    <None Remove="Resources\CleanBox.png" />
+    <None Remove="Resources\cleanTetramino.png" />
+    <None Remove="Resources\coal_block.png" />
+    <None Remove="Resources\diamond_block.png" />
+    <None Remove="Resources\emerald_block.png" />
+    <None Remove="Resources\GameOverBackground.png" />
+    <None Remove="Resources\GameOverBG.png" />
+    <None Remove="Resources\gold_block.png" />
+    <None Remove="Resources\IDiamound.png" />
+    <None Remove="Resources\iron_block.png" />
+    <None Remove="Resources\JLapilazuli.png" />
+    <None Remove="Resources\lapis_block.png" />
+    <None Remove="Resources\LaunchScreen.png" />
+    <None Remove="Resources\LRedStone.png" />
+    <None Remove="Resources\OGold.png" />
+    <None Remove="Resources\redstone_block.png" />
+    <None Remove="Resources\SCharbon.png" />
+    <None Remove="Resources\TEmerald.png" />
+    <None Remove="Resources\ZIron.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resource1.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resource1.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Resource1.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resource1.resx</DependentUpon>
-    </Compile>
+    <Resource Include="Resources\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\CleanBox.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\cleanTetramino.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\coal_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\diamond_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\emerald_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\GameOverBackground.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\GameOverBG.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\gold_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\IDiamound.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\iron_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\JLapilazuli.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\lapis_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\LaunchScreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\LRedStone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\OGold.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\redstone_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\SCharbon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\TEmerald.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\ZIron.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
