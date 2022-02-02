@@ -108,7 +108,15 @@ namespace Tetris
         {
             DrawGrid(g.gameGrid);
             DrawBox(g.CurrentTetramino);
-            ScoreText.Text = String.Format("Score : {0}", gameStatus.Score);
+            ScoreText.Text = String.Format("Score : {0}", gameStatus.GameSpeed);
+            if (gameStatus.combos > 1)
+            {
+                CombosText.Visibility = Visibility.Visible;
+                CombosText.Text = String.Format("Combos : {0}", gameStatus.combos);
+            } else
+            {
+                CombosText.Visibility = Visibility.Hidden;
+            }
             TimerCount.Text = String.Format("Timer : {0}'{1}''", gameStatus.time/60, gameStatus.time%60);
             GetNextBlock(gameStatus.waitingLine);
         }
