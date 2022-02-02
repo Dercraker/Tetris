@@ -141,10 +141,13 @@ namespace Tetris
         {
             Draw(gameStatus);
             gameStatus.SetTimer();
-            SoundPlayer sp = new SoundPlayer();
-            sp.SoundLocation = "../Assets/Sound/Tetris 99MainTheme.wav";
-            sp.PlayLooping();
-
+            //var mp = new MediaPlayer();         
+            //mp.Open = Uri;
+            //mp.PlayLooping();           
+            var player = new MediaPlayer();
+            Uri uri = new Uri("..assets/Sound/Tetris 99MainTheme.wav", System.UriKind.Relative);
+            player.Open(uri);
+            player.Play();
             while (!gameStatus.gameOver)
             {
 
@@ -153,7 +156,7 @@ namespace Tetris
                 Draw(gameStatus);
             }
 
-            sp.Stop();
+            player.Stop();
             gameStatus.StopTimer();
             GameOverResult.Text = String.Format("Score : {0}", gameStatus.Score);
             GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.time/60, gameStatus.time%60);
