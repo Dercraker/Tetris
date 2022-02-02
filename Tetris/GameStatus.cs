@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 
 namespace Tetris
@@ -21,6 +23,7 @@ namespace Tetris
                 currentTetramino.reset();
             }
         }
+        public BitmapImage ToImage { get; set; }
         public GameGird gameGrid { get; }
         public int Score { get; private set; }
         public WaitingLine waitingLine { get; }

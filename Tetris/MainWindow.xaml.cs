@@ -22,33 +22,32 @@ namespace Tetris
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Image[,] imgControls;
+        public GameStatus gameStatus = new GameStatus();
+
         public ImageSource[] tetraminoImages = new ImageSource[]
         {
-            new BitmapImage(new Uri("../assets/tetramino/cleanTetramino.png", System.UriKind.Relative)),
-            new BitmapImage(new Uri("../assets/tetramino/IDiamound.png", System.UriKind.Relative)),
-            new BitmapImage(new Uri("../assets/tetramino/JLapilazuli.png", System.UriKind.Relative)),
-            new BitmapImage(new Uri("../assets/tetramino/LRedStone.png", System.UriKind.Relative)),
-            new BitmapImage(new Uri("../assets/tetramino/OGold.png", System.UriKind.Relative)),
-            new BitmapImage(new Uri("../assets/tetramino/SCharbon.png", System.UriKind.Relative)),
-            new BitmapImage(new Uri("../assets/tetramino/TEmerald.png", System.UriKind.Relative)),
-            new BitmapImage(new Uri("../assets/tetramino/ZIron.png", System.UriKind.Relative))
+            new BitmapImage(new Uri("../Resources/cleanTetramino.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../Resources/IDiamound.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../Resources/JLapilazuli.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../Resources/LRedStone.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../Resources/OGold.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../Resources/SCharbon.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../Resources/TEmerald.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../Resources/ZIron.png", System.UriKind.Relative))
         };
 
         public ImageSource[] boxImages = new ImageSource[]
         {
-            new BitmapImage(new Uri("../assets/fullbox/CleanBox.png", System.UriKind.Relative)),
-            new BitmapImage(new Uri("../assets/fullbox/diamond_block.png", System.UriKind.Relative)),
-            new BitmapImage(new Uri("../assets/fullbox/lapis_block.png", System.UriKind.Relative)),
-            new BitmapImage(new Uri("../assets/fullbox/redstone_block.png", System.UriKind.Relative)),
-            new BitmapImage(new Uri("../assets/fullbox/gold_block.png", System.UriKind.Relative)),
-            new BitmapImage(new Uri("../assets/fullbox/coal_block.png", System.UriKind.Relative)),
-            new BitmapImage(new Uri("../assets/fullbox/emerald_block.png", System.UriKind.Relative)),
-            new BitmapImage(new Uri("../assets/fullbox/iron_block.png", System.UriKind.Relative))
+            new BitmapImage(new Uri("../Resources/CleanBox.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../Resources/diamond_block.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../Resources/lapis_block.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../Resources/redstone_block.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../Resources/gold_block.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../Resources/coal_block.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../Resources/emerald_block.png", System.UriKind.Relative)),
+            new BitmapImage(new Uri("../Resources/iron_block.png", System.UriKind.Relative))
         };
-
-
-        public Image[,] imgControls;
-        public GameStatus gameStatus = new GameStatus();
 
         public MainWindow()
         {
