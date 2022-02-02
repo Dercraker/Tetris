@@ -49,11 +49,14 @@ namespace Tetris
 
         public Image[,] imgControls;
         public GameStatus gameStatus = new GameStatus();
+        System.IO.Stream mainMenu = Resource1.MainMenuSound;
 
         public MainWindow()
         {
             InitializeComponent();
             imgControls = SetUpGameGridCanvas(gameStatus.gameGrid);
+            SoundPlayer menu = new SoundPlayer(mainMenu);
+            menu.PlayLooping();
         }
 
         public Image[,] SetUpGameGridCanvas(GameGird g)
@@ -144,7 +147,7 @@ namespace Tetris
 
             System.IO.Stream mainThemeTetris = Resource1.Tetris_99_Main_Theme;
             SoundPlayer player = new SoundPlayer(mainThemeTetris);
-            player.Play();
+
             player.PlayLooping();
 
             while (!gameStatus.gameOver)
@@ -171,6 +174,9 @@ namespace Tetris
         {
             gameStatus = new GameStatus();
             MainMenu.Visibility= Visibility.Visible;
+            SoundPlayer menu = new SoundPlayer(mainMenu);
+            menu.Stream.Position = 0;
+            menu.PlayLooping();
             MenuGameOver.Visibility = Visibility.Hidden;
         }
         private void OutOption(object sender, RoutedEventArgs e)
@@ -183,6 +189,8 @@ namespace Tetris
         }
         private async void LaunchGame(object sender, RoutedEventArgs e)
         {
+            SoundPlayer menu = new SoundPlayer(mainMenu);
+            menu.Stop();
             MainMenu.Visibility = Visibility.Hidden;
             await Game();
 

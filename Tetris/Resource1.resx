@@ -160,6 +160,9 @@
   <data name="LRedStone" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\tetramino\LRedStone.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="MainMenuSound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\mainmenusound.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="OGold" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\tetramino\OGold.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
