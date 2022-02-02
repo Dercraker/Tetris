@@ -22,8 +22,6 @@ namespace Tetris
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Image[,] imgControls;
-        public GameStatus gameStatus = new GameStatus();
 
         public ImageSource[] tetraminoImages = new ImageSource[]
         {
