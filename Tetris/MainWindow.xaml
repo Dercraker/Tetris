@@ -128,7 +128,7 @@
             Grid.ColumnSpan="2"
             Visibility="Visible">
             <Grid.Background>
-                <ImageBrush ImageSource="D:\Tetris\Tetris\Assets\LaunchScreen.png"/>
+                <ImageBrush ImageSource="{Binding Source={x:Static properties:Resource1.LaunchScreen}}"/>
             </Grid.Background>
 
             <StackPanel
@@ -162,7 +162,7 @@
             Grid.ColumnSpan="2"
             Visibility="Hidden">
             <Grid.Background>
-                <ImageBrush ImageSource="D:\Tetris\Tetris\Assets\LaunchScreen.png"/>
+                <ImageBrush ImageSource="{Binding Source={x:Static properties:Resource1.LaunchScreen}}"/>
             </Grid.Background>
 
             <StackPanel
