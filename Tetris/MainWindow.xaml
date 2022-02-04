@@ -8,7 +8,7 @@
         Title="TetraCaft"
         MinWidth="800" MinHeight="600"
         Foreground="White"
-        FontFamily="Segoe UI Light" FontSize="28"
+        FontSize="28"
         KeyDown="KeyInput"
         xmlns:properties="clr-namespace:Tetris">
     <Grid>
@@ -82,7 +82,7 @@
             FontWeight="UltraBold"
             Text="Time : 0">
         </TextBlock>
-        
+
         <Grid
             x:Name="MenuGameOver"
             Grid.RowSpan="4"
@@ -91,7 +91,7 @@
             <Grid.Background>
                 <ImageBrush ImageSource="{Binding Source={x:Static properties:Resource1.GameOverBG}}"/>
             </Grid.Background>
-            
+
             <StackPanel
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center">
@@ -141,29 +141,38 @@
                 <ImageBrush ImageSource="{Binding Source={x:Static properties:Resource1.LaunchScreen}}"/>
             </Grid.Background>
 
+
             <StackPanel
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center">
+                <ComboBox
+                    x:Name="DropDownGameModes"
+                    IsReadOnly="True"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center">
+                        <ComboBoxItem IsSelected="True" Content="Tetris"/>
+                        <ComboBoxItem Content="Reverse-Tetris"/>
+                </ComboBox>
 
                 <Button Content="New Game()"
                     Foreground="Black"
                     Background="Green"
                     Margin="0,20,0,0"
                     Click="LaunchGame"/>
-                
+
                 <Button Content="tetris.getOptions()"
                     Foreground="Black"
                     Background="Blue"
                     Margin="0,20,0,0"
                     Click="Options"/>
-                
+
                 <Button Content="Kill Program"
                     Foreground="Black"
                     Background="Red"
                     Margin="0,20,0,0"
                     Click="KillProgram"/>
             </StackPanel>
-            
+
         </Grid>
 
         <Grid
@@ -187,7 +196,7 @@
                     Margin="0,20,0,0"
                     Click="OutOption"/>
             </StackPanel>
-            
+
         </Grid>
 
     </Grid>

@@ -22,7 +22,7 @@ namespace Tetris
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        public static MainWindow mainWindow;
         public ImageSource[] tetraminoImages = new ImageSource[]
         {
             new BitmapImage(new Uri("../Resources/cleanTetramino.png", System.UriKind.Relative)),
@@ -47,17 +47,19 @@ namespace Tetris
             new BitmapImage(new Uri("../Resources/iron_block.png", System.UriKind.Relative))
         };
 
-
+        
         public Image[,] imgControls;
         public GameStatus gameStatus = new GameStatus();
-        System.IO.Stream mainMenu = Resource1.MainMenuSound;
+
+        public SoundPlayer SoundMenu = new SoundPlayer(Resource1.MainMenuSound);
+        public SoundPlayer TetrisGM_Sound = new SoundPlayer(Resource1.Tetris_99_Main_Theme);
 
         public MainWindow()
         {
             InitializeComponent();
             imgControls = SetUpGameGridCanvas(gameStatus.gameGrid);
-            SoundPlayer menu = new SoundPlayer(mainMenu);
-            menu.PlayLooping();
+
+            SoundMenu.PlayLooping();
         }
 
         public Image[,] SetUpGameGridCanvas(GameGird g)
@@ -108,7 +110,7 @@ namespace Tetris
         {
             DrawGrid(g.gameGrid);
             DrawBox(g.CurrentTetramino);
-            ScoreText.Text = String.Format("Score : {0}", gameStatus.GameSpeed);
+            ScoreText.Text = String.Format("Score : {0}", gameStatus.Score);
             if (gameStatus.combos > 1)
             {
                 CombosText.Visibility = Visibility.Visible;
@@ -154,10 +156,7 @@ namespace Tetris
             Draw(gameStatus);
             gameStatus.SetTimer();
 
-            System.IO.Stream mainThemeTetris = Resource1.Tetris_99_Main_Theme;
-            SoundPlayer player = new SoundPlayer(mainThemeTetris);
-
-            player.PlayLooping();
+            TetrisGM_Sound.PlayLooping();
 
             while (!gameStatus.gameOver)
             {
@@ -166,7 +165,7 @@ namespace Tetris
                 Draw(gameStatus);
             }
 
-            player.Stop();
+            TetrisGM_Sound.Stop();
             gameStatus.StopTimer();
             GameOverResult.Text = String.Format("Score : {0}", gameStatus.Score);
             GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.time/60, gameStatus.time%60);
@@ -177,15 +176,30 @@ namespace Tetris
         {
             gameStatus = new GameStatus();
             MenuGameOver.Visibility= Visibility.Hidden;
-            await Game();
+
+            string GameModeName = DropDownGameModes.SelectedValue.ToString().Split(" ")[1];
+            switch (GameModeName)
+            {
+                case "Tetris":
+                    {
+                        await GameRun();
+                        break;
+                    }
+                case "Reverse-Tetris":
+                    {
+                        break;
+                    }
+
+            }
         }
         private void ReturnMainMenu(object sender, RoutedEventArgs e)
         {
             gameStatus = new GameStatus();
             MainMenu.Visibility= Visibility.Visible;
-            SoundPlayer menu = new SoundPlayer(mainMenu);
-            menu.Stream.Position = 0;
-            menu.PlayLooping();
+
+            SoundMenu.Stream.Position = 0;
+            SoundMenu.PlayLooping();
+
             MenuGameOver.Visibility = Visibility.Hidden;
         }
         private void OutOption(object sender, RoutedEventArgs e)
@@ -198,15 +212,52 @@ namespace Tetris
         }
         private async void LaunchGame(object sender, RoutedEventArgs e)
         {
-            SoundPlayer menu = new SoundPlayer(mainMenu);
-            menu.Stop();
-            MainMenu.Visibility = Visibility.Hidden;
-            await Game();
 
+            SoundMenu.Stop();
+            MainMenu.Visibility = Visibility.Hidden;
+
+            string GameModeName = DropDownGameModes.SelectedValue.ToString().Split(" ")[1];
+            switch (GameModeName)
+            {
+                case "Tetris":
+                    {
+                        await GameRun();
+                        break;
+                    }
+                case "Reverse-Tetris":
+                    {
+                        break;
+                    }
+
+            }
         }
         private void Options(object sender, RoutedEventArgs e)
         {
             OptionPage.Visibility = Visibility.Visible;
+        }
+
+        /////////////////
+        /// TETRIS GM ///
+        /////////////////
+        
+        public async Task GameRun()
+        {
+            Draw(gameStatus);
+            gameStatus.SetTimer();
+            TetrisGM_Sound.PlayLooping();
+
+            while (!gameStatus.gameOver)
+            {
+                await Task.Delay(gameStatus.GameSpeed);
+                gameStatus.MoveDownTetramino();
+                Draw(gameStatus);
+            }
+
+            TetrisGM_Sound.Stop();
+            gameStatus.StopTimer();
+            GameOverResult.Text = String.Format("Score : {0}", gameStatus.Score);
+            GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.time / 60, gameStatus.time % 60);
+            MenuGameOver.Visibility = Visibility.Visible;
         }
     }
 }
