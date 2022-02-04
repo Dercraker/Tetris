@@ -56,6 +56,14 @@ namespace Tetris
             Timer.Tick += Timer_Tick;
             Timer.Start();
         }
+        public void SetReverseTimer()
+        {
+            Timer = new DispatcherTimer();
+            Timer.Interval = new TimeSpan(0, 0, 1);
+            time = 45;
+            Timer.Tick -= Timer_Tick;
+            Timer.Start();
+        }
 
         public void StopTimer()
         {

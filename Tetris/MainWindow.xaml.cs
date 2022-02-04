@@ -47,7 +47,7 @@ namespace Tetris
             new BitmapImage(new Uri("../Resources/iron_block.png", System.UriKind.Relative))
         };
 
-        
+
         public Image[,] imgControls;
         public GameStatus gameStatus = new GameStatus();
 
@@ -64,7 +64,7 @@ namespace Tetris
 
         public Image[,] SetUpGameGridCanvas(GameGird g)
         {
-            Image[,] imgControls = new Image[g.rows,g.colums];
+            Image[,] imgControls = new Image[g.rows, g.colums];
             int boxSize = 25;
             for (int r = 0; r < g.rows; r++)
             {
@@ -76,9 +76,9 @@ namespace Tetris
                         Height = Width
                     };
                     Canvas.SetLeft(imgControl, c * boxSize);
-                    Canvas.SetTop(imgControl, (r - 2) * boxSize+10);
+                    Canvas.SetTop(imgControl, (r - 2) * boxSize + 10);
                     GameGridCanvas.Children.Add(imgControl);
-                    imgControls[r,c] = imgControl;
+                    imgControls[r, c] = imgControl;
                 }
             }
             return imgControls;
@@ -90,11 +90,11 @@ namespace Tetris
         }
         public void DrawGrid(GameGird g)
         {
-            for (int r = 0;r < g.rows; r++)
+            for (int r = 0; r < g.rows; r++)
             {
                 for (int c = 0; c < g.colums; c++)
                 {
-                    int boxId = g[r,c];
+                    int boxId = g[r, c];
                     imgControls[r, c].Source = boxImages[boxId];
                 }
             }
@@ -115,11 +115,12 @@ namespace Tetris
             {
                 CombosText.Visibility = Visibility.Visible;
                 CombosText.Text = String.Format("Combos : {0}", gameStatus.combos);
-            } else
+            }
+            else
             {
                 CombosText.Visibility = Visibility.Hidden;
             }
-            TimerCount.Text = String.Format("Timer : {0}'{1}''", gameStatus.time/60, gameStatus.time%60);
+            TimerCount.Text = String.Format("Timer : {0}'{1}''", gameStatus.time / 60, gameStatus.time % 60);
             GetNextBlock(gameStatus.waitingLine);
         }
 
@@ -136,7 +137,7 @@ namespace Tetris
                     break;
                 case Key.Left:
                     gameStatus.MoveLeftTetramino();
-                    break ;
+                    break;
                 case Key.Down:
                     gameStatus.MoveDownTetramino();
                     break;
@@ -168,14 +169,14 @@ namespace Tetris
             TetrisGM_Sound.Stop();
             gameStatus.StopTimer();
             GameOverResult.Text = String.Format("Score : {0}", gameStatus.Score);
-            GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.time/60, gameStatus.time%60);
+            GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.time / 60, gameStatus.time % 60);
             MenuGameOver.Visibility = Visibility.Visible;
 
         }
         private async void RestartGame(object sender, RoutedEventArgs e)
         {
             gameStatus = new GameStatus();
-            MenuGameOver.Visibility= Visibility.Hidden;
+            MenuGameOver.Visibility = Visibility.Hidden;
 
             string GameModeName = DropDownGameModes.SelectedValue.ToString().Split(" ")[1];
             switch (GameModeName)
@@ -187,6 +188,7 @@ namespace Tetris
                     }
                 case "Reverse-Tetris":
                     {
+                        GameRun2();
                         break;
                     }
 
@@ -195,7 +197,7 @@ namespace Tetris
         private void ReturnMainMenu(object sender, RoutedEventArgs e)
         {
             gameStatus = new GameStatus();
-            MainMenu.Visibility= Visibility.Visible;
+            MainMenu.Visibility = Visibility.Visible;
 
             SoundMenu.Stream.Position = 0;
             SoundMenu.PlayLooping();
@@ -204,7 +206,7 @@ namespace Tetris
         }
         private void OutOption(object sender, RoutedEventArgs e)
         {
-            OptionPage.Visibility= Visibility.Hidden;
+            OptionPage.Visibility = Visibility.Hidden;
         }
         private void KillProgram(object sender, RoutedEventArgs e)
         {
@@ -221,11 +223,12 @@ namespace Tetris
             {
                 case "Tetris":
                     {
-                        await GameRun();
+                        await Game();
                         break;
                     }
                 case "Reverse-Tetris":
                     {
+                        GameRun2();
                         break;
                     }
 
@@ -239,7 +242,7 @@ namespace Tetris
         /////////////////
         /// TETRIS GM ///
         /////////////////
-        
+
         public async Task GameRun()
         {
             Draw(gameStatus);
@@ -257,6 +260,31 @@ namespace Tetris
             gameStatus.StopTimer();
             GameOverResult.Text = String.Format("Score : {0}", gameStatus.Score);
             GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.time / 60, gameStatus.time % 60);
+            MenuGameOver.Visibility = Visibility.Visible;
+        }
+
+        /////////////////////////
+        /// REVERSE-TETRIS GM ///
+        /////////////////////////
+
+        public async Task GameRun2()
+        {
+            Draw(gameStatus);
+            gameStatus.SetReverseTimer();
+            TetrisGM_Sound.PlayLooping();
+
+            while (!gameStatus.gameOver)
+            {
+                await Task.Delay(gameStatus.GameSpeed);
+                gameStatus.MoveDownTetramino();
+                Draw(gameStatus);
+            }
+
+            TetrisGM_Sound.Stop();
+            gameStatus.StopTimer();
+            GameOverResult.Text = String.Format("Score : {0}", gameStatus.Score);
+            GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.time / 60, gameStatus.time % 60);
+            //GameOverTimer.Text = String.Format("Time : {0}", gameStatus.time);
             MenuGameOver.Visibility = Visibility.Visible;
         }
     }
