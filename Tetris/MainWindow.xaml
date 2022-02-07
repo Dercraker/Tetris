@@ -73,6 +73,7 @@
             Text="Time : 0">
         </TextBlock>
         
+
         <Grid
             x:Name="MenuGameOver"
             Grid.RowSpan="3"
@@ -81,7 +82,7 @@
             <Grid.Background>
                 <ImageBrush ImageSource="{Binding Source={x:Static properties:Resource1.GameOverBG}}"/>
             </Grid.Background>
-            
+
             <StackPanel
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center">
@@ -140,20 +141,20 @@
                     Background="Green"
                     Margin="0,20,0,0"
                     Click="LaunchGame"/>
-                
+
                 <Button Content="tetris.getOptions()"
                     Foreground="Black"
                     Background="Blue"
                     Margin="0,20,0,0"
                     Click="Options"/>
-                
+
                 <Button Content="Kill Program"
                     Foreground="Black"
                     Background="Red"
                     Margin="0,20,0,0"
                     Click="KillProgram"/>
             </StackPanel>
-            
+
         </Grid>
 
         <Grid
@@ -177,8 +178,9 @@
                     Margin="0,20,0,0"
                     Click="OutOption"/>
             </StackPanel>
-            
+
         </Grid>
+
 
     </Grid>
 

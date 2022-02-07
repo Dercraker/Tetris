@@ -50,8 +50,6 @@ namespace Tetris
         };
 
 
-        public Image[,] imgControls;
-        public GameStatus gameStatus = new GameStatus();
         System.IO.Stream mainMenu = Resource1.MainMenuSound;
 
         public MainWindow()
@@ -137,6 +135,9 @@ namespace Tetris
                     break;
                 case Key.D:
                     gameStatus.RotateNextTetramino();
+                    break;
+                case Key.LeftShift:
+                    gameStatus.HoldTetramino();
                     break;
                 default:
                     return;

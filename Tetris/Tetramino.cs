@@ -10,9 +10,9 @@ namespace Tetris
     public abstract class Tetramino
     {
         protected abstract Position[][] BoxRotation { get;}
-        protected  abstract Position SpawnPoint { get; }
+        public  abstract Position SpawnPoint { get; }
         public abstract int tetraminoId { get;}
-        private int rotate;
+        public int rotate;
         public Position offSet { get; set; }
 
         public Tetramino()

@@ -23,6 +23,11 @@ namespace Tetris
                 currentTetramino.reset();
             }
         }
+
+        private Tetramino holdingTetramino;
+
+        private Tetramino tempoTetramino;
+
         public BitmapImage ToImage { get; set; }
         public GameGird gameGrid { get; }
         public int Score { get; private set; }
@@ -34,6 +39,8 @@ namespace Tetris
         public int time { get; private set; }
 
         private DispatcherTimer Timer;
+
+        public int pressHoldTetramino = 0;
 
         public GameStatus()
         {
@@ -138,6 +145,7 @@ namespace Tetris
             {
                 //MessageBox.Show(String.Format("1 OffSet row :{0} , OffSet column :{1}", currentTetramino.offSet.row,currentTetramino.offSet.column));
                 currentTetramino = waitingLine.UpdateTetramino();
+                pressHoldTetramino = 0;
                 //MessageBox.Show(String.Format("2 OffSet row :{0} , OffSet column :{1}", currentTetramino.offSet.row,currentTetramino.offSet.column));
             }
         }
@@ -165,6 +173,29 @@ namespace Tetris
             {
                 currentTetramino.MoveTetramino(-1, 0);
                 PlaceItem();
+            }
+        }
+
+        public void HoldTetramino()
+        {
+            if (pressHoldTetramino == 0)
+            {
+                pressHoldTetramino++;
+                if (holdingTetramino == null)
+                {
+                    currentTetramino.offSet = new Position(currentTetramino.SpawnPoint.row, currentTetramino.SpawnPoint.column);
+                    currentTetramino.rotate = 0;
+                    holdingTetramino = currentTetramino;
+                    currentTetramino = waitingLine.UpdateTetramino();
+                }
+                else
+                {
+                    currentTetramino.offSet = new Position(currentTetramino.SpawnPoint.row, currentTetramino.SpawnPoint.column);
+                    currentTetramino.rotate = 0;
+                    tempoTetramino = holdingTetramino;
+                    holdingTetramino = currentTetramino;
+                    currentTetramino = tempoTetramino;
+                }
             }
         }
     }
