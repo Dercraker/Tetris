@@ -65,12 +65,10 @@ namespace Tetris
             Timer.Tick += ReverseTimer_Tick;
             Timer.Start();
         }
-
         public void StopTimer()
         {
             Timer.Stop();
         }
-
         private void Timer_Tick(object sender, EventArgs e)
         {
             time++;
@@ -79,7 +77,6 @@ namespace Tetris
         {
             time--;
         }
-
         public void DisplayLine(int r)
         {
             String str = String.Format("Line {0}",r);

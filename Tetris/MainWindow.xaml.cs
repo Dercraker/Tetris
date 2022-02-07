@@ -154,19 +154,21 @@ namespace Tetris
         }
         private async void RestartGame(object sender, RoutedEventArgs e)
         {
-            gameStatus = new GameStatus();
+            
             MenuGameOver.Visibility = Visibility.Hidden;
 
             switch (gameStatus.GameMode)
             {
                 case "Tetris":
                     {
+                        gameStatus = new GameStatus();
                         await GameRun();
                         break;
                     }
                 case "Reverse-Tetris":
                     {
-                        ReverseTetrisInit();
+                        gameStatus = new GameStatus();
+                        await GameRun2();
                         break;
                     }
 
@@ -206,7 +208,7 @@ namespace Tetris
                     }
                 case "Reverse-Tetris":
                     {
-                        ReverseTetrisInit();
+                        await GameRun2();
                         break;
                     }
 
@@ -223,8 +225,11 @@ namespace Tetris
 
         public async Task GameRun()
         {
+            gameStatus = new GameStatus();
             gameStatus.GameMode = "Tetris";
             gameStatus.time = 0;
+
+
             Draw(gameStatus);
             gameStatus.SetTimer();
             TetrisGM_Sound.PlayLooping();
@@ -249,13 +254,17 @@ namespace Tetris
         
         public async void ReverseTetrisInit()
         {
-            gameStatus.GameMode = "Reverse-Tetris";
-            gameStatus.time = 60;
+            
             await GameRun2();
         }
 
         public async Task GameRun2()
         {
+            gameStatus = new GameStatus();
+            gameStatus.GameMode = "Reverse-Tetris";
+            gameStatus.time = 60;
+
+
             Draw(gameStatus);
             gameStatus.SetReverseTimer();
             TetrisGM_Sound.PlayLooping();
@@ -264,6 +273,7 @@ namespace Tetris
             {
                 if (gameStatus.time <= 0)
                 {
+                    gameStatus.time = 0;
                     gameStatus.gameOver = true;
                     break;
                 }
