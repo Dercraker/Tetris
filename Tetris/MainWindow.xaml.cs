@@ -170,6 +170,9 @@ namespace Tetris
                 case Key.D:
                     gameStatus.RotateNextTetramino();
                     break;
+                case Key.LeftShift:
+                    gameStatus.HoldTetramino();
+                    break;
                 case Key.Space:
                     gameStatus.HardDrop();
                     break;

@@ -23,6 +23,8 @@ namespace Tetris
                 currentTetramino.reset();
             }
         }
+        private Tetramino holdingTetramino;
+        private Tetramino tempoTetramino;
         public int AddScore { get; private set; }
         public GameGird gameGrid { get; }
         public WaitingLine waitingLine { get; }
@@ -36,7 +38,9 @@ namespace Tetris
         private DispatcherTimer Timer;
         private DispatcherTimer ReverseTotalTimer;
 
-        public GameStatus(int Row,int Col)
+        public int pressHoldTetramino = 0;
+
+        public GameStatus()
         {
             GameSpeed = 400;
             SpeedLevel = 1;
@@ -171,6 +175,7 @@ namespace Tetris
             } 
             else if (GameMode == "Tetris")
             {
+<<<<<<<
                 if (IsGameOver())
                 {
                     gameOver = true;
@@ -179,6 +184,12 @@ namespace Tetris
                 {
                     currentTetramino = waitingLine.UpdateTetramino();
                 }
+=======
+                //MessageBox.Show(String.Format("1 OffSet row :{0} , OffSet column :{1}", currentTetramino.offSet.row,currentTetramino.offSet.column));
+                currentTetramino = waitingLine.UpdateTetramino();
+                pressHoldTetramino = 0;
+                //MessageBox.Show(String.Format("2 OffSet row :{0} , OffSet column :{1}", currentTetramino.offSet.row,currentTetramino.offSet.column));
+>>>>>>>
             }
             NewGameSpeed(scores.score);
             
@@ -273,6 +284,29 @@ namespace Tetris
             await Task.Delay(3000);
             Timer.Start();
             if (GameMode == "Reverse-Tetris") ReverseTotalTimer.Start();
+        }
+
+        public void HoldTetramino()
+        {
+            if (pressHoldTetramino == 0)
+            {
+                pressHoldTetramino++;
+                if (holdingTetramino == null)
+                {
+                    currentTetramino.offSet = new Position(currentTetramino.SpawnPoint.row, currentTetramino.SpawnPoint.column);
+                    currentTetramino.rotate = 0;
+                    holdingTetramino = currentTetramino;
+                    currentTetramino = waitingLine.UpdateTetramino();
+                }
+                else
+                {
+                    currentTetramino.offSet = new Position(currentTetramino.SpawnPoint.row, currentTetramino.SpawnPoint.column);
+                    currentTetramino.rotate = 0;
+                    tempoTetramino = holdingTetramino;
+                    holdingTetramino = currentTetramino;
+                    currentTetramino = tempoTetramino;
+                }
+            }
         }
     }
 }
