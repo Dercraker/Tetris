@@ -74,6 +74,25 @@ namespace Tetris
             }
             return nbRowClear;
         }
+        public int ReverseClearGrid()
+        {
+            int nbRowClear = 0;
+
+            for (int r = rows - 1; r >= 0; r--)
+            {
+                if (nbRowClear > 0)
+                {
+                    DownRow(r, nbRowClear);
+                }
+
+                if (r <= 21 && r > 16)
+                {
+                    nbRowClear++;
+                    CleanRow(r);
+                }
+            }
+            return nbRowClear;
+        }
 
         public GameGird(int rows, int colums)
         {

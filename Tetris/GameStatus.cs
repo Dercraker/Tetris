@@ -26,11 +26,13 @@ namespace Tetris
         public BitmapImage ToImage { get; set; }
         public GameGird gameGrid { get; }
         public int Score { get; private set; }
+        public int AddScore { get; private set; }
         public WaitingLine waitingLine { get; }
-        public bool gameOver { get; private set; }
+        public bool gameOver { get; set; }
         public int GameSpeed { get; set; }
+        public string GameMode { get; set; }
         public int SpeedLevel { get; set; }
-        public int time { get; private set; }
+        public int time { get; set; }
         public int lastScoreTime { get; set; }
         public int combos { get; set; }
 
@@ -60,8 +62,7 @@ namespace Tetris
         {
             Timer = new DispatcherTimer();
             Timer.Interval = new TimeSpan(0, 0, 1);
-            time = 45;
-            Timer.Tick -= Timer_Tick;
+            Timer.Tick += ReverseTimer_Tick;
             Timer.Start();
         }
 
@@ -74,6 +75,10 @@ namespace Tetris
         {
             time++;
         }
+        private void ReverseTimer_Tick(object sender, EventArgs e)
+        {
+            time--;
+        }
 
         public void DisplayLine(int r)
         {
@@ -82,7 +87,6 @@ namespace Tetris
             {
                 str = String.Concat(str, ", ", gameGrid[r, c]);
             }
-            //MessageBox.Show(String.Format("{0}", str));
         }
         private bool IsValidTetramino()
         {
@@ -141,18 +145,32 @@ namespace Tetris
             {
                 gameGrid[p.row, p.column] = currentTetramino.tetraminoId;
             }
-            Score += bonusScore(gameGrid.ClearGrid());
+            AddScore = bonusScore(gameGrid.ClearGrid());
+            Score += AddScore;
+            if (GameMode == "Reverse-Tetris")
+            {
+                time += AddScore * 15;
+                if (IsGameOver())
+                {
+                    time -= gameGrid.ReverseClearGrid() * 10;
+                }
+                else
+                {
+                    currentTetramino = waitingLine.UpdateTetramino();
+                }
+            } else if (GameMode == "Tetris")
+            {
+                if (IsGameOver())
+                {
+                    gameOver = true;
+                }
+                else
+                {
+                    currentTetramino = waitingLine.UpdateTetramino();
+                }
+            }
             NewGameSpeed(Score);
-            if (IsGameOver())
-            {
-                gameOver = true;
-            }
-            else
-            {
-                //MessageBox.Show(String.Format("1 OffSet row :{0} , OffSet column :{1}", currentTetramino.offSet.row,currentTetramino.offSet.column));
-                currentTetramino = waitingLine.UpdateTetramino();
-                //MessageBox.Show(String.Format("2 OffSet row :{0} , OffSet column :{1}", currentTetramino.offSet.row,currentTetramino.offSet.column));
-            }
+            
         }
         public void NewGameSpeed(int score)
         {

@@ -152,34 +152,12 @@ namespace Tetris
             }
             Draw(gameStatus);
         }
-        public async Task Game()
-        {
-            Draw(gameStatus);
-            gameStatus.SetTimer();
-
-            TetrisGM_Sound.PlayLooping();
-
-            while (!gameStatus.gameOver)
-            {
-                await Task.Delay(gameStatus.GameSpeed);
-                gameStatus.MoveDownTetramino();
-                Draw(gameStatus);
-            }
-
-            TetrisGM_Sound.Stop();
-            gameStatus.StopTimer();
-            GameOverResult.Text = String.Format("Score : {0}", gameStatus.Score);
-            GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.time / 60, gameStatus.time % 60);
-            MenuGameOver.Visibility = Visibility.Visible;
-
-        }
         private async void RestartGame(object sender, RoutedEventArgs e)
         {
             gameStatus = new GameStatus();
             MenuGameOver.Visibility = Visibility.Hidden;
 
-            string GameModeName = DropDownGameModes.SelectedValue.ToString().Split(" ")[1];
-            switch (GameModeName)
+            switch (gameStatus.GameMode)
             {
                 case "Tetris":
                     {
@@ -188,7 +166,7 @@ namespace Tetris
                     }
                 case "Reverse-Tetris":
                     {
-                        GameRun2();
+                        ReverseTetrisInit();
                         break;
                     }
 
@@ -217,18 +195,18 @@ namespace Tetris
 
             SoundMenu.Stop();
             MainMenu.Visibility = Visibility.Hidden;
+            gameStatus.GameMode = DropDownGameModes.SelectedValue.ToString().Split(" ")[1];
 
-            string GameModeName = DropDownGameModes.SelectedValue.ToString().Split(" ")[1];
-            switch (GameModeName)
+            switch (gameStatus.GameMode)
             {
                 case "Tetris":
                     {
-                        await Game();
+                        await GameRun();
                         break;
                     }
                 case "Reverse-Tetris":
                     {
-                        GameRun2();
+                        ReverseTetrisInit();
                         break;
                     }
 
@@ -245,6 +223,8 @@ namespace Tetris
 
         public async Task GameRun()
         {
+            gameStatus.GameMode = "Tetris";
+            gameStatus.time = 0;
             Draw(gameStatus);
             gameStatus.SetTimer();
             TetrisGM_Sound.PlayLooping();
@@ -266,6 +246,13 @@ namespace Tetris
         /////////////////////////
         /// REVERSE-TETRIS GM ///
         /////////////////////////
+        
+        public async void ReverseTetrisInit()
+        {
+            gameStatus.GameMode = "Reverse-Tetris";
+            gameStatus.time = 60;
+            await GameRun2();
+        }
 
         public async Task GameRun2()
         {
@@ -275,6 +262,11 @@ namespace Tetris
 
             while (!gameStatus.gameOver)
             {
+                if (gameStatus.time <= 0)
+                {
+                    gameStatus.gameOver = true;
+                    break;
+                }
                 await Task.Delay(gameStatus.GameSpeed);
                 gameStatus.MoveDownTetramino();
                 Draw(gameStatus);
@@ -284,7 +276,6 @@ namespace Tetris
             gameStatus.StopTimer();
             GameOverResult.Text = String.Format("Score : {0}", gameStatus.Score);
             GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.time / 60, gameStatus.time % 60);
-            //GameOverTimer.Text = String.Format("Time : {0}", gameStatus.time);
             MenuGameOver.Visibility = Visibility.Visible;
         }
     }
