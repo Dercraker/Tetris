@@ -219,5 +219,34 @@ namespace Tetris
                 PlaceItem();
             }
         }
+        public int GetHarDropDistance(Position p)
+        {
+            int dropDistance = 0;
+
+            while(gameGrid.IsEmptyBox(p.row + dropDistance + 1, p.column))
+            {
+                dropDistance++;
+            }
+
+            return dropDistance;
+        }
+
+        public int HardDropTetramino()
+        {
+            int dropDistance = gameGrid.rows;
+
+            foreach(Position p in CurrentTetramino.positionsOfRotation())
+            {
+                dropDistance = Math.Min(dropDistance, GetHarDropDistance(p));
+            }
+
+            return dropDistance;
+        }
+
+        public void HardDrop()
+        {
+            CurrentTetramino.MoveTetramino(HardDropTetramino(), 0);
+            PlaceItem();
+        }
     }
 }
