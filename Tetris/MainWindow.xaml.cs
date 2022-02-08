@@ -50,9 +50,14 @@ namespace Tetris
 
         public Image[,] imgControls;
         public GameStatus gameStatus = new GameStatus();
+<<<<<<< HEAD
 
         public SoundPlayer SoundMenu = new SoundPlayer(Resource1.MainMenuSound);
         public SoundPlayer TetrisGM_Sound = new SoundPlayer(Resource1.Tetris_99_Main_Theme);
+=======
+        System.IO.Stream mainMenu = Resource1.MainMenuSound;
+        //public Scores scores = new Scores();
+>>>>>>> new_score_class
 
         public MainWindow()
         {
@@ -159,6 +164,7 @@ namespace Tetris
 
             switch (gameStatus.GameMode)
             {
+<<<<<<< HEAD
                 case "Tetris":
                     {
                         gameStatus = new GameStatus();
@@ -171,6 +177,18 @@ namespace Tetris
                         await GameRun2();
                         break;
                     }
+=======
+                await Task.Delay(gameStatus.GameSpeed);
+                gameStatus.MoveDownTetramino();
+                Draw(gameStatus);
+            }
+
+            player.Stop();
+            gameStatus.StopTimer();
+            GameOverResult.Text = String.Format("Score : {0}", gameStatus.scores.score);
+            GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.time/60, gameStatus.time%60);
+            MenuGameOver.Visibility = Visibility.Visible;
+>>>>>>> new_score_class
 
             }
         }
