@@ -23,12 +23,8 @@ namespace Tetris
                 currentTetramino.reset();
             }
         }
-<<<<<<< HEAD
         public int AddScore { get; private set; }
         public GameGird gameGrid { get; }
-=======
-        public GameGird gameGrid { get; }      
->>>>>>> new_score_class
         public WaitingLine waitingLine { get; }
         public bool gameOver { get; set; }
         public int GameSpeed { get; set; }
@@ -143,15 +139,9 @@ namespace Tetris
             {
                 gameGrid[p.row, p.column] = currentTetramino.tetraminoId;
             }
-<<<<<<< HEAD
-            AddScore = bonusScore(gameGrid.ClearGrid());
-            Score += AddScore;
+            AddScore = scores.bonusScore(gameGrid.ClearGrid());
+            scores.score += AddScore;
             if (GameMode == "Reverse-Tetris")
-=======
-            scores.score += scores.bonusScore(gameGrid.ClearGrid());
-            NewGameSpeed(scores.score);
-            if (IsGameOver())
->>>>>>> new_score_class
             {
                 time += AddScore * 15;
                 if (IsGameOver())
@@ -173,7 +163,7 @@ namespace Tetris
                     currentTetramino = waitingLine.UpdateTetramino();
                 }
             }
-            NewGameSpeed(Score);
+            NewGameSpeed(scores.score);
             
         }
         public void NewGameSpeed(int score)
