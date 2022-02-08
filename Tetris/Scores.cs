@@ -8,7 +8,7 @@ namespace Tetris
 {
     public class Scores
     {
-        public int time { get; private set; }
+        public int time { get; set; }
         public int lastScoreTime { get; set; }
         public int combos { get; set; }
         public int score { get; set; }

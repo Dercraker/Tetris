@@ -30,9 +30,6 @@ namespace Tetris
         public int GameSpeed { get; set; }
         public string GameMode { get; set; }
         public int SpeedLevel { get; set; }
-        public int time { get; set; }
-        public int lastScoreTime { get; set; }
-        public int combos { get; set; }
         public Scores scores { get; set; }
 
         private DispatcherTimer Timer;
@@ -67,11 +64,11 @@ namespace Tetris
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
-            time++;
+            scores.time++;
         }
         private void ReverseTimer_Tick(object sender, EventArgs e)
         {
-            time--;
+            scores.time--;
         }
         public void DisplayLine(int r)
         {
@@ -143,10 +140,10 @@ namespace Tetris
             scores.score += AddScore;
             if (GameMode == "Reverse-Tetris")
             {
-                time += AddScore * 15;
+                scores.time += AddScore * 15;
                 if (IsGameOver())
                 {
-                    time -= gameGrid.ReverseClearGrid() * 10;
+                    scores.time -= gameGrid.ReverseClearGrid() * 10;
                 }
                 else
                 {

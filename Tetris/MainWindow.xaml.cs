@@ -56,6 +56,7 @@ namespace Tetris
         public MainWindow()
         {
             InitializeComponent();
+
             imgControls = SetUpGameGridCanvas(gameStatus.gameGrid);
 
             SoundMenu.PlayLooping();
@@ -110,16 +111,16 @@ namespace Tetris
             DrawGrid(g.gameGrid);
             DrawBox(g.CurrentTetramino);
             ScoreText.Text = String.Format("Score : {0}", gameStatus.scores.score);
-            if (gameStatus.combos > 1)
+            if (gameStatus.scores.combos > 1)
             {
                 CombosText.Visibility = Visibility.Visible;
-                CombosText.Text = String.Format("Combos : {0}", gameStatus.combos);
+                CombosText.Text = String.Format("Combos : {0}", gameStatus.scores.combos);
             }
             else
             {
                 CombosText.Visibility = Visibility.Hidden;
             }
-            TimerCount.Text = String.Format("Timer : {0}'{1}''", gameStatus.time / 60, gameStatus.time % 60);
+            TimerCount.Text = String.Format("Timer : {0}'{1}''", gameStatus.scores.time / 60, gameStatus.scores.time % 60);
             GetNextBlock(gameStatus.waitingLine);
         }
 
@@ -226,7 +227,7 @@ namespace Tetris
         {
             gameStatus = new GameStatus();
             gameStatus.GameMode = "Tetris";
-            gameStatus.time = 0;
+            gameStatus.scores.time = 0;
 
 
             Draw(gameStatus);
@@ -243,7 +244,7 @@ namespace Tetris
             TetrisGM_Sound.Stop();
             gameStatus.StopTimer();
             GameOverResult.Text = String.Format("Score : {0}", gameStatus.scores.score);
-            GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.time / 60, gameStatus.time % 60);
+            GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.scores.time / 60, gameStatus.scores.time % 60);
             MenuGameOver.Visibility = Visibility.Visible;
         }
 
@@ -261,7 +262,7 @@ namespace Tetris
         {
             gameStatus = new GameStatus();
             gameStatus.GameMode = "Reverse-Tetris";
-            gameStatus.time = 60;
+            gameStatus.scores.time = 60;
 
 
             Draw(gameStatus);
@@ -270,9 +271,9 @@ namespace Tetris
 
             while (!gameStatus.gameOver)
             {
-                if (gameStatus.time <= 0)
+                if (gameStatus.scores.time <= 0)
                 {
-                    gameStatus.time = 0;
+                    gameStatus.scores.time = 0;
                     gameStatus.gameOver = true;
                     break;
                 }
@@ -284,7 +285,7 @@ namespace Tetris
             TetrisGM_Sound.Stop();
             gameStatus.StopTimer();
             GameOverResult.Text = String.Format("Score : {0}", gameStatus.scores.score);
-            GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.time / 60, gameStatus.time % 60);
+            GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.scores.time / 60, gameStatus.scores.time % 60);
             MenuGameOver.Visibility = Visibility.Visible;
         }
     }
