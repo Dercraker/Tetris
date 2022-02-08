@@ -51,7 +51,7 @@ namespace Tetris
         public Image[,] imgControls;
         public GameStatus gameStatus = new GameStatus();
         System.IO.Stream mainMenu = Resource1.MainMenuSound;
-        public Scores scores = new Scores();
+        //public Scores scores = new Scores();
 
         public MainWindow()
         {
@@ -109,7 +109,7 @@ namespace Tetris
         {
             DrawGrid(g.gameGrid);
             DrawBox(g.CurrentTetramino);
-            ScoreText.Text = String.Format("Score : {0}", scores.score);
+            ScoreText.Text = String.Format("Score : {0}", gameStatus.scores.score);
             if (gameStatus.combos > 1)
             {
                 CombosText.Visibility = Visibility.Visible;
@@ -169,7 +169,7 @@ namespace Tetris
 
             player.Stop();
             gameStatus.StopTimer();
-            GameOverResult.Text = String.Format("Score : {0}", scores.score);
+            GameOverResult.Text = String.Format("Score : {0}", gameStatus.scores.score);
             GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.time/60, gameStatus.time%60);
             MenuGameOver.Visibility = Visibility.Visible;
 
