@@ -110,7 +110,7 @@ namespace Tetris
         {
             DrawGrid(g.gameGrid);
             DrawBox(g.CurrentTetramino);
-            ScoreText.Text = String.Format("Score : {0}", scores.score);
+            ScoreText.Text = String.Format("Score : {0}", gameStatus.scores.score);
             if (gameStatus.combos > 1)
             {
                 CombosText.Visibility = Visibility.Visible;
