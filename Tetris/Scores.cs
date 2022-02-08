@@ -12,6 +12,7 @@ namespace Tetris
         public int lastScoreTime { get; set; }
         public int combos { get; set; }
         public int score { get; set; }
+        public int bonusClear { get; set; }
 
         public Scores()
         {
@@ -53,6 +54,18 @@ namespace Tetris
             }
             lastScoreTime = currentTime;
             return result * combos;
+        }
+        public void GameScoreBonus(int addResult, GameGird g)
+        {
+            bonusClear += addResult;
+            if(bonusClear >= 75)
+            {
+                for (int r = 0; r < g.rows; r++)
+                {
+                    g.CleanRow(r);
+                }
+                bonusClear = 0;
+            }
         }
     }
 }

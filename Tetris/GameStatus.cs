@@ -138,6 +138,7 @@ namespace Tetris
             }
             AddScore = scores.bonusScore(gameGrid.ClearGrid());
             scores.score += AddScore;
+            scores.GameScoreBonus(AddScore, gameGrid);
             if (GameMode == "Reverse-Tetris")
             {
                 scores.time += AddScore * 15;
@@ -171,8 +172,6 @@ namespace Tetris
                 GameSpeed -= 50;
             }
         }
-        
-        
         public void MoveDownTetramino()
         {
             currentTetramino.MoveTetramino(1, 0);
@@ -193,7 +192,6 @@ namespace Tetris
 
             return dropDistance;
         }
-
         public int HardDropTetramino()
         {
             int dropDistance = gameGrid.rows;
@@ -205,7 +203,6 @@ namespace Tetris
 
             return dropDistance;
         }
-
         public void HardDrop()
         {
             CurrentTetramino.MoveTetramino(HardDropTetramino(), 0);

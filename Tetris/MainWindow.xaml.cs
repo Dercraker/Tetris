@@ -267,12 +267,6 @@ namespace Tetris
         /////////////////////////
         /// REVERSE-TETRIS GM ///
         /////////////////////////
-        
-        public async void ReverseTetrisInit()
-        {
-            
-            await GameRun2();
-        }
 
         public async Task GameRun2()
         {
