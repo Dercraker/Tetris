@@ -95,20 +95,33 @@ namespace Tetris
                 for (int c = 0; c < g.colums; c++)
                 {
                     int boxId = g[r, c];
+                    imgControls[r, c].Opacity = 1;
                     imgControls[r, c].Source = boxImages[boxId];
                 }
+            }
+        }
+        public void DrawHardBlockPosition(Tetramino block)
+        {
+            int dropDistance = gameStatus.HardDropTetramino();
+
+            foreach(Position p in block.positionsOfRotation())
+            {
+                imgControls[p.row + dropDistance, p.column].Opacity = 0.33;
+                imgControls[p.row + dropDistance, p.column].Source = boxImages[block.tetraminoId];
             }
         }
         public void DrawBox(Tetramino t)
         {
             foreach (Position p in t.positionsOfRotation())
             {
+                imgControls[p.row, p.column].Opacity = 1;
                 imgControls[p.row, p.column].Source = boxImages[t.tetraminoId];
             }
         }
         public void Draw(GameStatus g)
         {
             DrawGrid(g.gameGrid);
+            DrawHardBlockPosition(g.CurrentTetramino);
             DrawBox(g.CurrentTetramino);
             ScoreText.Text = String.Format("Score : {0}", gameStatus.scores.score);
             if (gameStatus.scores.combos > 1)
@@ -146,6 +159,9 @@ namespace Tetris
                     break;
                 case Key.D:
                     gameStatus.RotateNextTetramino();
+                    break;
+                case Key.Space:
+                    gameStatus.HardDrop();
                     break;
                 default:
                     return;
