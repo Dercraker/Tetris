@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,6 +24,11 @@ namespace Tetris
             }
         }
         public int AddScore { get; private set; }
+        private Tetramino holdingTetramino;
+        private Tetramino tempoTetramino;
+        public BitmapImage ToImage { get; set; }
+
+
         public GameGird gameGrid { get; }
         public WaitingLine waitingLine { get; }
         public bool gameOver { get; set; }
@@ -36,7 +41,11 @@ namespace Tetris
         private DispatcherTimer Timer;
         private DispatcherTimer ReverseTotalTimer;
 
+
         public GameStatus(int Row,int Col)
+        public int pressHoldTetramino = 0;
+        public GameStatus()
+
         {
             GameSpeed = 400;
             SpeedLevel = 1;
@@ -178,7 +187,8 @@ namespace Tetris
                 else
                 {
                     currentTetramino = waitingLine.UpdateTetramino();
-                }
+                pressHoldTetramino = 0;
+                })
             }
             NewGameSpeed(scores.score);
             
@@ -273,6 +283,28 @@ namespace Tetris
             await Task.Delay(3000);
             Timer.Start();
             if (GameMode == "Reverse-Tetris") ReverseTotalTimer.Start();
+        }
+        public void HoldTetramino()
+        {
+            if (pressHoldTetramino == 0)
+            {
+                pressHoldTetramino++;
+                if (holdingTetramino == null)
+                {
+                    currentTetramino.offSet = new Position(currentTetramino.SpawnPoint.row, currentTetramino.SpawnPoint.column);
+                    currentTetramino.rotate = 0;
+                    holdingTetramino = currentTetramino;
+                    currentTetramino = waitingLine.UpdateTetramino();
+                }
+                else
+                {
+                    currentTetramino.offSet = new Position(currentTetramino.SpawnPoint.row, currentTetramino.SpawnPoint.column);
+                    currentTetramino.rotate = 0;
+                    tempoTetramino = holdingTetramino;
+                    holdingTetramino = currentTetramino;
+                    currentTetramino = tempoTetramino;
+                }
+            }
         }
     }
 }

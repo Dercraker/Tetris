@@ -16,7 +16,7 @@ namespace Tetris.tetraminoList
             new Position[] { new Position(0,1), new Position(1,1), new Position(2,0), new Position(2,1) },
         };
         public override int tetraminoId => 2;
-        protected override Position SpawnPoint => new Position(0, 3);
+        public override Position SpawnPoint => new Position(0, 3);
         protected override Position[][] BoxRotation => boxRotation;
     }
 }
