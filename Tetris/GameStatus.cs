@@ -34,11 +34,11 @@ namespace Tetris
 
         private DispatcherTimer Timer;
 
-        public GameStatus()
+        public GameStatus(int Row,int Col)
         {
             GameSpeed = 400;
             SpeedLevel = 1;
-            gameGrid = new GameGird(22, 10);
+            gameGrid = new GameGird(Row, Col);
             waitingLine = new WaitingLine();
             currentTetramino = waitingLine.UpdateTetramino();
             scores = new Scores();
@@ -129,7 +129,6 @@ namespace Tetris
             }
             return false;
         }
-
         private void PlaceItem()
         {
             foreach (Position p in currentTetramino.positionsOfRotation())
@@ -179,6 +178,28 @@ namespace Tetris
             {
                 currentTetramino.MoveTetramino(-1, 0);
                 PlaceItem();
+            }
+        }
+        public void RandomMove()
+        {
+            Random rand = new Random();
+            int number = rand.Next(1, 101);
+
+            if (number <= 20)
+            {
+                MoveDownTetramino();
+            } else if (number > 20 && number <= 40)
+            {
+                MoveLeftTetramino();
+            }else if (number > 40 && number <= 60)
+            {
+                MoveRightTetramino();
+            }else if (number > 60 && number <= 80)
+            {
+                RotateNextTetramino();
+            }else if (number > 80 && number <= 100)
+            {
+                RotatePrevTetramino();
             }
         }
         public int GetHarDropDistance(Position p)

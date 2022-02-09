@@ -22,7 +22,7 @@ namespace Tetris
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static MainWindow mainWindow;
+        public static MainWindow mainWindow { get; }
         public ImageSource[] tetraminoImages = new ImageSource[]
         {
             new BitmapImage(new Uri("../Resources/cleanTetramino.png", System.UriKind.Relative)),
@@ -49,7 +49,9 @@ namespace Tetris
 
 
         public Image[,] imgControls;
-        public GameStatus gameStatus = new GameStatus();
+        public Image[,] demoImgControls;
+        public Image[,] demoImgControls2;
+        public GameStatus gameStatus = new GameStatus(22,10);
         public SoundPlayer SoundMenu = new SoundPlayer(Resource1.MainMenuSound);
         public SoundPlayer TetrisGM_Sound = new SoundPlayer(Resource1.Tetris_99_Main_Theme);
 
@@ -57,12 +59,13 @@ namespace Tetris
         {
             InitializeComponent();
 
-            imgControls = SetUpGameGridCanvas(gameStatus.gameGrid);
-
+            imgControls = SetUpGameGridCanvas(gameStatus.gameGrid, GameGridCanvas);
+            demoImgControls = SetUpGameGridCanvas(gameStatus.gameGrid, DemoGame);
+            demoImgControls2 = SetUpGameGridCanvas(gameStatus.gameGrid, DemoGame2);
             SoundMenu.PlayLooping();
         }
 
-        public Image[,] SetUpGameGridCanvas(GameGird g)
+        public Image[,] SetUpGameGridCanvas(GameGird g, Canvas canvas)
         {
             Image[,] imgControls = new Image[g.rows, g.colums];
             int boxSize = 25;
@@ -77,7 +80,7 @@ namespace Tetris
                     };
                     Canvas.SetLeft(imgControl, c * boxSize);
                     Canvas.SetTop(imgControl, (r - 2) * boxSize + 10);
-                    GameGridCanvas.Children.Add(imgControl);
+                    canvas.Children.Add(imgControl);
                     imgControls[r, c] = imgControl;
                 }
             }
@@ -136,7 +139,14 @@ namespace Tetris
             TimerCount.Text = String.Format("Timer : {0}'{1}''", gameStatus.scores.time / 60, gameStatus.scores.time % 60);
             GetNextBlock(gameStatus.waitingLine);
         }
-
+        private async void DemoGame_Loaded(object sender, RoutedEventArgs e)
+        {
+            DemoStart(demoImgControls);
+        }
+        private async void DemoGame_Loaded2(object sender, RoutedEventArgs e)
+        {
+            DemoStart(demoImgControls2);
+        }
         private async void KeyInput(object sender, KeyEventArgs e)
         {
             if (gameStatus.gameOver)
@@ -177,13 +187,13 @@ namespace Tetris
             {
                 case "Tetris":
                     {
-                        gameStatus = new GameStatus();
+                        gameStatus = new GameStatus(22,10);
                         await GameRun();
                         break;
                     }
                 case "Reverse-Tetris":
                     {
-                        gameStatus = new GameStatus();
+                        gameStatus = new GameStatus(22, 10);
                         await GameRun2();
                         break;
                     }
@@ -192,7 +202,7 @@ namespace Tetris
         }
         private void ReturnMainMenu(object sender, RoutedEventArgs e)
         {
-            gameStatus = new GameStatus();
+            gameStatus = new GameStatus(22, 10);
             MainMenu.Visibility = Visibility.Visible;
 
             SoundMenu.Stream.Position = 0;
@@ -241,7 +251,7 @@ namespace Tetris
 
         public async Task GameRun()
         {
-            gameStatus = new GameStatus();
+            gameStatus = new GameStatus(22, 10);
             gameStatus.GameMode = "Tetris";
             gameStatus.scores.time = 0;
 
@@ -270,7 +280,7 @@ namespace Tetris
 
         public async Task GameRun2()
         {
-            gameStatus = new GameStatus();
+            gameStatus = new GameStatus(22, 10);
             gameStatus.GameMode = "Reverse-Tetris";
             gameStatus.scores.time = 60;
 
@@ -298,5 +308,54 @@ namespace Tetris
             GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.scores.time / 60, gameStatus.scores.time % 60);
             MenuGameOver.Visibility = Visibility.Visible;
         }
+
+
+
+        ////////////
+        /// DEMO ///
+        ////////////
+
+        public async void DemoStart(Image[,] imgctrl)
+        {
+            GameStatus g = new GameStatus(22, 10);
+            g.GameMode = "Tetris";
+            g.scores.time = 0;
+
+            DemoDrawGrid(g.gameGrid,imgctrl);
+            DemoDrawBox(g.CurrentTetramino, imgctrl);
+
+            Tetramino nextTetramino = g.waitingLine.NextTetramino;
+            NextImage.Source = tetraminoImages[nextTetramino.tetraminoId];
+
+            while (!g.gameOver)
+            {
+                await Task.Delay(120);
+                g.RandomMove();
+                g.MoveDownTetramino();
+                DemoDrawGrid(g.gameGrid,imgctrl);
+                DemoDrawBox(g.CurrentTetramino, imgctrl);
+            }
+            DemoStart(imgctrl);
+        }
+        public void DemoDrawGrid(GameGird g, Image[,] imgctrl)
+        {
+            for (int r = 0; r < g.rows; r++)
+            {
+                for (int c = 0; c < g.colums; c++)
+                {
+                    int boxId = g[r, c];
+                    imgctrl[r,c].Opacity = 1;
+                    imgctrl[r,c].Source = boxImages[boxId];
+                }
+            }
+        }
+        public void DemoDrawBox(Tetramino t, Image[,] imgctrl)
+        {
+            foreach (Position p in t.positionsOfRotation())
+            {
+                imgctrl[p.row, p.column].Source = boxImages[t.tetraminoId];
+            }
+        }
+
     }
 }

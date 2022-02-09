@@ -148,15 +148,31 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
             <Grid.Background>
                 <ImageBrush ImageSource="{Binding Source={x:Static properties:Resource1.LaunchScreen}}"/>
             </Grid.Background>
 
+            <Viewbox
+                Grid.Column="0">
+                <Canvas 
+                x:Name="DemoGame"
+                Width="250"
+                Height="510"
+                ClipToBounds="True"
+                Background="Black"
+                Loaded="DemoGame_Loaded"
+                />
+            </Viewbox>
+            
+
             <StackPanel
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+                VerticalAlignment="Center"
+                Grid.Column="1">
                 <ComboBox
                     x:Name="DropDownGameModes"
                     IsReadOnly="True"
@@ -184,6 +200,18 @@
                     Margin="0,20,0,0"
                     Click="KillProgram"/>
             </StackPanel>
+
+            <Viewbox
+                Grid.Column="2">
+                <Canvas 
+                x:Name="DemoGame2"
+                Width="250"
+                Height="510"
+                ClipToBounds="True"
+                Background="Black"
+                Loaded="DemoGame_Loaded2"
+                />
+            </Viewbox>
 
         </Grid>
 
