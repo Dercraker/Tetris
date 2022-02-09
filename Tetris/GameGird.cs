@@ -16,7 +16,6 @@ namespace Tetris
             get => grid[r, c];
             set => grid[r, c] = value;
         }
-
         public bool IsInsideGrid(int r, int c)
         {
             return  r >= 0 && r < rows && c >= 0 && c < colums;
@@ -41,7 +40,6 @@ namespace Tetris
             }
             return true;
         }
-
         public void CleanRow(int r)
         {
             for (int i = 0; i < colums; i++)
@@ -57,7 +55,6 @@ namespace Tetris
                 grid[r,c] = 0;
             }
         }
-
         public int ClearGrid()
         {
             int nbRowClear = 0;
@@ -93,7 +90,6 @@ namespace Tetris
             }
             return nbRowClear;
         }
-
         public GameGird(int rows, int colums)
         {
             this.rows = rows;

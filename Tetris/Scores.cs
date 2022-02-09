@@ -9,20 +9,27 @@ namespace Tetris
     public class Scores
     {
         public int time { get; set; }
+        public int reverseTotalTime { get; set; }
         public int lastScoreTime { get; set; }
         public int combos { get; set; }
         public int score { get; set; }
+        public int nbLine { get; set; }
+        public int bestCombos { get; set; }
         public int bonusClear { get; set; }
 
         public Scores()
         {
             score = 0;
             lastScoreTime = 0;
+            reverseTotalTime = 0;
             combos = 1;
+            bestCombos = 1;
+            nbLine = 0;
         }
 
         public  int bonusScore(int line)
         {
+            nbLine += line;
             int result = 0;
             result = multipleLineBonus(line);
             result = result == 0 ? 0 : combosTimeBonus(result);
@@ -53,6 +60,9 @@ namespace Tetris
                 combos = 1;
             }
             lastScoreTime = currentTime;
+
+            if (bestCombos < combos) bestCombos = combos;
+
             return result * combos;
         }
         public void GameScoreBonus(int addResult, GameGird g)

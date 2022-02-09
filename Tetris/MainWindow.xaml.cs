@@ -173,6 +173,9 @@ namespace Tetris
                 case Key.Space:
                     gameStatus.HardDrop();
                     break;
+                case Key.Z:
+                    gameStatus.Pause = gameStatus.Pause ? false: true;
+                    break;
                 default:
                     return;
             }
@@ -244,6 +247,10 @@ namespace Tetris
         {
             OptionPage.Visibility = Visibility.Visible;
         }
+        private void ResumeGame_Click(object sender, RoutedEventArgs e)
+        {
+            gameStatus.Pause = false;
+        }
 
         /////////////////
         /// TETRIS GM ///
@@ -253,7 +260,6 @@ namespace Tetris
         {
             gameStatus = new GameStatus(22, 10);
             gameStatus.GameMode = "Tetris";
-            gameStatus.scores.time = 0;
 
 
             Draw(gameStatus);
@@ -265,6 +271,7 @@ namespace Tetris
                 await Task.Delay(gameStatus.GameSpeed);
                 gameStatus.MoveDownTetramino();
                 Draw(gameStatus);
+                if (gameStatus.Pause) await gameStatus.GamePause(PausePage,MainTime,TotalTime,CurrentScore, BreakLine, BestCombos);
             }
 
             TetrisGM_Sound.Stop();
@@ -287,6 +294,7 @@ namespace Tetris
 
             Draw(gameStatus);
             gameStatus.SetReverseTimer();
+            gameStatus.SetTotalTimer();
             TetrisGM_Sound.PlayLooping();
 
             while (!gameStatus.gameOver)
@@ -300,10 +308,12 @@ namespace Tetris
                 await Task.Delay(gameStatus.GameSpeed);
                 gameStatus.MoveDownTetramino();
                 Draw(gameStatus);
+                if (gameStatus.Pause) await gameStatus.GamePause(PausePage,MainTime,TotalTime,CurrentScore, BreakLine, BestCombos);
             }
 
             TetrisGM_Sound.Stop();
             gameStatus.StopTimer();
+            gameStatus.StopTotalTimer();
             GameOverResult.Text = String.Format("Score : {0}", gameStatus.scores.score);
             GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.scores.time / 60, gameStatus.scores.time % 60);
             MenuGameOver.Visibility = Visibility.Visible;
@@ -319,7 +329,6 @@ namespace Tetris
         {
             GameStatus g = new GameStatus(22, 10);
             g.GameMode = "Tetris";
-            g.scores.time = 0;
 
             DemoDrawGrid(g.gameGrid,imgctrl);
             DemoDrawBox(g.CurrentTetramino, imgctrl);
@@ -356,6 +365,5 @@ namespace Tetris
                 imgctrl[p.row, p.column].Source = boxImages[t.tetraminoId];
             }
         }
-
     }
 }

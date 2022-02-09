@@ -29,15 +29,19 @@ namespace Tetris
         public bool gameOver { get; set; }
         public int GameSpeed { get; set; }
         public string GameMode { get; set; }
+        public bool Pause { get; set; }
         public int SpeedLevel { get; set; }
         public Scores scores { get; set; }
 
         private DispatcherTimer Timer;
+        private DispatcherTimer ReverseTotalTimer;
 
         public GameStatus(int Row,int Col)
         {
             GameSpeed = 400;
             SpeedLevel = 1;
+            AddScore = 0;
+            Pause = false;
             gameGrid = new GameGird(Row, Col);
             waitingLine = new WaitingLine();
             currentTetramino = waitingLine.UpdateTetramino();
@@ -65,6 +69,21 @@ namespace Tetris
         private void Timer_Tick(object sender, EventArgs e)
         {
             scores.time++;
+        }
+        public void SetTotalTimer()
+        {
+            ReverseTotalTimer = new DispatcherTimer();
+            ReverseTotalTimer.Interval = new TimeSpan(0, 0, 1);
+            ReverseTotalTimer.Tick += TotalTimer_Tick;
+            ReverseTotalTimer.Start();
+        }
+        public void StopTotalTimer()
+        {
+            ReverseTotalTimer.Stop();
+        }
+        private void TotalTimer_Tick(object sender, EventArgs e)
+        {
+            scores.reverseTotalTime++;
         }
         private void ReverseTimer_Tick(object sender, EventArgs e)
         {
@@ -149,7 +168,8 @@ namespace Tetris
                 {
                     currentTetramino = waitingLine.UpdateTetramino();
                 }
-            } else if (GameMode == "Tetris")
+            } 
+            else if (GameMode == "Tetris")
             {
                 if (IsGameOver())
                 {
@@ -228,6 +248,31 @@ namespace Tetris
         {
             CurrentTetramino.MoveTetramino(HardDropTetramino(), 0);
             PlaceItem();
+        }
+        public async Task GamePause(Grid Page, TextBlock MainTime, TextBlock TotalTime, TextBlock CurrentScore, TextBlock BreakLine, TextBlock BestCombos)
+        {
+            Timer.Stop();
+            if (GameMode == "Reverse-Tetris") ReverseTotalTimer.Stop();
+            MainTime.Text = String.Format("Time : {0}'{1}''", scores.time / 60, scores.time % 60);
+            TotalTime.Text = String.Format("Total Time : {0}'{1}''", scores.reverseTotalTime / 60, scores.reverseTotalTime % 60);
+            CurrentScore.Text = String.Format("Score : {0}pts", scores.score);
+            BreakLine.Text = String.Format("Nb Line : {0}", scores.nbLine);
+            BestCombos.Text = String.Format("Combos : *{0}", scores.bestCombos);
+
+            if (GameMode == "Reverse-Tetris") TotalTime.Visibility = Visibility.Visible;
+            if (GameMode == "Tetris") TotalTime.Visibility = Visibility.Hidden;
+
+            Page.Visibility = Visibility.Visible;
+
+            while (Pause)
+            {
+                await Task.Delay(1);
+            }
+
+            Page.Visibility = Visibility.Hidden;
+            await Task.Delay(3000);
+            Timer.Start();
+            if (GameMode == "Reverse-Tetris") ReverseTotalTimer.Start();
         }
     }
 }

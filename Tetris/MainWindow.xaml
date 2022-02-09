@@ -13,8 +13,7 @@
         xmlns:properties="clr-namespace:Tetris">
 
     <Grid>
-        <Grid
-            x:Name="GamePage">
+        <Grid x:Name="GamePage">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -31,8 +30,7 @@
 
             <Viewbox
             Grid.Column="0" Grid.RowSpan="4">
-                <Canvas 
-                x:Name="GameGridCanvas"
+                <Canvas x:Name="GameGridCanvas"
                 Opacity="0.9"
                 Background="Black"
                 Width="250"
@@ -41,8 +39,8 @@
                 ClipToBounds="True"
                 />
             </Viewbox>
-            <TextBlock 
-            x:Name="ScoreText"
+            
+            <TextBlock x:Name="ScoreText"
             Grid.Row="0"
             Grid.Column="1"
             Text="Score : "
@@ -50,8 +48,7 @@
             Foreground="Black"
             FontWeight="UltraBold"
             />
-            <TextBlock
-            x:Name="CombosText"
+            <TextBlock x:Name="CombosText"
             Grid.Row="1"
             Grid.Column="1"
             Text="Combos : "
@@ -59,13 +56,12 @@
             Foreground="Black"
             FontWeight="UltraBold">
             </TextBlock>
-            <StackPanel 
+            <StackPanel x:Name="Next"
             Grid.Column="1"
             Grid.Row="2"
             VerticalAlignment="Center"
             HorizontalAlignment="Center">
-                <TextBlock
-                x:Name="NextTetraminoText"
+                <TextBlock x:Name="NextTetraminoText"
                 Text="Next Tetramino"
                 TextAlignment="Center"
                 Foreground="Black"
@@ -74,10 +70,9 @@
                    Width="128"
                    Margin="0,10,0,0"/>
             </StackPanel>
-            <TextBlock
+            <TextBlock x:Name="TimerCount"
             Grid.Row="3"
             Grid.Column="1"
-            x:Name="TimerCount"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Foreground="Black"
@@ -86,8 +81,96 @@
             </TextBlock>
         </Grid>
 
-        <Grid
-            x:Name="MenuGameOver"
+        <Grid x:Name="PausePage"
+              Visibility="Hidden">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.Background>
+                <ImageBrush ImageSource="{Binding Source={x:Static properties:Resource1.LaunchScreen}}"/>
+            </Grid.Background>
+
+            <TextBlock x:Name="GameStats"
+                Grid.ColumnSpan="2"
+                Margin="0,50,0,0"
+                Text="GameStats"
+                FontSize="40"
+                FontWeight="ExtraBold"
+                TextDecorations="Underline"
+                Foreground="Black"
+                TextAlignment="Center"/>
+
+            <TextBlock x:Name="MainTime"
+                Grid.Column="0"
+                Grid.Row="1"
+                Text="Time :"
+                FontSize="40"
+                FontWeight="Bold"
+                Foreground="Black"
+                TextAlignment="Center"/>
+
+            <TextBlock x:Name="TotalTime"
+                Grid.Column="1"
+                Grid.Row="1"
+                Text="TotalTime :"
+                FontSize="40"
+                FontWeight="Bold"
+                Foreground="Black"
+                TextAlignment="Center"/>
+
+            <TextBlock x:Name="CurrentScore"
+                Grid.Column="0"
+                Grid.Row="2"
+                Text="Score :"
+                FontSize="40"
+                FontWeight="Bold"
+                Foreground="Black"
+                TextAlignment="Center"/>
+
+            <TextBlock x:Name="BreakLine"
+                Grid.Column="1"
+                Grid.Row="2"
+                Text="Nb Line :"
+                FontSize="40"
+                FontWeight="Bold"
+                Foreground="Black"
+                TextAlignment="Center"/>
+
+            <TextBlock x:Name="BestCombos"
+                Grid.ColumnSpan="2"
+                Grid.Row="3"
+                Text="Meilleur Combos :"
+                FontSize="40"
+                FontWeight="Bold"
+                Foreground="Black"
+                TextAlignment="Center"/>
+            
+            <Button x:Name="ResumeGame"
+                Grid.Row="4"
+                Grid.ColumnSpan="2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Width="80"
+                Content="Play"
+                Click="ResumeGame_Click"
+                />
+
+
+
+
+        </Grid>
+
+        <Grid x:Name="MenuGameOver"
             Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -95,7 +178,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
+
             <Grid.Background>
                 <ImageBrush ImageSource="{Binding Source={x:Static properties:Resource1.GameOverBG}}"/>
             </Grid.Background>
@@ -104,34 +187,29 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center">
 
-                <TextBlock
-                    x:Name="GameOverResult"
+                <TextBlock x:Name="GameOverResult"
                     Text="Score : "
                     FontSize="40"
                     TextAlignment="Center"/>
-                <TextBlock
-                    x:Name="GameOverTimer"
+                <TextBlock x:Name="GameOverTimer"
                     Text="Timer : "
                     HorizontalAlignment="Center"
                     FontSize="40"
                     />
-                <TextBlock 
-                    Text="Oh Snap!"
+                <TextBlock Text="Oh Snap!"
                     TextAlignment="Center"
                     FontWeight="UltraBlack"
                     FontSize="60"
                     Foreground="Red"
                     TextDecorations="Underline"/>
 
-                <Button
-                    Content="Let's Go to Bim"
+                <Button Content="Let's Go to Bim"
                     Foreground="White"
                     Background="Green"
                     Margin="0,20,0,0"
                     Click="RestartGame"
                     />
-                <Button
-                    Content="Return Main"
+                <Button Content="Return Main"
                     Foreground="Black"
                     Background="Red"
                     Margin="0,20,0,0"
@@ -140,8 +218,7 @@
             </StackPanel>
         </Grid>
 
-        <Grid
-             x:Name="MainMenu"
+        <Grid x:Name="MainMenu"
             Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -151,15 +228,14 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
+
             <Grid.Background>
                 <ImageBrush ImageSource="{Binding Source={x:Static properties:Resource1.LaunchScreen}}"/>
             </Grid.Background>
 
             <Viewbox
                 Grid.Column="0">
-                <Canvas 
-                x:Name="DemoGame"
+                <Canvas x:Name="DemoGame"
                 Width="250"
                 Height="510"
                 ClipToBounds="True"
@@ -167,14 +243,13 @@
                 Loaded="DemoGame_Loaded"
                 />
             </Viewbox>
-            
+
 
             <StackPanel
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Grid.Column="1">
-                <ComboBox
-                    x:Name="DropDownGameModes"
+                <ComboBox x:Name="DropDownGameModes"
                     IsReadOnly="True"
                     VerticalContentAlignment="Center"
                     HorizontalContentAlignment="Center">
@@ -203,8 +278,7 @@
 
             <Viewbox
                 Grid.Column="2">
-                <Canvas 
-                x:Name="DemoGame2"
+                <Canvas  x:Name="DemoGame2"
                 Width="250"
                 Height="510"
                 ClipToBounds="True"
@@ -215,8 +289,7 @@
 
         </Grid>
 
-        <Grid
-             x:Name="OptionPage"
+        <Grid x:Name="OptionPage"
             Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -224,28 +297,24 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
+
             <Grid.Background>
                 <ImageBrush ImageSource="{Binding Source={x:Static properties:Resource1.LaunchScreen}}"/>
             </Grid.Background>
 
-            <StackPanel
+
+            <Button Content="Option.Apply() &amp;&amp; return MainMenu"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center">
-
-
-
-                <Button Content="Option.Apply() &amp;&amp; return MainMenu"
-                    Foreground="Black"
-                    Background="Green"
-                    Margin="0,20,0,0"
-                    Click="OutOption"/>
-            </StackPanel>
+                VerticalAlignment="Center"
+                Foreground="Black"
+                Background="Green"
+                Margin="0,20,0,0"
+                Click="OutOption"/>
 
         </Grid>
     </Grid>
 
-    
+
 
 
 </Window>
