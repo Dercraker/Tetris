@@ -70,7 +70,7 @@
                 FontWeight="UltraBold"/>
                 <Image x:Name="NextImage"
                    Width="128"
-                   Margin="0,10,0,0"/>
+                   Height="128"/>
             </StackPanel>
             <StackPanel x:Name="HoldingTetra"
              Grid.ColumnSpan="2"
@@ -234,7 +234,7 @@
         </Grid>
 
         <Grid x:Name="MainMenu"
-            Visibility="visible">
+            Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
