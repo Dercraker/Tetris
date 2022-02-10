@@ -49,7 +49,7 @@ namespace Tetris
         public BitmapImage ToImage { get; set; }
 
 
-        public GameGrid gameGrid { get; }
+        public GameGrid gameGrid { get; set; }
         public WaitingLine waitingLine { get; }
         public bool gameOver { get; set; }
         public int GameSpeed { get; set; }
