@@ -20,56 +20,48 @@ namespace Tetris
     public class Demo
     {
         private ImageSource[] tetraminoImages { get; set; }
-        private Image[,] demoImgControls { get; set; }
-        private MainWindow mainWindow { get; set; }
         private Image NextImage { get; set; }
         private ImageSource[] boxImages { get; set; }
-        public Demo(MainWindow main, ImageSource[] imageSources, ImageSource[] imageSources1, Image image, Image[,] imgctrl)
-        {
-            mainWindow = main;
-            tetraminoImages = imageSources;
-            boxImages = imageSources1;
-            NextImage = image;
-            demoImgControls = imgctrl;
-        }
-        public async void Start()
+
+        public async void DemoStart(Image[,] imgctrl, MainWindow mw)
         {
             GameStatus g = new GameStatus();
+            tetraminoImages = mw.tetraminoImages;
+            boxImages = mw.boxImages;
             g.GameMode = "Tetris";
-            g.scores.time = 0;
 
-            DemoDrawGrid(g.gameGrid);
-            DemoDrawBox(g.CurrentTetramino);
+            DemoDrawGrid(g.gameGrid, imgctrl);
+            DemoDrawBox(g.CurrentTetramino, imgctrl);
 
             Tetramino nextTetramino = g.waitingLine.NextTetramino;
-            NextImage.Source = tetraminoImages[nextTetramino.tetraminoId];
 
             while (!g.gameOver)
             {
-                await Task.Delay(200);
+                await Task.Delay(120);
+                g.RandomMove();
                 g.MoveDownTetramino();
-                DemoDrawGrid(g.gameGrid);
-                DemoDrawBox(g.CurrentTetramino);
+                DemoDrawGrid(g.gameGrid, imgctrl);
+                DemoDrawBox(g.CurrentTetramino, imgctrl);
             }
-            Start();
+            DemoStart(imgctrl, mw);
         }
-        public void DemoDrawGrid(GameGird g)
+        public void DemoDrawGrid(GameGird g, Image[,] imgctrl)
         {
             for (int r = 0; r < g.rows; r++)
             {
                 for (int c = 0; c < g.colums; c++)
                 {
                     int boxId = g[r, c];
-                    demoImgControls[r, c].Opacity = 1;
-                    demoImgControls[r, c].Source = boxImages[boxId];
+                    imgctrl[r, c].Opacity = 1;
+                    imgctrl[r, c].Source = boxImages[boxId];
                 }
             }
         }
-        public void DemoDrawBox(Tetramino t)
+        public void DemoDrawBox(Tetramino t, Image[,] imgctrl)
         {
             foreach (Position p in t.positionsOfRotation())
             {
-                demoImgControls[p.row, p.column].Source = boxImages[t.tetraminoId];
+                imgctrl[p.row, p.column].Source = boxImages[t.tetraminoId];
             }
         }
 
