@@ -14,6 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Media;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.IO;
 
 namespace Tetris
 {
@@ -257,7 +260,6 @@ namespace Tetris
                         await GameRun2();
                         break;
                     }
-
             }
         }
         private void Options(object sender, RoutedEventArgs e)
@@ -268,14 +270,90 @@ namespace Tetris
         {
             gameStatus.Pause = false;
         }
+        private async void SaveGame_Click(object sender, RoutedEventArgs e)
+        {
+            if (!Directory.Exists("./SaveGames")) Directory.CreateDirectory("./SaveGames");
+
+            Save save = new Save()
+            {
+                Status = gameStatus
+            };
+
+            string fileName = String.Format("./SaveGames/{0}.json",gameStatus.GameMode + "_" + DateTime.Now.ToString("dd-MM-yy_H-mm-ss"));
+            using FileStream createStream = File.Create(fileName);
+
+            JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
+
+            await JsonSerializer.SerializeAsync(createStream, save, options);
+            await createStream.DisposeAsync();
+
+
+            TetrisGM_Sound.Stop();
+            ReturnMainMenu(sender,e);
+        }
+        private void GameLoading(object sender, RoutedEventArgs e)
+        {
+            string[] allfiles = Directory.GetFiles("./SaveGames", "*.*", SearchOption.AllDirectories);
+            foreach (string file in allfiles)
+            {
+                string fileName = file.Split(".json")[0].Substring(12);
+                string gmName = fileName.Split("_")[0];
+                string[] date = fileName.Split("_")[1].Split("-");
+                string[] heur = fileName.Split("_")[2].Split("-");
+                fileName = String.Format("{0} : {1},{2},{3} {4}h{5}m{6}s", gmName, date[0], date[1], date[2], heur[0], heur[1], heur[2]);
+
+                ComboBoxItem item = new ComboBoxItem
+                {
+                    Tag = file.ToString(),
+                    Content = fileName
+                };
+
+                SaveGamesList.Items.Add(item);
+            }
+            
+            GameLoad.Visibility = Visibility.Collapsed;
+            SaveGamesList.Visibility = Visibility.Visible;
+        }
+        private async void SaveGamesList_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            string itemIndex = sender.ToString().Trim().Split(":")[1];
+            if (itemIndex != "1" && SaveGamesList.SelectedValue.ToString().Split(": ")[1] != "Select SaveGame")
+            {
+                string filePath = ((ComboBoxItem)SaveGamesList.SelectedItem).Tag.ToString();
+                using FileStream openStream = File.OpenRead(filePath);
+                Save save = await JsonSerializer.DeserializeAsync<Save>(openStream);
+
+                GameLoad.Visibility = Visibility.Visible;
+                SaveGamesList.Visibility = Visibility.Collapsed;
+
+                SoundMenu.Stop();
+
+                PausePage.Visibility = Visibility.Visible;
+                MainMenu.Visibility = Visibility.Hidden;
+
+                SaveGamesList.Items.RemoveAt(1);
+                SaveGamesList.SelectedIndex= 0;
+
+                GameStatus gm = save.Status;
+                if (gm.GameMode == "Tetris")
+                {
+                    GameRun(gm);
+                }
+                else
+                {
+                    GameRun2(gm);
+                }
+
+            }
+        }
 
         /////////////////
         /// TETRIS GM ///
         /////////////////
 
-        public async Task GameRun()
+        public async Task GameRun(GameStatus gm = null)
         {
-            gameStatus = new GameStatus();
+            gameStatus = gm == null ? new GameStatus() : gm;
             gameStatus.GameMode = "Tetris";
 
 
@@ -302,9 +380,9 @@ namespace Tetris
         /// REVERSE-TETRIS GM ///
         /////////////////////////
 
-        public async Task GameRun2()
+        public async Task GameRun2(GameStatus gm = null)
         {
-            gameStatus = new GameStatus();
+            gameStatus = gm == null ? new GameStatus() : gm;
             gameStatus.GameMode = "Reverse-Tetris";
             gameStatus.scores.time = 60;
 
