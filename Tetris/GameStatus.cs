@@ -26,8 +26,28 @@ namespace Tetris
         private Tetramino holdingTetramino;
         private Tetramino tempoTetramino;
         public int AddScore { get; private set; }
-        private Tetramino holdingTetramino;
-        private Tetramino tempoTetramino;
+        private Tetramino holdingTetramino = null!;
+
+        public Tetramino HoldingTetramino
+        {
+            get => holdingTetramino;
+            private set
+            {
+                holdingTetramino = value;
+                holdingTetramino.reset();
+            }
+        }
+        private Tetramino tempoTetramino = null!;
+
+        public Tetramino TempoTetramino
+        {
+            get => tempoTetramino;
+            private set
+            {
+                tempoTetramino = value;
+                tempoTetramino.reset();
+            }
+        }
         public BitmapImage ToImage { get; set; }
 
 
@@ -40,8 +60,8 @@ namespace Tetris
         public int SpeedLevel { get; set; }
         public Scores scores { get; set; }
 
-        private DispatcherTimer Timer;
-        private DispatcherTimer ReverseTotalTimer;
+        private DispatcherTimer Timer = null!;
+        private DispatcherTimer ReverseTotalTimer = null!;
 
 <<<<<<< Dev
         public int pressHoldTetramino = 0;
@@ -53,16 +73,16 @@ namespace Tetris
         public int pressHoldTetramino = 0;
         public GameStatus()
 
->>>>>>> merge
         {
             GameSpeed = 400;
             SpeedLevel = 1;
             AddScore = 0;
             Pause = false;
-            gameGrid = new GameGird(Row, Col);
+            gameGrid = new GameGird(22, 10);
             waitingLine = new WaitingLine();
             currentTetramino = waitingLine.UpdateTetramino();
             scores = new Scores();
+            holdingTetramino = null!;
         }
 
         public void SetTimer()
@@ -202,12 +222,7 @@ namespace Tetris
                 //MessageBox.Show(String.Format("1 OffSet row :{0} , OffSet column :{1}", currentTetramino.offSet.row,currentTetramino.offSet.column));
                 currentTetramino = waitingLine.UpdateTetramino();
                 pressHoldTetramino = 0;
-                //MessageBox.Show(String.Format("2 OffSet row :{0} , OffSet column :{1}", currentTetramino.offSet.row,currentTetramino.offSet.column));
->>>>>>>
-=======
-                pressHoldTetramino = 0;
                 })
->>>>>>> merge
             }
             NewGameSpeed(scores.score);
             

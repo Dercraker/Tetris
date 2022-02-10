@@ -51,7 +51,7 @@ namespace Tetris
         public Image[,] imgControls;
         public Image[,] demoImgControls;
         public Image[,] demoImgControls2;
-        public GameStatus gameStatus = new GameStatus(22,10);
+        public GameStatus gameStatus = new GameStatus();
         public SoundPlayer SoundMenu = new SoundPlayer(Resource1.MainMenuSound);
         public SoundPlayer TetrisGM_Sound = new SoundPlayer(Resource1.Tetris_99_Main_Theme);
 
@@ -90,6 +90,19 @@ namespace Tetris
         {
             Tetramino nextTetramino = waitingLine.NextTetramino;
             NextImage.Source = tetraminoImages[nextTetramino.tetraminoId];
+        }
+
+        public void DisplayHoldedTetra()
+        {
+           Tetramino holdedTetramino = gameStatus.HoldingTetramino;
+            if (holdedTetramino == null)
+            {
+                HoldedImage.Source = boxImages[0];
+            }
+            else
+            {
+                HoldedImage.Source = tetraminoImages[holdedTetramino.tetraminoId];
+            }
         }
         public void DrawGrid(GameGird g)
         {
@@ -138,6 +151,7 @@ namespace Tetris
             }
             TimerCount.Text = String.Format("Timer : {0}'{1}''", gameStatus.scores.time / 60, gameStatus.scores.time % 60);
             GetNextBlock(gameStatus.waitingLine);
+            DisplayHoldedTetra();
         }
         private async void DemoGame_Loaded(object sender, RoutedEventArgs e)
         {
@@ -179,6 +193,9 @@ namespace Tetris
                 case Key.Z:
                     gameStatus.Pause = gameStatus.Pause ? false: true;
                     break;
+                case Key.LeftShift:
+                    gameStatus.HoldTetramino();
+                    break;
                 default:
                     return;
             }
@@ -193,13 +210,13 @@ namespace Tetris
             {
                 case "Tetris":
                     {
-                        gameStatus = new GameStatus(22,10);
+                        gameStatus = new GameStatus();
                         await GameRun();
                         break;
                     }
                 case "Reverse-Tetris":
                     {
-                        gameStatus = new GameStatus(22, 10);
+                        gameStatus = new GameStatus();
                         await GameRun2();
                         break;
                     }
@@ -208,7 +225,7 @@ namespace Tetris
         }
         private void ReturnMainMenu(object sender, RoutedEventArgs e)
         {
-            gameStatus = new GameStatus(22, 10);
+            gameStatus = new GameStatus();
             MainMenu.Visibility = Visibility.Visible;
 
             SoundMenu.Stream.Position = 0;
@@ -261,7 +278,7 @@ namespace Tetris
 
         public async Task GameRun()
         {
-            gameStatus = new GameStatus(22, 10);
+            gameStatus = new GameStatus();
             gameStatus.GameMode = "Tetris";
 
 
@@ -290,7 +307,7 @@ namespace Tetris
 
         public async Task GameRun2()
         {
-            gameStatus = new GameStatus(22, 10);
+            gameStatus = new GameStatus();
             gameStatus.GameMode = "Reverse-Tetris";
             gameStatus.scores.time = 60;
 
@@ -330,7 +347,7 @@ namespace Tetris
 
         public async void DemoStart(Image[,] imgctrl)
         {
-            GameStatus g = new GameStatus(22, 10);
+            GameStatus g = new GameStatus();
             g.GameMode = "Tetris";
 
             DemoDrawGrid(g.gameGrid,imgctrl);
