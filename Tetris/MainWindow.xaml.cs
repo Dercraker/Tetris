@@ -108,6 +108,8 @@ namespace Tetris
             demoImgControls = SetUpGameGridCanvas(gameStatus.gameGrid, DemoGame);
             demoImgControls2 = SetUpGameGridCanvas(gameStatus.gameGrid, DemoGame2);
             SoundMenu.PlayLooping();
+
+            if (!Directory.Exists("./SaveGames") || !Directory.GetFiles("./SaveGames").Any()) GameLoad.Visibility = Visibility.Collapsed;
         }
 
         public Image[,] SetUpGameGridCanvas(GameGrid g, Canvas canvas)
@@ -1649,7 +1651,7 @@ namespace Tetris
         private void SaveGame_Click(object sender, RoutedEventArgs e)
         {
             if (!Directory.Exists("./SaveGames")) Directory.CreateDirectory("./SaveGames");
-
+            GameLoad.Visibility = Visibility.Visible;
 
             string fileName = String.Format("./SaveGames/{0}.json",gameStatus.GameMode + "_" + DateTime.Now.ToString("dd-MM-yy_H-mm-ss"));
 
