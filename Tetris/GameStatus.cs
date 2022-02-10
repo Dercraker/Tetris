@@ -26,7 +26,6 @@ namespace Tetris
         private Tetramino holdingTetramino;
         private Tetramino tempoTetramino;
         public int AddScore { get; private set; }
-        private Tetramino holdingTetramino = null!;
 
         public Tetramino HoldingTetramino
         {
@@ -37,7 +36,6 @@ namespace Tetris
                 holdingTetramino.reset();
             }
         }
-        private Tetramino tempoTetramino = null!;
 
         public Tetramino TempoTetramino
         {
@@ -63,7 +61,9 @@ namespace Tetris
         private DispatcherTimer Timer = null!;
         private DispatcherTimer ReverseTotalTimer = null!;
 
-        public GameStatus(int Row,int Col)
+        public int pressHoldTetramino = 0;
+
+        public GameStatus()
         {
             GameSpeed = 400;
             SpeedLevel = 1;
@@ -199,7 +199,6 @@ namespace Tetris
             } 
             else if (GameMode == "Tetris")
             {
-<<<<<<<
                 if (IsGameOver())
                 {
                     gameOver = true;
@@ -207,14 +206,10 @@ namespace Tetris
                 else
                 {
                     currentTetramino = waitingLine.UpdateTetramino();
-                pressHoldTetramino = 0;
+                    pressHoldTetramino = 0;
                 }
-=======
-                //MessageBox.Show(String.Format("1 OffSet row :{0} , OffSet column :{1}", currentTetramino.offSet.row,currentTetramino.offSet.column));
-                currentTetramino = waitingLine.UpdateTetramino();
-                pressHoldTetramino = 0;
-                })
-            }
+                }
+            
             NewGameSpeed(scores.score);
             
         }

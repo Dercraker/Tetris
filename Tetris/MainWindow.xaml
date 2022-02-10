@@ -330,16 +330,6 @@
     </Grid>
 
 
-                <Button Content="Option.Apply() &amp;&amp; return MainMenu"
-                    Foreground="Black"
-                    Background="Green"
-                    Margin="0,20,0,0"
-                    Click="OutOption"/>
-            </StackPanel>
 
-        </Grid>
-
-
-    </Grid>
 
 </Window>

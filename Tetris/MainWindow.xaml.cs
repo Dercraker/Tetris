@@ -193,9 +193,6 @@ namespace Tetris
                 case Key.Z:
                     gameStatus.Pause = gameStatus.Pause ? false: true;
                     break;
-                case Key.LeftShift:
-                    gameStatus.HoldTetramino();
-                    break;
                 default:
                     return;
             }
