@@ -14,6 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Media;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.IO;
 
 namespace Tetris
 {
@@ -51,9 +54,9 @@ namespace Tetris
         public Image[,] imgControls;
         public Image[,] demoImgControls;
         public Image[,] demoImgControls2;
+        public gameMode.GameMode game { get; set; }
         public GameStatus gameStatus = new GameStatus();
         public SoundPlayer SoundMenu = new SoundPlayer(Resource1.MainMenuSound);
-        public SoundPlayer TetrisGM_Sound = new SoundPlayer(Resource1.Tetris_99_Main_Theme);
 
         public MainWindow()
         {
@@ -91,7 +94,6 @@ namespace Tetris
             Tetramino nextTetramino = waitingLine.NextTetramino;
             NextImage.Source = tetraminoImages[nextTetramino.tetraminoId];
         }
-
         public void DisplayHoldedTetra()
         {
            Tetramino holdedTetramino = gameStatus.HoldingTetramino;
@@ -155,11 +157,13 @@ namespace Tetris
         }
         private async void DemoGame_Loaded(object sender, RoutedEventArgs e)
         {
-            DemoStart(demoImgControls);
+            Demo demo = new Demo();
+            demo.DemoStart(demoImgControls, this);
         }
         private async void DemoGame_Loaded2(object sender, RoutedEventArgs e)
         {
-            DemoStart(demoImgControls2);
+            Demo demo = new Demo();
+            demo.DemoStart(demoImgControls2, this);
         }
         private async void KeyInput(object sender, KeyEventArgs e)
         {
@@ -207,17 +211,20 @@ namespace Tetris
             {
                 case "Tetris":
                     {
-                        gameStatus = new GameStatus();
-                        await GameRun();
+                        game = new gameMode.Tetris(this);
+                        game.init();
+                        gameStatus = game.gameStatus;
+                        await game.Run();
                         break;
                     }
                 case "Reverse-Tetris":
                     {
-                        gameStatus = new GameStatus();
-                        await GameRun2();
+                        game = new gameMode.RevrseTetris(this);
+                        game.init();
+                        gameStatus = game.gameStatus;
+                        await game.Run();
                         break;
                     }
-
             }
         }
         private void ReturnMainMenu(object sender, RoutedEventArgs e)
@@ -249,15 +256,20 @@ namespace Tetris
             {
                 case "Tetris":
                     {
-                        await GameRun();
+                        gameMode.GameMode game = new gameMode.Tetris(this);
+                        game.init();
+                        gameStatus = game.gameStatus;
+                        await game.Run();
                         break;
                     }
                 case "Reverse-Tetris":
                     {
-                        await GameRun2();
+                        gameMode.GameMode game = new gameMode.RevrseTetris(this);
+                        game.init();
+                        gameStatus = game.gameStatus;
+                        await game.Run();
                         break;
                     }
-
             }
         }
         private void Options(object sender, RoutedEventArgs e)
@@ -268,119 +280,89 @@ namespace Tetris
         {
             gameStatus.Pause = false;
         }
-
-        /////////////////
-        /// TETRIS GM ///
-        /////////////////
-
-        public async Task GameRun()
+        private async void SaveGame_Click(object sender, RoutedEventArgs e)
         {
-            gameStatus = new GameStatus();
-            gameStatus.GameMode = "Tetris";
+            if (!Directory.Exists("./SaveGames")) Directory.CreateDirectory("./SaveGames");
 
-
-            Draw(gameStatus);
-            gameStatus.SetTimer();
-            TetrisGM_Sound.PlayLooping();
-
-            while (!gameStatus.gameOver)
+            Save save = new Save()
             {
-                await Task.Delay(gameStatus.GameSpeed);
-                gameStatus.MoveDownTetramino();
-                Draw(gameStatus);
-                if (gameStatus.Pause) await gameStatus.GamePause(PausePage,MainTime,TotalTime,CurrentScore, BreakLine, BestCombos);
-            }
+                Status = gameStatus
+            };
 
-            TetrisGM_Sound.Stop();
-            gameStatus.StopTimer();
-            GameOverResult.Text = String.Format("Score : {0}", gameStatus.scores.score);
-            GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.scores.time / 60, gameStatus.scores.time % 60);
-            MenuGameOver.Visibility = Visibility.Visible;
+            string fileName = String.Format("./SaveGames/{0}.json",gameStatus.GameMode + "_" + DateTime.Now.ToString("dd-MM-yy_H-mm-ss"));
+            using FileStream createStream = File.Create(fileName);
+
+            JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
+
+            await JsonSerializer.SerializeAsync(createStream, save, options);
+            await createStream.DisposeAsync();
+
+            
+            ReturnMainMenu(sender,e);
         }
-
-        /////////////////////////
-        /// REVERSE-TETRIS GM ///
-        /////////////////////////
-
-        public async Task GameRun2()
+        private void GameLoading(object sender, RoutedEventArgs e)
         {
-            gameStatus = new GameStatus();
-            gameStatus.GameMode = "Reverse-Tetris";
-            gameStatus.scores.time = 60;
-
-
-            Draw(gameStatus);
-            gameStatus.SetReverseTimer();
-            gameStatus.SetTotalTimer();
-            TetrisGM_Sound.PlayLooping();
-
-            while (!gameStatus.gameOver)
+            string[] allfiles = Directory.GetFiles("./SaveGames", "*.*", SearchOption.AllDirectories);
+            foreach (string file in allfiles)
             {
-                if (gameStatus.scores.time <= 0)
+                string fileName = file.Split(".json")[0].Substring(12);
+                string gmName = fileName.Split("_")[0];
+                string[] date = fileName.Split("_")[1].Split("-");
+                string[] heur = fileName.Split("_")[2].Split("-");
+                fileName = String.Format("{0} : {1},{2},{3} {4}h{5}m{6}s", gmName, date[0], date[1], date[2], heur[0], heur[1], heur[2]);
+
+                ComboBoxItem item = new ComboBoxItem
                 {
-                    gameStatus.scores.time = 0;
-                    gameStatus.gameOver = true;
-                    break;
-                }
-                await Task.Delay(gameStatus.GameSpeed);
-                gameStatus.MoveDownTetramino();
-                Draw(gameStatus);
-                if (gameStatus.Pause) await gameStatus.GamePause(PausePage,MainTime,TotalTime,CurrentScore, BreakLine, BestCombos);
+                    Tag = file.ToString(),
+                    Content = fileName
+                };
+
+                SaveGamesList.Items.Add(item);
             }
-
-            TetrisGM_Sound.Stop();
-            gameStatus.StopTimer();
-            gameStatus.StopTotalTimer();
-            GameOverResult.Text = String.Format("Score : {0}", gameStatus.scores.score);
-            GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.scores.time / 60, gameStatus.scores.time % 60);
-            MenuGameOver.Visibility = Visibility.Visible;
+            
+            GameLoad.Visibility = Visibility.Collapsed;
+            SaveGamesList.Visibility = Visibility.Visible;
         }
-
-
-
-        ////////////
-        /// DEMO ///
-        ////////////
-
-        public async void DemoStart(Image[,] imgctrl)
+        private async void SaveGamesList_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            GameStatus g = new GameStatus();
-            g.GameMode = "Tetris";
-
-            DemoDrawGrid(g.gameGrid,imgctrl);
-            DemoDrawBox(g.CurrentTetramino, imgctrl);
-
-            Tetramino nextTetramino = g.waitingLine.NextTetramino;
-            NextImage.Source = tetraminoImages[nextTetramino.tetraminoId];
-
-            while (!g.gameOver)
+            string itemIndex = sender.ToString().Trim().Split(":")[1];
+            if (itemIndex != "1" && SaveGamesList.SelectedValue.ToString().Split(": ")[1] != "Select SaveGame")
             {
-                await Task.Delay(120);
-                g.RandomMove();
-                g.MoveDownTetramino();
-                DemoDrawGrid(g.gameGrid,imgctrl);
-                DemoDrawBox(g.CurrentTetramino, imgctrl);
-            }
-            DemoStart(imgctrl);
-        }
-        public void DemoDrawGrid(GameGird g, Image[,] imgctrl)
-        {
-            for (int r = 0; r < g.rows; r++)
-            {
-                for (int c = 0; c < g.colums; c++)
+                string filePath = ((ComboBoxItem)SaveGamesList.SelectedItem).Tag.ToString();
+                using FileStream openStream = File.OpenRead(filePath);
+                Save save = await JsonSerializer.DeserializeAsync<Save>(openStream);
+
+                GameLoad.Visibility = Visibility.Visible;
+                SaveGamesList.Visibility = Visibility.Collapsed;
+
+                SoundMenu.Stop();
+
+                PausePage.Visibility = Visibility.Visible;
+                MainMenu.Visibility = Visibility.Hidden;
+
+                SaveGamesList.Items.RemoveAt(1);
+                SaveGamesList.SelectedIndex= 0;
+
+                GameStatus gm = save.Status;
+                switch (gm.GameMode)
                 {
-                    int boxId = g[r, c];
-                    imgctrl[r,c].Opacity = 1;
-                    imgctrl[r,c].Source = boxImages[boxId];
+                    case "Tetris":
+                        {
+                            gameMode.GameMode game = new gameMode.Tetris(this);
+                            game.init(gm);
+                            await game.Run();
+                            break;
+                        }
+                    case "Reverse-Tetris":
+                        {
+                            gameMode.GameMode game = new gameMode.RevrseTetris(this);
+                            game.init(gm);
+                            await game.Run();
+                            break;
+                        }
                 }
+
             }
         }
-        public void DemoDrawBox(Tetramino t, Image[,] imgctrl)
-        {
-            foreach (Position p in t.positionsOfRotation())
-            {
-                imgctrl[p.row, p.column].Source = boxImages[t.tetraminoId];
-            }
         }
-    }
 }

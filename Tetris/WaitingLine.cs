@@ -27,12 +27,25 @@ namespace Tetris
             Tetramino newTetramino = tetraminosTab[random.Next(tetraminosTab.Length)];
             Tetramino newInstance = newTetramino.DeepCopy();
             newInstance.reset();
-            //MessageBox.Show(String.Format("{0},{1}", newInstance.offSet.row, newInstance.offSet.column));
             return newInstance;
         }
-        public WaitingLine()
+        public Tetramino SetNextTetramino(int id)
         {
-            NextTetramino = RandomTetramino();
+            Tetramino newTetramino = tetraminosTab[id];
+            Tetramino newInstance = newTetramino.DeepCopy();
+            newInstance.reset();
+            return newInstance;
+        }
+        public WaitingLine(string NextTeraminoId = null)
+        {
+            if (NextTeraminoId == null)
+            {
+                NextTetramino = RandomTetramino();
+            } else
+            {
+                NextTetramino = SetNextTetramino(int.Parse(NextTeraminoId));
+            }
+            
         }
         public Tetramino UpdateTetramino()
         {
