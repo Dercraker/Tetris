@@ -63,16 +63,7 @@ namespace Tetris
         private DispatcherTimer Timer = null!;
         private DispatcherTimer ReverseTotalTimer = null!;
 
-<<<<<<< Dev
-        public int pressHoldTetramino = 0;
-
-        public GameStatus()
-=======
-
         public GameStatus(int Row,int Col)
-        public int pressHoldTetramino = 0;
-        public GameStatus()
-
         {
             GameSpeed = 400;
             SpeedLevel = 1;
@@ -216,7 +207,7 @@ namespace Tetris
                 else
                 {
                     currentTetramino = waitingLine.UpdateTetramino();
-<<<<<<< Dev
+                pressHoldTetramino = 0;
                 }
 =======
                 //MessageBox.Show(String.Format("1 OffSet row :{0} , OffSet column :{1}", currentTetramino.offSet.row,currentTetramino.offSet.column));
@@ -318,10 +309,6 @@ namespace Tetris
             Timer.Start();
             if (GameMode == "Reverse-Tetris") ReverseTotalTimer.Start();
         }
-<<<<<<< Dev
-
-=======
->>>>>>> merge
         public void HoldTetramino()
         {
             if (pressHoldTetramino == 0)
