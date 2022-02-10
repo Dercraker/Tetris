@@ -157,12 +157,22 @@
             
             <Button x:Name="ResumeGame"
                 Grid.Row="4"
-                Grid.ColumnSpan="2"
+                Grid.Column="0"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
-                Width="80"
+                Padding="5,0"
                 Content="Play"
                 Click="ResumeGame_Click"
+                />
+            
+            <Button x:Name="SaveGame"
+                Grid.Row="4"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Padding="5,0"
+                Content="SaveGame"
+                Click="SaveGame_Click"
                 />
 
 
@@ -259,17 +269,34 @@
 
                 <Button Content="New Game()"
                     Foreground="Black"
-                    Background="Green"
+                    Background="ForestGreen"
                     Margin="0,20,0,0"
                     Click="LaunchGame"/>
 
-                <Button Content="tetris.getOptions()"
+                <Button x:Name="GameLoad"
+                    Content="Game.Load()"
+                    Foreground="Black"
+                    Background="Gray"
+                    Margin="0,20,0,0"
+                    Click="GameLoading"/>
+
+                <ComboBox x:Name="SaveGamesList"
+                    Margin="0,20,0,0"
+                    Visibility="Collapsed"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    SelectionChanged="SaveGamesList_SelectionChanged">
+                    <ComboBoxItem IsSelected="True" Content="Select SaveGame"/>
+                </ComboBox>
+
+                <Button Content="Tetris.GetOptions()"
                     Foreground="Black"
                     Background="Blue"
                     Margin="0,20,0,0"
+                    Padding="5,0"
                     Click="Options"/>
 
-                <Button Content="Kill Program"
+                <Button Content="Tetris.Stop()"
                     Foreground="Black"
                     Background="Red"
                     Margin="0,20,0,0"

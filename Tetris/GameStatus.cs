@@ -36,13 +36,13 @@ namespace Tetris
         private DispatcherTimer Timer;
         private DispatcherTimer ReverseTotalTimer;
 
-        public GameStatus(int Row,int Col)
+        public GameStatus()
         {
             GameSpeed = 400;
             SpeedLevel = 1;
             AddScore = 0;
             Pause = false;
-            gameGrid = new GameGird(Row, Col);
+            gameGrid = new GameGird(22, 10);
             waitingLine = new WaitingLine();
             currentTetramino = waitingLine.UpdateTetramino();
             scores = new Scores();
