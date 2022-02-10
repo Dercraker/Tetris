@@ -131,7 +131,7 @@ namespace Tetris {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Recherche une ressource localisée de type System.Byte[].
         /// </summary>
         public static byte[] GameOverBG {
             get {
