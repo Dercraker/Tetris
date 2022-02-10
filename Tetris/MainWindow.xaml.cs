@@ -54,9 +54,9 @@ namespace Tetris
         public Image[,] imgControls;
         public Image[,] demoImgControls;
         public Image[,] demoImgControls2;
+        public gameMode.GameMode game { get; set; }
         public GameStatus gameStatus = new GameStatus();
         public SoundPlayer SoundMenu = new SoundPlayer(Resource1.MainMenuSound);
-        public SoundPlayer TetrisGM_Sound = new SoundPlayer(Resource1.Tetris_99_Main_Theme);
 
         public MainWindow()
         {
@@ -193,17 +193,20 @@ namespace Tetris
             {
                 case "Tetris":
                     {
-                        gameStatus = new GameStatus();
-                        await GameRun();
+                        game = new gameMode.Tetris(this);
+                        game.init();
+                        gameStatus = game.gameStatus;
+                        await game.Run();
                         break;
                     }
                 case "Reverse-Tetris":
                     {
-                        gameStatus = new GameStatus();
-                        await GameRun2();
+                        game = new gameMode.RevrseTetris(this);
+                        game.init();
+                        gameStatus = game.gameStatus;
+                        await game.Run();
                         break;
                     }
-
             }
         }
         private void ReturnMainMenu(object sender, RoutedEventArgs e)
@@ -234,12 +237,18 @@ namespace Tetris
             {
                 case "Tetris":
                     {
-                        await GameRun();
+                        gameMode.GameMode game = new gameMode.Tetris(this);
+                        game.init();
+                        gameStatus = game.gameStatus;
+                        await game.Run();
                         break;
                     }
                 case "Reverse-Tetris":
                     {
-                        await GameRun2();
+                        gameMode.GameMode game = new gameMode.RevrseTetris(this);
+                        game.init();
+                        gameStatus = game.gameStatus;
+                        await game.Run();
                         break;
                     }
             }
@@ -269,8 +278,7 @@ namespace Tetris
             await JsonSerializer.SerializeAsync(createStream, save, options);
             await createStream.DisposeAsync();
 
-
-            TetrisGM_Sound.Stop();
+            
             ReturnMainMenu(sender,e);
         }
         private void GameLoading(object sender, RoutedEventArgs e)
@@ -317,86 +325,26 @@ namespace Tetris
                 SaveGamesList.SelectedIndex= 0;
 
                 GameStatus gm = save.Status;
-                if (gm.GameMode == "Tetris")
+                switch (gm.GameMode)
                 {
-                    GameRun(gm);
-                }
-                else
-                {
-                    GameRun2(gm);
+                    case "Tetris":
+                        {
+                            gameMode.GameMode game = new gameMode.Tetris(this);
+                            game.init(gm);
+                            await game.Run();
+                            break;
+                        }
+                    case "Reverse-Tetris":
+                        {
+                            gameMode.GameMode game = new gameMode.RevrseTetris(this);
+                            game.init(gm);
+                            await game.Run();
+                            break;
+                        }
                 }
 
             }
         }
-
-        /////////////////
-        /// TETRIS GM ///
-        /////////////////
-
-        public async Task GameRun(GameStatus gm = null)
-        {
-            gameStatus = gm == null ? new GameStatus() : gm;
-            gameStatus.GameMode = "Tetris";
-
-
-            Draw(gameStatus);
-            gameStatus.SetTimer();
-            TetrisGM_Sound.PlayLooping();
-
-            while (!gameStatus.gameOver)
-            {
-                await Task.Delay(gameStatus.GameSpeed);
-                gameStatus.MoveDownTetramino();
-                Draw(gameStatus);
-                if (gameStatus.Pause) await gameStatus.GamePause(PausePage,MainTime,TotalTime,CurrentScore, BreakLine, BestCombos);
-            }
-
-            TetrisGM_Sound.Stop();
-            gameStatus.StopTimer();
-            GameOverResult.Text = String.Format("Score : {0}", gameStatus.scores.score);
-            GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.scores.time / 60, gameStatus.scores.time % 60);
-            MenuGameOver.Visibility = Visibility.Visible;
-        }
-
-        /////////////////////////
-        /// REVERSE-TETRIS GM ///
-        /////////////////////////
-
-        public async Task GameRun2(GameStatus gm = null)
-        {
-            gameStatus = gm == null ? new GameStatus() : gm;
-            gameStatus.GameMode = "Reverse-Tetris";
-            gameStatus.scores.time = 60;
-
-
-            Draw(gameStatus);
-            gameStatus.SetReverseTimer();
-            gameStatus.SetTotalTimer();
-            TetrisGM_Sound.PlayLooping();
-
-            while (!gameStatus.gameOver)
-            {
-                if (gameStatus.scores.time <= 0)
-                {
-                    gameStatus.scores.time = 0;
-                    gameStatus.gameOver = true;
-                    break;
-                }
-                await Task.Delay(gameStatus.GameSpeed);
-                gameStatus.MoveDownTetramino();
-                Draw(gameStatus);
-                if (gameStatus.Pause) await gameStatus.GamePause(PausePage,MainTime,TotalTime,CurrentScore, BreakLine, BestCombos);
-            }
-
-            TetrisGM_Sound.Stop();
-            gameStatus.StopTimer();
-            gameStatus.StopTotalTimer();
-            GameOverResult.Text = String.Format("Score : {0}", gameStatus.scores.score);
-            GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.scores.time / 60, gameStatus.scores.time % 60);
-            MenuGameOver.Visibility = Visibility.Visible;
-        }
-
-
 
         ////////////
         /// DEMO ///
