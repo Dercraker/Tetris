@@ -45,7 +45,7 @@ namespace Tetris
             }
             DemoStart(imgctrl, mw);
         }
-        public void DemoDrawGrid(GameGird g, Image[,] imgctrl)
+        public void DemoDrawGrid(GameGrid g, Image[,] imgctrl)
         {
             for (int r = 0; r < g.rows; r++)
             {

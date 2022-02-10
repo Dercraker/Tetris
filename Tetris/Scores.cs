@@ -65,7 +65,7 @@ namespace Tetris
 
             return result * combos;
         }
-        public void GameScoreBonus(int addResult, GameGird g)
+        public void GameScoreBonus(int addResult, GameGrid g)
         {
             bonusClear += addResult;
             if(bonusClear >= 75)

@@ -7,19 +7,14 @@ using System.Windows;
 
 namespace Tetris
 {
-    public class GameGird{
-        private int[,] grid { get; }
-        public Dictionary<string,int> gridValue
-        {
-            get => LoadGird();
-            set => SetupGrid(gridValue);
-        }
+    public class GameGrid{
+        public int[][] grid { get; set; }
         public int colums { get; }
         public int rows { get; }
         public int this[int r, int c]
         {
-            get => grid[r, c];
-            set => grid[r, c] = value;
+            get => grid[r][c];
+            set => grid[r][c] = value;
         }
         public bool IsInsideGrid(int r, int c)
         {
@@ -27,13 +22,13 @@ namespace Tetris
         }
         public bool IsEmptyBox(int r, int c)
         {
-            return IsInsideGrid(r, c) && grid[r, c] == 0;
+            return IsInsideGrid(r, c) && grid[r][c] == 0;
         }
         public bool IsEmptyRow(int r)
         {
             for ( int i = 0; i< colums; i++)
             {
-                if (grid[r, i] != 0) return false;
+                if (grid[r][i] != 0) return false;
             }
             return true;
         }
@@ -41,7 +36,7 @@ namespace Tetris
         {
             for (int c = 0; c < colums; c++)
             {
-                if (grid[r,c] == 0) return false;
+                if (grid[r][c] == 0) return false;
             }
             return true;
         }
@@ -49,7 +44,7 @@ namespace Tetris
         {
             for (int i = 0; i < colums; i++)
             {
-                grid[r, i] = 0;
+                grid[r][i] = 0;
             }
         }
         public void SetupGrid(Dictionary<string,int> dicGrid)
@@ -58,7 +53,7 @@ namespace Tetris
             {
                 for (int c = 0; c < colums; c++)
                 {
-                    grid[r, c] = dicGrid[String.Format("{0},{1}",r, c)];
+                    grid[r][c] = dicGrid[String.Format("{0},{1}",r, c)];
                 }
             }
         }
@@ -66,8 +61,8 @@ namespace Tetris
         {
             for (int c = 0; c < colums; c++)
             {
-                grid[r + nbRow, c] = grid[r,c];
-                grid[r,c] = 0;
+                grid[r + nbRow][c] = grid[r][c];
+                grid[r][c] = 0;
             }
         }
         public int ClearGrid()
@@ -85,18 +80,6 @@ namespace Tetris
                 }
             }
             return nbRowClear;
-        }
-        public Dictionary<string, int> LoadGird()
-        {
-            Dictionary<string, int> gridValue = new Dictionary<string, int>();
-            for ( int r = 0; r < rows; r++)
-            {
-                for(int c = 0; c < colums; c++)
-                {
-                    gridValue.Add(String.Format("{0},{1}", r, c), grid[r,c]);
-                }
-            }
-            return gridValue;
         }
         public int ReverseClearGrid()
         {
@@ -117,11 +100,15 @@ namespace Tetris
             }
             return nbRowClear;
         }
-        public GameGird(int rows = 22, int colums = 10)
+        public GameGrid(int rows = 22, int colums = 10)
         {
             this.rows = rows;
             this.colums = colums;
-            this.grid = new int[rows, colums];
+            this.grid = new int[rows][];
+            for (int i = 0; i < rows; i++)
+            {
+                grid[i] = new int[colums];
+            }
         }
     }
 }

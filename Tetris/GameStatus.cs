@@ -49,7 +49,7 @@ namespace Tetris
         public BitmapImage ToImage { get; set; }
 
 
-        public GameGird gameGrid { get; }
+        public GameGrid gameGrid { get; }
         public WaitingLine waitingLine { get; }
         public bool gameOver { get; set; }
         public int GameSpeed { get; set; }
@@ -69,7 +69,7 @@ namespace Tetris
             SpeedLevel = 1;
             AddScore = 0;
             Pause = false;
-            gameGrid = new GameGird(22, 10);
+            gameGrid = new GameGrid(22, 10);
             waitingLine = new WaitingLine();
             currentTetramino = waitingLine.UpdateTetramino();
             scores = new Scores();

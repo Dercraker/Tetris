@@ -110,7 +110,7 @@ namespace Tetris
             SoundMenu.PlayLooping();
         }
 
-        public Image[,] SetUpGameGridCanvas(GameGird g, Canvas canvas)
+        public Image[,] SetUpGameGridCanvas(GameGrid g, Canvas canvas)
         {
             Image[,] imgControls = new Image[g.rows, g.colums];
             int boxSize = 25;
@@ -148,7 +148,7 @@ namespace Tetris
                 HoldedImage.Source = tetraminoImages[holdedTetramino.tetraminoId];
             }
         }
-        public void DrawGrid(GameGird g)
+        public void DrawGrid(GameGrid g)
         {
             for (int r = 0; r < g.rows; r++)
             {
@@ -1646,24 +1646,16 @@ namespace Tetris
         {
             gameStatus.Pause = false;
         }
-        private async void SaveGame_Click(object sender, RoutedEventArgs e)
+        private void SaveGame_Click(object sender, RoutedEventArgs e)
         {
             if (!Directory.Exists("./SaveGames")) Directory.CreateDirectory("./SaveGames");
 
-            Save save = new Save()
-            {
-                Status = gameStatus
-            };
 
             string fileName = String.Format("./SaveGames/{0}.json",gameStatus.GameMode + "_" + DateTime.Now.ToString("dd-MM-yy_H-mm-ss"));
-            using FileStream createStream = File.Create(fileName);
 
-            JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
+            string jsonString = JsonSerializer.Serialize(gameStatus, new JsonSerializerOptions() { WriteIndented = true });
+            File.WriteAllText(fileName, jsonString);
 
-            await JsonSerializer.SerializeAsync(createStream, save, options);
-            await createStream.DisposeAsync();
-
-            
             ReturnMainMenu(sender,e);
         }
         private void GameLoading(object sender, RoutedEventArgs e)
@@ -1694,9 +1686,11 @@ namespace Tetris
             string itemIndex = sender.ToString().Trim().Split(":")[1];
             if (itemIndex != "1" && SaveGamesList.SelectedValue.ToString().Split(": ")[1] != "Select SaveGame")
             {
+                //GetGame
                 string filePath = ((ComboBoxItem)SaveGamesList.SelectedItem).Tag.ToString();
-                using FileStream openStream = File.OpenRead(filePath);
-                Save save = await JsonSerializer.DeserializeAsync<Save>(openStream);
+                string jsonString = File.ReadAllText(filePath);
+                GameStatus save = JsonSerializer.Deserialize<GameStatus>(jsonString)!;
+
 
                 GameLoad.Visibility = Visibility.Visible;
                 SaveGamesList.Visibility = Visibility.Collapsed;
@@ -1709,25 +1703,24 @@ namespace Tetris
                 SaveGamesList.Items.RemoveAt(1);
                 SaveGamesList.SelectedIndex= 0;
 
-                GameStatus gm = save.Status;
+                //Launch Game 
+                GameStatus gm = save;
                 switch (gm.GameMode)
                 {
                     case "Tetris":
                         {
-                            gameMode.GameMode game = new gameMode.Tetris(this);
-                            game.init(gm);
-                            await game.Run();
+                            game = new gameMode.Tetris(this);
                             break;
                         }
                     case "Reverse-Tetris":
                         {
-                            gameMode.GameMode game = new gameMode.RevrseTetris(this);
-                            game.init(gm);
-                            await game.Run();
+                            game = new gameMode.RevrseTetris(this);
                             break;
                         }
                 }
-
+                game.init(gm);
+                gameStatus = game.gameStatus;
+                await game.Run();
             }
         }
 
