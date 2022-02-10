@@ -24,8 +24,28 @@ namespace Tetris
             }
         }
         public int AddScore { get; private set; }
-        private Tetramino holdingTetramino;
-        private Tetramino tempoTetramino;
+        private Tetramino holdingTetramino = null!;
+
+        public Tetramino HoldingTetramino
+        {
+            get => holdingTetramino;
+            private set
+            {
+                holdingTetramino = value;
+                holdingTetramino.reset();
+            }
+        }
+        private Tetramino tempoTetramino = null!;
+
+        public Tetramino TempoTetramino
+        {
+            get => tempoTetramino;
+            private set
+            {
+                tempoTetramino = value;
+                tempoTetramino.reset();
+            }
+        }
         public BitmapImage ToImage { get; set; }
 
 
@@ -38,23 +58,22 @@ namespace Tetris
         public int SpeedLevel { get; set; }
         public Scores scores { get; set; }
 
-        private DispatcherTimer Timer;
-        private DispatcherTimer ReverseTotalTimer;
+        private DispatcherTimer Timer = null!;
+        private DispatcherTimer ReverseTotalTimer = null!;
 
 
-        public GameStatus(int Row,int Col)
         public int pressHoldTetramino = 0;
         public GameStatus()
-
         {
             GameSpeed = 400;
             SpeedLevel = 1;
             AddScore = 0;
             Pause = false;
-            gameGrid = new GameGird(Row, Col);
+            gameGrid = new GameGird(22, 10);
             waitingLine = new WaitingLine();
             currentTetramino = waitingLine.UpdateTetramino();
             scores = new Scores();
+            holdingTetramino = null!;
         }
 
         public void SetTimer()
@@ -188,7 +207,7 @@ namespace Tetris
                 {
                     currentTetramino = waitingLine.UpdateTetramino();
                 pressHoldTetramino = 0;
-                })
+                }
             }
             NewGameSpeed(scores.score);
             

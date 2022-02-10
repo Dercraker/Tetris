@@ -34,7 +34,7 @@ namespace Tetris
         }
         public async void Start()
         {
-            GameStatus g = new GameStatus(22, 10);
+            GameStatus g = new GameStatus();
             g.GameMode = "Tetris";
             g.scores.time = 0;
 
