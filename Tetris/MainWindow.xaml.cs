@@ -58,7 +58,6 @@ namespace Tetris
         public MainWindow()
         {
             InitializeComponent();
-
             imgControls = SetUpGameGridCanvas(gameStatus.gameGrid, GameGridCanvas);
             demoImgControls = SetUpGameGridCanvas(gameStatus.gameGrid, DemoGame);
             demoImgControls2 = SetUpGameGridCanvas(gameStatus.gameGrid, DemoGame2);
@@ -147,38 +146,92 @@ namespace Tetris
         {
             DemoStart(demoImgControls2);
         }
+
+        public Key hD;
+        public Key sD;
+        public Key rights;
+        public Key lefts;
+        public Key rR;
+        public Key rL;
+        public Key pose;
+        public Key holds;
+        public string hardDrop;
+        public int reverseTime;
+        public int demoSpeed;
+        public int minSpeed;
+        public int maxSpeed;
+        public int clearBonus;
+        public string softDrop;
+        public string right;
+        public string left;
+        public string rotateRight;
+        public string rotateLeft;
+        public string pause;
+        public string hold;
+
+        private void OutOption(object sender, RoutedEventArgs e)
+        {
+            OptionPage.Visibility = Visibility.Hidden;
+            int.TryParse(ReverseTime.Text, out reverseTime);
+            int.TryParse(DemoSpeeds.Text, out demoSpeed);
+            int.TryParse(MinSpeed.Text, out minSpeed);
+            int.TryParse(MaxSpeed.Text, out maxSpeed);
+            int.TryParse(ClearBonus.Text, out clearBonus);
+            hardDrop = HardDrops.Text;
+            softDrop = SoftDrops.Text;
+            right = Right.Text;
+            left = Left.Text;
+            rotateRight = RotateRight.Text;
+            rotateLeft = RotateLeft.Text;
+            pause = Pause.Text;
+            hold = Hold.Text;
+            if (softDrop != "") softDrop = softDrop.ToUpper();
+            else softDrop = "Down";
+            if (hardDrop != "") hardDrop = hardDrop.ToUpper();
+            else hardDrop = "Space";
+            if (right != "") right = right.ToUpper();
+            else right = "Right";
+            if (left != "") left = left.ToUpper();
+            else left = "Left";
+            if (rotateRight != "") rotateRight = rotateRight.ToUpper();
+            else rotateRight = "D";
+            if (rotateLeft != "") rotateLeft = rotateLeft.ToUpper();
+            else rotateLeft = "Q";
+            if (pause != "") pause = pause.ToUpper();
+            else pause = "Z";
+            if (hold != "") hold = hold.ToUpper();
+            else hold = "Shift";
+            StringToKey();
+        }
+
+
+
+        private void StringToKey()
+        {
+            KeyConverter x = new KeyConverter();
+            sD = (Key)x.ConvertFromString(softDrop);
+            hD = (Key)x.ConvertFromString(hardDrop);
+            rights = (Key)x.ConvertFromString(right);
+            lefts = (Key)x.ConvertFromString(left);
+            rR = (Key)x.ConvertFromString(rotateRight);
+            rL = (Key)x.ConvertFromString(rotateLeft);
+            pose = (Key)x.ConvertFromString(pause);
+            holds = (Key)x.ConvertFromString(hold);
+        }
+
         private async void KeyInput(object sender, KeyEventArgs e)
         {
             if (gameStatus.gameOver)
             {
                 return;
             }
-            switch (e.Key)
-            {
-                case Key.Right:
-                    gameStatus.MoveRightTetramino();
-                    break;
-                case Key.Left:
-                    gameStatus.MoveLeftTetramino();
-                    break;
-                case Key.Down:
-                    gameStatus.MoveDownTetramino();
-                    break;
-                case Key.Q:
-                    gameStatus.RotatePrevTetramino();
-                    break;
-                case Key.D:
-                    gameStatus.RotateNextTetramino();
-                    break;
-                case Key.Space:
-                    gameStatus.HardDrop();
-                    break;
-                case Key.Z:
-                    gameStatus.Pause = gameStatus.Pause ? false: true;
-                    break;
-                default:
-                    return;
-            }
+            if (e.Key == rights) gameStatus.MoveRightTetramino();
+            else if (e.Key == lefts) gameStatus.MoveLeftTetramino();
+            else if (e.Key == sD) gameStatus.MoveDownTetramino();
+            else if (e.Key == rR) gameStatus.RotatePrevTetramino();
+            else if (e.Key == rL) gameStatus.RotateNextTetramino();
+            else if (e.Key == hD) gameStatus.HardDrop();
+            else if (e.Key == pose) gameStatus.Pause = gameStatus.Pause ? false : true;
             Draw(gameStatus);
         }
         private async void RestartGame(object sender, RoutedEventArgs e)
@@ -213,10 +266,7 @@ namespace Tetris
 
             MenuGameOver.Visibility = Visibility.Hidden;
         }
-        private void OutOption(object sender, RoutedEventArgs e)
-        {
-            OptionPage.Visibility = Visibility.Hidden;
-        }
+
         private void KillProgram(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
