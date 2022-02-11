@@ -1655,7 +1655,9 @@ namespace Tetris
 
             string fileName = String.Format("./SaveGames/{0}.json",gameStatus.GameMode + "_" + DateTime.Now.ToString("dd-MM-yy_H-mm-ss"));
 
-            string jsonString = JsonSerializer.Serialize(gameStatus, new JsonSerializerOptions() { WriteIndented = true });
+            Save save = gameStatus.CreateSave();
+
+            string jsonString = JsonSerializer.Serialize(save, new JsonSerializerOptions() { WriteIndented = true });
             File.WriteAllText(fileName, jsonString);
 
             ReturnMainMenu(sender,e);
@@ -1691,7 +1693,7 @@ namespace Tetris
                 //GetGame
                 string filePath = ((ComboBoxItem)SaveGamesList.SelectedItem).Tag.ToString();
                 string jsonString = File.ReadAllText(filePath);
-                GameStatus save = JsonSerializer.Deserialize<GameStatus>(jsonString)!;
+                Save save = JsonSerializer.Deserialize<Save>(jsonString)!;
 
 
                 GameLoad.Visibility = Visibility.Visible;
@@ -1706,22 +1708,14 @@ namespace Tetris
                 SaveGamesList.SelectedIndex= 0;
 
                 //Launch Game 
-                GameStatus gm = save;
-                switch (gm.GameMode)
+                gameStatus = save.LoadSave();
+                game = gameStatus.GameMode switch
                 {
-                    case "Tetris":
-                        {
-                            game = new gameMode.Tetris(this);
-                            break;
-                        }
-                    case "Reverse-Tetris":
-                        {
-                            game = new gameMode.RevrseTetris(this);
-                            break;
-                        }
-                }
-                game.init(gm);
-                gameStatus = game.gameStatus;
+                    "Tetris" => new gameMode.Tetris(this),
+                    "Reverse-Tetris" => new gameMode.RevrseTetris(this),
+                    _ => throw (new ArgumentException())
+                };
+                game.init(gameStatus);
                 await game.Run();
             }
         }
@@ -1732,3 +1726,4 @@ namespace Tetris
         }
     }
 }
+
