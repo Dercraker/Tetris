@@ -353,14 +353,14 @@
             </Grid.Background>
 
 
-            <Button Content="Option.Apply() &amp;&amp;&#xa;return MainMenu"
+            <Button Content="Option.Apply() &amp;&amp; &#xa;return MainMenu"
                 Grid.Column="1"
                 Grid.Row="7"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
                 Foreground="Black"
                 Background="Green"
-                Margin="0,10,0,10"
+                Margin="0,0,0,20"
                 Click="OutOption"/>
 
             
