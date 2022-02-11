@@ -290,11 +290,19 @@
         </Grid>
 
         <Grid x:Name="OptionPage"
-            Visibility="Hidden">
+            Visibility="Visible">
             <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -303,13 +311,96 @@
             </Grid.Background>
 
 
-            <Button Content="Option.Apply() &amp;&amp; return MainMenu"
+            <Button Content="Option.Apply() &amp;&amp;&#xa;return MainMenu"
+                Grid.Column="1"
+                Grid.Row="7"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Foreground="Black"
                 Background="Green"
-                Margin="0,20,0,0"
+                Margin="0,10,0,10"
                 Click="OutOption"/>
+
+            <StackPanel
+                Grid.Column="0"
+                Grid.Row="0"
+                Orientation="Horizontal">
+                <Label
+                    Content="Softdrop"
+                    Foreground="White"
+                    Margin="0,0,0,0"
+                />
+                <TextBox x:Name="SoftDrop"
+                    Width="76" Height="50"
+                    MaxLength="1"
+                    MaxLines="1"
+                />
+            </StackPanel>
+
+            <StackPanel
+                Grid.Column="0"
+                Grid.Row="0"
+                Orientation="Horizontal">
+                <Label
+                    Content="Softdrop"
+                    Foreground="White"
+                    Margin="0,0,0,0"
+                />
+                <TextBox x:Name="SoftDrop"
+                    Width="76" Height="50"
+                    MaxLength="1"
+                    MaxLines="1"
+                />
+            </StackPanel>
+
+            <StackPanel
+                Grid.Column="0"
+                Grid.Row="0"
+                Orientation="Horizontal">
+                <Label
+                    Content="Softdrop"
+                    Foreground="White"
+                    Margin="0,0,0,0"
+                />
+                <TextBox x:Name="SoftDrop"
+                    Width="76" Height="50"
+                    MaxLength="1"
+                    MaxLines="1"
+                />
+            </StackPanel>
+
+            <StackPanel
+                Grid.Column="0"
+                Grid.Row="0"
+                Orientation="Horizontal">
+                <Label
+                    Content="Softdrop"
+                    Foreground="White"
+                    Margin="0,0,0,0"
+                />
+                <TextBox x:Name="SoftDrop"
+                    Width="76" Height="50"
+                    MaxLength="1"
+                    MaxLines="1"
+                />
+            </StackPanel>
+
+            <StackPanel
+                Grid.Column="0"
+                Grid.Row="0"
+                Orientation="Horizontal">
+                <Label
+                    Content="Softdrop"
+                    Foreground="White"
+                    Margin="0,0,0,0"
+                />
+                <TextBox x:Name="SoftDrop"
+                    Width="76" Height="50"
+                    MaxLength="1"
+                    MaxLines="1"
+                />
+            </StackPanel>
+
 
         </Grid>
     </Grid>
