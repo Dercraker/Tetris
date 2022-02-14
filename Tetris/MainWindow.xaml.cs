@@ -168,6 +168,1183 @@ namespace Tetris
         public string rotateLeft;
         public string pause;
         public string hold;
+        public string inputSD;
+        public string inputHD;
+        public string inputR;
+        public string inputL;
+        public string inputRR;
+        public string inputRL;
+        public string inputP;
+        public string inputH;
+        public bool usedSD = false;
+        public bool usedHD = false;
+        public bool usedR = false;
+        public bool usedL = false;
+        public bool usedRR = false;
+        public bool usedRL = false;
+        public bool usedP = false;
+        public bool usedH = false;
+
+        private async void InputSoftD(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                usedSD = true;
+                inputSD = "Enter";
+                SoftDrops.Text = inputSD;
+            }else if(e.Key == Key.LeftShift)
+            {
+                usedSD = true;
+                inputSD = "LeftShift";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.RightShift)
+            {
+                usedSD = true;
+                inputSD = "RightShift";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.Space)
+            {
+                usedSD = true;
+                inputSD = "Space";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.LeftAlt)
+            {
+                usedSD = true;
+                inputSD = "LeftAlt";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.RightAlt)
+            {
+                usedSD = true;
+                inputSD = "RightAlt";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.LeftCtrl)
+            {
+                usedSD = true;
+                inputSD = "LeftCtrl";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.RightCtrl)
+            {
+                usedSD = true;
+                inputSD = "RightCtrl";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.OemMinus)
+            {
+                usedSD = true;
+                inputSD = "OemMinus";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.OemComma)
+            {
+                usedSD = true;
+                inputSD = "OemComma";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.OemQuestion)
+            {
+                usedSD = true;
+                inputSD = "OemQuestion";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.OemSemicolon)
+            {
+                usedSD = true;
+                inputSD = "OemSemicolon";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.OemPeriod)
+            {
+                usedSD = true;
+                inputSD = "OemPeriod";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.OemCloseBrackets)
+            {
+                usedSD = true;
+                inputSD = "OemCloseBrackets";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.OemTilde)
+            {
+                usedSD = true;
+                inputSD = "OemTilde";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.Oem8)
+            {
+                usedSD = true;
+                inputSD = "OemTilde";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.Down)
+            {
+                usedSD = true;
+                inputSD = "Down";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.Up)
+            {
+                usedSD = true;
+                inputSD = "Up";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.Left)
+            {
+                usedSD = true;
+                inputSD = "Down";
+                SoftDrops.Text = inputSD;
+            }
+            else if (e.Key == Key.Right)
+            {
+                usedSD = true;
+                inputSD = "Right";
+                SoftDrops.Text = inputSD;
+            }
+            for (int i = 0; i <= 9; i++)
+            {
+                KeyConverter x = new KeyConverter();
+                string number = i.ToString();
+                number = "NumPad" + number;
+                Key num = (Key)x.ConvertFromString(number);
+                if (e.Key == num)
+                    {
+                    usedSD = true;
+                    inputSD = number;
+                    SoftDrops.Text = inputSD;
+                }
+            }           
+        }
+        private async void InputHardD(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                usedHD = true;
+                inputHD = "Enter";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.LeftShift)
+            {
+                usedHD = true;
+                inputHD = "LeftShift";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.RightShift)
+            {
+                usedHD = true;
+                inputHD = "RightShift";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.Space)
+            {
+                usedHD = true;
+                inputHD = "Space";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.LeftAlt)
+            {
+                usedHD = true;
+                inputHD = "LeftAlt";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.RightAlt)
+            {
+                usedHD = true;
+                inputHD = "RightAlt";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.LeftCtrl)
+            {
+                usedHD = true;
+                inputHD = "LeftCtrl";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.RightCtrl)
+            {
+                usedHD = true;
+                inputHD = "RightCtrl";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.OemMinus)
+            {
+                usedHD = true;
+                inputHD = "OemMinus";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.OemComma)
+            {
+                usedHD = true;
+                inputHD = "OemComma";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.OemQuestion)
+            {
+                usedHD = true;
+                inputHD = "OemQuestion";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.OemSemicolon)
+            {
+                usedHD = true;
+                inputHD = "OemSemicolon";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.OemPeriod)
+            {
+                usedHD = true;
+                inputHD = "OemPeriod";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.OemCloseBrackets)
+            {
+                usedHD = true;
+                inputHD = "OemCloseBrackets";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.OemTilde)
+            {
+                usedHD = true;
+                inputHD = "OemTilde";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.Oem8)
+            {
+                usedHD = true;
+                inputHD = "OemTilde";
+                HardDrops.Text = "exclamation";
+            }
+            else if (e.Key == Key.Down)
+            {
+                usedHD = true;
+                inputHD = "Down";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.Up)
+            {
+                usedHD = true;
+                inputHD = "Up";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.Left)
+            {
+                usedHD = true;
+                inputHD = "Down";
+                HardDrops.Text = inputHD;
+            }
+            else if (e.Key == Key.Right)
+            {
+                usedHD = true;
+                inputHD = "Right";
+                HardDrops.Text = inputHD;
+            }
+            for (int i = 0; i <= 9; i++)
+            {
+                KeyConverter x = new KeyConverter();
+                string number = i.ToString();
+                number = "NumPad" + number;
+                Key num = (Key)x.ConvertFromString(number);
+                if (e.Key == num)
+                {
+                    usedHD = true;
+                    inputHD = number;
+                    HardDrops.Text = inputHD;
+                }
+            }
+        }
+        private async void InputRight(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                usedR = true;
+                inputR = "Enter";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.LeftShift)
+            {
+                usedR = true;
+                inputR = "LeftShift";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.RightShift)
+            {
+                usedR = true;
+                inputR = "RightShift";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.Space)
+            {
+                usedR = true;
+                inputR = "Space";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.LeftAlt)
+            {
+                usedR = true;
+                inputR = "LeftAlt";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.RightAlt)
+            {
+                usedR = true;
+                inputR = "RightAlt";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.LeftCtrl)
+            {
+                usedR = true;
+                inputR = "LeftCtrl";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.RightCtrl)
+            {
+                usedR = true;
+                inputR = "RightCtrl";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.OemMinus)
+            {
+                usedR = true;
+                inputR = "OemMinus";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.OemComma)
+            {
+                usedR = true;
+                inputR = "OemComma";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.OemQuestion)
+            {
+                usedR = true;
+                inputR = "OemQuestion";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.OemSemicolon)
+            {
+                usedR = true;
+                inputR = "OemSemicolon";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.OemPeriod)
+            {
+                usedR = true;
+                inputR = "OemPeriod";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.OemCloseBrackets)
+            {
+                usedR = true;
+                inputR = "OemCloseBrackets";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.OemTilde)
+            {
+                usedR = true;
+                inputR = "OemTilde";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.Oem8)
+            {
+                usedR = true;
+                inputR = "OemTilde";
+                Right.Text = "exclamation";
+            }
+            else if (e.Key == Key.Down)
+            {
+                usedR = true;
+                inputR = "Down";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.Up)
+            {
+                usedR = true;
+                inputR = "Up";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.Left)
+            {
+                usedR = true;
+                inputR = "Down";
+                Right.Text = inputR;
+            }
+            else if (e.Key == Key.Right)
+            {
+                usedR = true;
+                inputR = "Right";
+                Right.Text = inputR;
+            }
+            for (int i = 0; i <= 9; i++)
+            {
+                KeyConverter x = new KeyConverter();
+                string number = i.ToString();
+                number = "NumPad" + number;
+                Key num = (Key)x.ConvertFromString(number);
+                if (e.Key == num)
+                {
+                    usedR = true;
+                    inputR = number;
+                    Right.Text = inputR;
+                }
+            }
+        }
+        private async void InputLeft(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                usedL = true;
+                inputL = "Enter";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.LeftShift)
+            {
+                usedL = true;
+                inputL = "LeftShift";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.RightShift)
+            {
+                usedL = true;
+                inputL = "RightShift";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.Space)
+            {
+                usedL = true;
+                inputL = "Space";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.LeftAlt)
+            {
+                usedL = true;
+                inputL = "LeftAlt";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.RightAlt)
+            {
+                usedL = true;
+                inputL = "RightAlt";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.LeftCtrl)
+            {
+                usedL = true;
+                inputL = "LeftCtrl";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.RightCtrl)
+            {
+                usedL = true;
+                inputL = "RightCtrl";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.OemMinus)
+            {
+                usedL = true;
+                inputL = "OemMinus";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.OemComma)
+            {
+                usedL = true;
+                inputL = "OemComma";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.OemQuestion)
+            {
+                usedL = true;
+                inputL = "OemQuestion";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.OemSemicolon)
+            {
+                usedL = true;
+                inputL = "OemSemicolon";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.OemPeriod)
+            {
+                usedL = true;
+                inputL = "OemPeriod";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.OemCloseBrackets)
+            {
+                usedL = true;
+                inputL = "OemCloseBrackets";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.OemTilde)
+            {
+                usedL = true;
+                inputL = "OemTilde";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.Oem8)
+            {
+                usedL = true;
+                inputL = "OemTilde";
+                Left.Text = "exclamation";
+            }
+            else if (e.Key == Key.Down)
+            {
+                usedL = true;
+                inputL = "Down";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.Up)
+            {
+                usedL = true;
+                inputL = "Up";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.Left)
+            {
+                usedL = true;
+                inputL = "Down";
+                Left.Text = inputL;
+            }
+            else if (e.Key == Key.Right)
+            {
+                usedL = true;
+                inputL = "Right";
+                Left.Text = inputL;
+            }
+            for (int i = 0; i <= 9; i++)
+            {
+                KeyConverter x = new KeyConverter();
+                string number = i.ToString();
+                number = "NumPad" + number;
+                Key num = (Key)x.ConvertFromString(number);
+                if (e.Key == num)
+                {
+                    usedL = true;
+                    inputL = number;
+                    Left.Text = inputL;
+                }
+            }
+        }
+        private async void InputRotRight(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                usedRR = true;
+                inputRR = "Enter";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.LeftShift)
+            {
+                usedRR = true;
+                inputRR = "LeftShift";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.RightShift)
+            {
+                usedRR = true;
+                inputRR = "RightShift";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.Space)
+            {
+                usedRR = true;
+                inputRR = "Space";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.LeftAlt)
+            {
+                usedRR = true;
+                inputRR = "LeftAlt";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.RightAlt)
+            {
+                usedRR = true;
+                inputRR = "RightAlt";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.LeftCtrl)
+            {
+                usedRR = true;
+                inputRR = "LeftCtrl";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.RightCtrl)
+            {
+                usedRR = true;
+                inputRR = "RightCtrl";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.OemMinus)
+            {
+                usedRR = true;
+                inputRR = "OemMinus";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.OemComma)
+            {
+                usedRR = true;
+                inputRR = "OemComma";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.OemQuestion)
+            {
+                usedRR = true;
+                inputRR = "OemQuestion";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.OemSemicolon)
+            {
+                usedRR = true;
+                inputRR = "OemSemicolon";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.OemPeriod)
+            {
+                usedRR = true;
+                inputRR = "OemPeriod";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.OemCloseBrackets)
+            {
+                usedRR = true;
+                inputRR = "OemCloseBrackets";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.OemTilde)
+            {
+                usedRR = true;
+                inputRR = "OemTilde";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.Oem8)
+            {
+                usedRR = true;
+                inputRR = "OemTilde";
+                RotateRight.Text = "exclamation";
+            }
+            else if (e.Key == Key.Down)
+            {
+                usedRR = true;
+                inputRR = "Down";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.Up)
+            {
+                usedRR = true;
+                inputRR = "Up";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.Left)
+            {
+                usedRR = true;
+                inputRR = "Down";
+                RotateRight.Text = inputRR;
+            }
+            else if (e.Key == Key.Right)
+            {
+                usedRR = true;
+                inputRR = "Right";
+                RotateRight.Text = inputRR;
+            }
+            for (int i = 0; i <= 9; i++)
+            {
+                KeyConverter x = new KeyConverter();
+                string number = i.ToString();
+                number = "NumPad" + number;
+                Key num = (Key)x.ConvertFromString(number);
+                if (e.Key == num)
+                {
+                    usedRR = true;
+                    inputRR = number;
+                    RotateRight.Text = inputRR;
+                }
+            }
+        }
+        private async void InputRotLeft(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                usedRL = true;
+                inputRL = "Enter";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.LeftShift)
+            {
+                usedRL = true;
+                inputRL = "LeftShift";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.RightShift)
+            {
+                usedRL = true;
+                inputRL = "RightShift";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.Space)
+            {
+                usedRL = true;
+                inputRL = "Space";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.LeftAlt)
+            {
+                usedRL = true;
+                inputRL = "LeftAlt";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.RightAlt)
+            {
+                usedRL = true;
+                inputRL = "RightAlt";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.LeftCtrl)
+            {
+                usedRL = true;
+                inputRL = "LeftCtrl";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.RightCtrl)
+            {
+                usedRL = true;
+                inputRL = "RightCtrl";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.OemMinus)
+            {
+                usedRL = true;
+                inputRL = "OemMinus";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.OemComma)
+            {
+                usedRL = true;
+                inputRL = "OemComma";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.OemQuestion)
+            {
+                usedRL = true;
+                inputRL = "OemQuestion";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.OemSemicolon)
+            {
+                usedRL = true;
+                inputRL = "OemSemicolon";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.OemPeriod)
+            {
+                usedRL = true;
+                inputRL = "OemPeriod";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.OemCloseBrackets)
+            {
+                usedRL = true;
+                inputRL = "OemCloseBrackets";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.OemTilde)
+            {
+                usedRL = true;
+                inputRL = "OemTilde";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.Oem8)
+            {
+                usedRL = true;
+                inputRL = "OemTilde";
+                RotateLeft.Text = "exclamation";
+            }
+            else if (e.Key == Key.Down)
+            {
+                usedRL = true;
+                inputRL = "Down";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.Up)
+            {
+                usedRL = true;
+                inputRL = "Up";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.Left)
+            {
+                usedRL = true;
+                inputRL = "Down";
+                RotateLeft.Text = inputRL;
+            }
+            else if (e.Key == Key.Right)
+            {
+                usedRL = true;
+                inputRL = "Right";
+                RotateLeft.Text = inputRL;
+            }
+            for (int i = 0; i <= 9; i++)
+            {
+                KeyConverter x = new KeyConverter();
+                string number = i.ToString();
+                number = "NumPad" + number;
+                Key num = (Key)x.ConvertFromString(number);
+                if (e.Key == num)
+                {
+                    usedRL = true;
+                    inputRL = number;
+                    RotateLeft.Text = inputRL;
+                }
+            }
+        }
+        private async void Pauses(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                usedP = true;
+                inputP = "Enter";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.LeftShift)
+            {
+                usedP = true;
+                inputP = "LeftShift";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.RightShift)
+            {
+                usedP = true;
+                inputP = "RightShift";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.Space)
+            {
+                usedP = true;
+                inputP = "Space";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.LeftAlt)
+            {
+                usedP = true;
+                inputP = "LeftAlt";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.RightAlt)
+            {
+                usedP = true;
+                inputP = "RightAlt";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.LeftCtrl)
+            {
+                usedP = true;
+                inputP = "LeftCtrl";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.RightCtrl)
+            {
+                usedP = true;
+                inputP = "RightCtrl";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.OemMinus)
+            {
+                usedP = true;
+                inputP = "OemMinus";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.OemComma)
+            {
+                usedP = true;
+                inputP = "OemComma";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.OemQuestion)
+            {
+                usedP = true;
+                inputP = "OemQuestion";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.OemSemicolon)
+            {
+                usedP = true;
+                inputP = "OemSemicolon";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.OemPeriod)
+            {
+                usedP = true;
+                inputP = "OemPeriod";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.OemCloseBrackets)
+            {
+                usedP = true;
+                inputP = "OemCloseBrackets";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.OemTilde)
+            {
+                usedP = true;
+                inputP = "OemTilde";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.Oem8)
+            {
+                usedP = true;
+                inputP = "OemTilde";
+                Pause.Text = "exclamation";
+            }
+            else if (e.Key == Key.Down)
+            {
+                usedP = true;
+                inputP = "Down";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.Up)
+            {
+                usedP = true;
+                inputP = "Up";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.Left)
+            {
+                usedP = true;
+                inputP = "Down";
+                Pause.Text = inputP;
+            }
+            else if (e.Key == Key.Right)
+            {
+                usedP = true;
+                inputP = "Right";
+                Pause.Text = inputP;
+            }
+            for (int i = 0; i <= 9; i++)
+            {
+                KeyConverter x = new KeyConverter();
+                string number = i.ToString();
+                number = "NumPad" + number;
+                Key num = (Key)x.ConvertFromString(number);
+                if (e.Key == num)
+                {
+                    usedP = true;
+                    inputP = number;
+                    Pause.Text = inputP;
+                }
+            }
+        }
+        private async void Holds(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                usedH = true;
+                inputH = "Enter";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.LeftShift)
+            {
+                usedH = true;
+                inputH = "LeftShift";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.RightShift)
+            {
+                usedH = true;
+                inputH = "RightShift";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.Space)
+            {
+                usedH = true;
+                inputH = "Space";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.LeftAlt)
+            {
+                usedH = true;
+                inputH = "LeftAlt";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.RightAlt)
+            {
+                usedH = true;
+                inputH = "RightAlt";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.LeftCtrl)
+            {
+                usedH = true;
+                inputH = "LeftCtrl";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.RightCtrl)
+            {
+                usedH = true;
+                inputH = "RightCtrl";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.OemMinus)
+            {
+                usedH = true;
+                inputH = "OemMinus";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.OemComma)
+            {
+                usedH = true;
+                inputH = "OemComma";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.OemQuestion)
+            {
+                usedH = true;
+                inputH = "OemQuestion";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.OemSemicolon)
+            {
+                usedH = true;
+                inputH = "OemSemicolon";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.OemPeriod)
+            {
+                usedH = true;
+                inputH = "OemPeriod";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.OemCloseBrackets)
+            {
+                usedH = true;
+                inputH = "OemCloseBrackets";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.OemTilde)
+            {
+                usedH = true;
+                inputH = "OemTilde";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.Oem8)
+            {
+                usedH = true;
+                inputH = "OemTilde";
+                Hold.Text = "exclamation";
+            }
+            else if (e.Key == Key.Down)
+            {
+                usedH = true;
+                inputH = "Down";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.Up)
+            {
+                usedH = true;
+                inputH = "Up";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.Left)
+            {
+                usedH = true;
+                inputH = "Down";
+                Hold.Text = inputH;
+            }
+            else if (e.Key == Key.Right)
+            {
+                usedH = true;
+                inputH = "Right";
+                Hold.Text = inputH;
+            }
+            for (int i = 0; i <= 9; i++)
+            {
+                KeyConverter x = new KeyConverter();
+                string number = i.ToString();
+                number = "NumPad" + number;
+                Key num = (Key)x.ConvertFromString(number);
+                if (e.Key == num)
+                {
+                    usedH = true;
+                    inputH = number;
+                    Hold.Text = inputH;
+                }
+            }
+        }
+
+        private async void InputTabSD(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                usedSD = true;
+                inputSD = "Tab";
+                SoftDrops.Text = inputSD;
+            }
+        }
+        private async void InputTabHD(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                usedHD = true;
+                inputHD = "Tab";
+                HardDrops.Text = inputHD;
+            }
+        }
+        private async void InputTabRight(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                usedR = true;
+                inputR = "Tab";
+                Right.Text = inputR;
+            }
+        }
+        private async void InputTabLeft(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                usedL = true;
+                inputL = "Tab";
+                Left.Text = inputL;
+            }
+        }
+        private async void InputTabRRight(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                usedRR = true;
+                inputRR = "Tab";
+                RotateRight.Text = inputRR;
+            }
+        }
+        private async void InputTabRLeft(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                usedRL = true;
+                inputRL = "Tab";
+                RotateLeft.Text = inputRL;
+            }
+        }
+        private async void InputTabPause(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                usedP = true;
+                inputP = "Tab";
+                Pause.Text = inputP;
+            }
+        }
+        private async void InputTabHold(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                usedH = true;
+                inputH = "Tab";
+                Hold.Text = inputH;
+            }
+        }
 
         private void OutOption(object sender, RoutedEventArgs e)
         {
@@ -177,6 +1354,14 @@ namespace Tetris
             int.TryParse(MinSpeed.Text, out minSpeed);
             int.TryParse(MaxSpeed.Text, out maxSpeed);
             int.TryParse(ClearBonus.Text, out clearBonus);
+            
+            StringToKey();
+        }
+
+
+
+        private void StringToKey()
+        {
             hardDrop = HardDrops.Text;
             softDrop = SoftDrops.Text;
             right = Right.Text;
@@ -201,26 +1386,91 @@ namespace Tetris
             else pause = "Z";
             if (hold != "") hold = hold.ToUpper();
             else hold = "Shift";
-            StringToKey();
-        }
-
-
-
-        private void StringToKey()
-        {
             KeyConverter x = new KeyConverter();
-            sD = (Key)x.ConvertFromString(softDrop);
-            hD = (Key)x.ConvertFromString(hardDrop);
-            rights = (Key)x.ConvertFromString(right);
-            lefts = (Key)x.ConvertFromString(left);
-            rR = (Key)x.ConvertFromString(rotateRight);
-            rL = (Key)x.ConvertFromString(rotateLeft);
-            pose = (Key)x.ConvertFromString(pause);
-            holds = (Key)x.ConvertFromString(hold);
+            if (usedSD)
+            {
+                sD = (Key)x.ConvertFromString(inputSD);
+                usedSD = false;
+            }
+            else
+            {
+                sD = (Key)x.ConvertFromString(softDrop);
+            }
+
+            if (usedHD)
+            {
+                hD = (Key)x.ConvertFromString(inputHD);
+                usedHD = false;
+            }
+            else
+            {
+                hD = (Key)x.ConvertFromString(hardDrop);
+            }
+
+            if (usedR)
+            {
+                rights = (Key)x.ConvertFromString(inputR);
+                usedR = false;
+            }
+            else
+            {
+                rights = (Key)x.ConvertFromString(right);
+            }
+
+            if (usedL)
+            {
+                lefts = (Key)x.ConvertFromString(inputL);
+                usedL = false;
+            }
+            else
+            {
+                lefts = (Key)x.ConvertFromString(left);
+            }
+
+            if (usedRR)
+            {
+                rR = (Key)x.ConvertFromString(inputRR);
+                usedRR = false;
+            }
+            else
+            {
+                rR = (Key)x.ConvertFromString(rotateRight);
+            }
+
+            if (usedRL)
+            {
+                rL = (Key)x.ConvertFromString(inputRL);
+                usedRL = false;
+            }
+            else
+            {
+                rL = (Key)x.ConvertFromString(rotateLeft);
+            }
+
+            if (usedP)
+            {
+                pose = (Key)x.ConvertFromString(inputP);
+                usedRR = false;
+            }
+            else
+            {
+                pose = (Key)x.ConvertFromString(pause);
+            }
+
+            if (usedH)
+            {
+                holds = (Key)x.ConvertFromString(inputH);
+                usedH = false;
+            }
+            else
+            {
+                holds = (Key)x.ConvertFromString(hold);
+            }
         }
 
         private async void KeyInput(object sender, KeyEventArgs e)
         {
+            StringToKey();
             if (gameStatus.gameOver)
             {
                 return;

@@ -290,7 +290,7 @@
         </Grid>
 
         <Grid x:Name="OptionPage"
-            Visibility="Visible">
+            Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -311,14 +311,34 @@
             </Grid.Background>
 
 
-            <Button Content="Option.Apply() &amp;&amp; &#xa;return MainMenu"
+            <Button Content="Option.Apply() &amp;&amp;&#xa;return MainMenu"
                 Grid.Column="1"
                 Grid.Row="7"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Foreground="Black"
+                Background="Green"
+                Margin="0,10,70,10"
+                Click="OutOption"/>
+
+            <Button Content="Delete all save"
+                Grid.Column="1"
+                Grid.Row="0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
                 Foreground="Black"
                 Background="Green"
-                Margin="0,0,0,20"
+                Margin="0,10,70,10"
+                Click="OutOption"/>
+
+            <Button Content="Delete save"
+                Grid.Column="1"
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Foreground="Black"
+                Background="Green"
+                Margin="0,0,70,0"
                 Click="OutOption"/>
 
 
@@ -331,10 +351,12 @@
                         Foreground="White"
                         Margin="20,10,110,0"/>
                 <TextBox x:Name="SoftDrops"
-                    Width="66" Height="45"
+                    Width="122" Height="45"
                     MaxLength="1"
                     TextAlignment="Center"
-                    MaxLines="1"/>
+                    MaxLines="1"
+                    KeyUp="InputSoftD"
+                    KeyDown="InputTabSD"/>
 
             </StackPanel>
 
@@ -347,10 +369,12 @@
                         Foreground="White"
                         Margin="20,10,100,0"/>
                 <TextBox x:Name="HardDrops"
-                    Width="66" Height="45"
+                    Width="122" Height="45"
                     MaxLength="1"
                     TextAlignment="Center"
-                    MaxLines="1"/>
+                    MaxLines="1"
+                    KeyUp="InputHardD"
+                    KeyDown="InputTabHD"/>
             </StackPanel>
 
             <StackPanel
@@ -361,10 +385,12 @@
                         Foreground="White"
                         Margin="20,20,162,0"/>
                 <TextBox x:Name="Right"
-                    Width="66" Height="45"
+                    Width="122" Height="45"
                     MaxLength="1"
                     TextAlignment="Center"
-                    MaxLines="1"/>
+                    MaxLines="1"
+                    KeyUp="InputRight"
+                    KeyDown="InputTabRight"/>
             </StackPanel>
 
             <StackPanel
@@ -376,10 +402,12 @@
                         Foreground="White"
                         Margin="20,0,181,0"/>
                 <TextBox x:Name="Left"
-                    Width="66" Height="45"
+                    Width="122" Height="45"
                     MaxLength="1"
                     TextAlignment="Center"
-                    MaxLines="1"/>
+                    MaxLines="1"
+                    KeyUp="InputLeft"
+                    KeyDown="InputTabLeft"/>
 
             </StackPanel>
 
@@ -392,10 +420,12 @@
                         Foreground="White"
                         Margin="20,0,82,0"/>
                 <TextBox x:Name="RotateRight"
-                    Width="66" Height="45"
+                    Width="122" Height="45"
                     MaxLength="1"
                     TextAlignment="Center"
-                    MaxLines="1"/>
+                    MaxLines="1"
+                    KeyUp="InputRotRight"
+                    KeyDown="InputTabRRight"/>
             </StackPanel>
 
             <StackPanel
@@ -407,10 +437,12 @@
                         Foreground="White"
                         Margin="20,0,102,0"/>
                 <TextBox x:Name="RotateLeft"
-                    Width="66" Height="45"
+                    Width="122" Height="45"
                     MaxLength="1"
                     TextAlignment="Center"
-                    MaxLines="1"/>
+                    MaxLines="1"
+                    KeyUp="InputRotLeft"
+                    KeyDown="InputTabRLeft"/>
             </StackPanel>
 
             <StackPanel
@@ -422,10 +454,12 @@
                         Foreground="White"
                         Margin="20,0,159,0"/>
                 <TextBox x:Name="Pause"
-                    Width="66" Height="45"
+                    Width="122" Height="45"
                     MaxLength="1"
                     TextAlignment="Center"
-                    MaxLines="1"/>
+                    MaxLines="1"
+                    KeyUp="Pauses"
+                    KeyDown="InputTabPause"/>
 
             </StackPanel>
 
@@ -439,7 +473,7 @@
                         Margin="20,25,74,0"/>
                 <TextBox x:Name="DemoSpeeds"
                     Text=""
-                    Width="66" Height="45"
+                    Width="122" Height="45"
                     MaxLength="3"
                     TextAlignment="Center"
                     MaxLines="1"
@@ -452,45 +486,32 @@
             <StackPanel
                 Orientation="Horizontal"
                 Grid.Column="1"
-                Grid.Row="1">
+                Grid.Row="2">
                 <Label
                         Content="Hold"
                         Foreground="White"
-                        Margin="20,10,200,0"/>
+                        Margin="20,10,140,0"/>
                 <TextBox x:Name="Hold"
-                    Width="66" Height="45"
+                    Width="122" Height="45"
                     MaxLength="1"
                     TextAlignment="Center"
-                    MaxLines="1"/>
+                    MaxLines="1"
+                    KeyUp="Holds"
+                    KeyDown="InputTabHold"/>
 
-            </StackPanel>
-
-            <StackPanel
-                Orientation="Horizontal"
-                Grid.Column="1"
-                Grid.Row="2">
-                <Label 
-                        Content="Reverse timer&#xa;(starting time)"
-                        Foreground="White"
-                        Margin="20,0,85,0"/>
-                <TextBox x:Name="ReverseTime"
-                    Text=""
-                    Width="66" Height="45"
-                    MaxLength="3"
-                    TextAlignment="Center"
-                    MaxLines="1"/>
             </StackPanel>
 
             <StackPanel
                 Orientation="Horizontal"
                 Grid.Column="1"
                 Grid.Row="3">
-                <Label
-                        Content="Max speed"
+                <Label 
+                        Content="Reverse timer&#xa;(starting time)"
                         Foreground="White"
-                        Margin="20,0,124,0"/>
-                <TextBox x:Name="MaxSpeed"
-                    Width="66" Height="45"
+                        Margin="20,0,25,0"/>
+                <TextBox x:Name="ReverseTime"
+                    Text=""
+                    Width="122" Height="45"
                     MaxLength="3"
                     TextAlignment="Center"
                     MaxLines="1"/>
@@ -501,11 +522,11 @@
                 Grid.Column="1"
                 Grid.Row="4">
                 <Label
-                        Content="Min speed"
+                        Content="Max speed"
                         Foreground="White"
-                        Margin="20,0,128,0"/>
-                <TextBox x:Name="MinSpeed"
-                    Width="66" Height="45"
+                        Margin="20,0,64,0"/>
+                <TextBox x:Name="MaxSpeed"
+                    Width="122" Height="45"
                     MaxLength="3"
                     TextAlignment="Center"
                     MaxLines="1"/>
@@ -516,11 +537,26 @@
                 Grid.Column="1"
                 Grid.Row="5">
                 <Label
+                        Content="Min speed"
+                        Foreground="White"
+                        Margin="20,0,68,0"/>
+                <TextBox x:Name="MinSpeed"
+                    Width="122" Height="45"
+                    MaxLength="3"
+                    TextAlignment="Center"
+                    MaxLines="1"/>
+            </StackPanel>
+
+            <StackPanel
+                Orientation="Horizontal"
+                Grid.Column="1"
+                Grid.Row="6">
+                <Label
                         Content="Value of clear&#xa;bonus"
                         Foreground="White"
-                        Margin="20,0,92,0"/>
+                        Margin="20,0,32,0"/>
                 <TextBox x:Name="ClearBonus"
-                    Width="66" Height="45"
+                    Width="122" Height="45"
                     MaxLength="3"
                     TextAlignment="Center"
                     MaxLines="1"/>
