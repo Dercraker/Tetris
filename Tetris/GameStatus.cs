@@ -17,7 +17,7 @@ namespace Tetris
         private Tetramino currentTetramino;
         public Tetramino CurrentTetramino {
             get => currentTetramino;
-            private set
+            set
             {
                 currentTetramino = value;
                 currentTetramino.reset();
@@ -30,7 +30,7 @@ namespace Tetris
         public Tetramino HoldingTetramino
         {
             get => holdingTetramino;
-            private set
+            set
             {
                 holdingTetramino = value;
                 holdingTetramino.reset();
@@ -50,7 +50,7 @@ namespace Tetris
 
 
         public GameGrid gameGrid { get; set; }
-        public WaitingLine waitingLine { get; }
+        public WaitingLine waitingLine { get; set; }
         public bool gameOver { get; set; }
         public int GameSpeed { get; set; }
         public string GameMode { get; set; }
@@ -63,7 +63,7 @@ namespace Tetris
 
         public int pressHoldTetramino = 0;
 
-        public GameStatus()
+        public GameStatus(Tetramino t = null)
         {
             GameSpeed = 400;
             SpeedLevel = 1;
@@ -71,10 +71,10 @@ namespace Tetris
             Pause = false;
             gameGrid = new GameGrid(22, 10);
             waitingLine = new WaitingLine();
-            currentTetramino = waitingLine.UpdateTetramino();
             scores = new Scores();
             holdingTetramino = null!;
-            
+            currentTetramino = waitingLine.UpdateTetramino();
+
         }
 
         public void SetTimer()

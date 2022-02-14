@@ -7,17 +7,23 @@ using System.Threading.Tasks;
 
 namespace Tetris
 {
-    public abstract class Tetramino
+    public class Tetramino
     {
-        protected abstract Position[][] BoxRotation { get;}
-        public  abstract Position SpawnPoint { get; }
-        public abstract int tetraminoId { get;}
+        protected virtual Position[][] BoxRotation { get;}
+        public virtual Position SpawnPoint { get; set; }
+        public virtual int tetraminoId { get; set; }
         public int rotate;
         public Position offSet { get; set; }
 
-        public Tetramino()
+        public Tetramino(Position p = null)
         {
-            offSet = new Position(SpawnPoint.row, SpawnPoint.column);
+            if (p != null)
+            {
+                offSet = p;
+            } else
+            {
+                offSet = new Position(0, 3);
+            }
         }
         public Tetramino DeepCopy()
         {

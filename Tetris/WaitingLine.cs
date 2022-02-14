@@ -10,7 +10,7 @@ namespace Tetris
 {
     public class WaitingLine
     {
-        public Tetramino[] tetraminosTab = new Tetramino[]
+        private Tetramino[] tetraminosTab = new Tetramino[]
         {
             new ITetramino(),
             new JTetramino(),
@@ -20,16 +20,16 @@ namespace Tetris
             new TTetramino(),
             new ZTetramino(),
         };
-        public Random random = new Random();
+        private Random random = new Random();
         public Tetramino NextTetramino { get; set; }
-        public Tetramino RandomTetramino()
+        private Tetramino RandomTetramino()
         {
             Tetramino newTetramino = tetraminosTab[random.Next(tetraminosTab.Length)];
             Tetramino newInstance = newTetramino.DeepCopy();
             newInstance.reset();
             return newInstance;
         }
-        public Tetramino SetNextTetramino(int id)
+        public Tetramino GetTetramino(int id)
         {
             Tetramino newTetramino = tetraminosTab[id];
             Tetramino newInstance = newTetramino.DeepCopy();
@@ -43,7 +43,7 @@ namespace Tetris
                 NextTetramino = RandomTetramino();
             } else
             {
-                NextTetramino = SetNextTetramino(int.Parse(NextTeraminoId));
+                NextTetramino = GetTetramino(int.Parse(NextTeraminoId));
             }
             
         }

@@ -17,6 +17,7 @@ using System.Media;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace Tetris
 {
@@ -1657,7 +1658,8 @@ namespace Tetris
 
             Save save = gameStatus.CreateSave();
 
-            string jsonString = JsonSerializer.Serialize(save, new JsonSerializerOptions() { WriteIndented = true });
+            string jsonString = JsonConvert.SerializeObject(save);
+            //string jsonString = JsonSerializer.Serialize(save, new JsonSerializerOptions() { WriteIndented = true });
             File.WriteAllText(fileName, jsonString);
 
             ReturnMainMenu(sender,e);
@@ -1692,9 +1694,9 @@ namespace Tetris
             {
                 //GetGame
                 string filePath = ((ComboBoxItem)SaveGamesList.SelectedItem).Tag.ToString();
-                string jsonString = File.ReadAllText(filePath);
-                Save save = JsonSerializer.Deserialize<Save>(jsonString)!;
-
+                StreamReader sr = new StreamReader(filePath);
+                string jsonString = sr.ReadToEnd();
+                Save save = JsonConvert.DeserializeObject<Save>(jsonString);
 
                 GameLoad.Visibility = Visibility.Visible;
                 SaveGamesList.Visibility = Visibility.Collapsed;
