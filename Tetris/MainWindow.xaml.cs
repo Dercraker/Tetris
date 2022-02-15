@@ -477,6 +477,11 @@ namespace Tetris
                 }
             }
         }
+
+        
+    
+
+
         private async void InputRight(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -1489,7 +1494,18 @@ namespace Tetris
             }
         }
 
-            private async void KeyInput(object sender, KeyEventArgs e)
+        private void Deletesave(object sender, RoutedEventArgs e)
+        {
+
+            DeleteSave.Visibility = Visibility.Collapsed;
+            DeleteGamesList.Visibility = Visibility.Visible;
+        }
+        private async void SaveGamesList_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private async void KeyInput(object sender, KeyEventArgs e)
         {
             StringToKey();
             if (gameStatus.gameOver)
