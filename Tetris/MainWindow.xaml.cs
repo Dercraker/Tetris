@@ -1555,7 +1555,8 @@ namespace Tetris
                 {
                     File.Delete(file);
                 }
-            } 
+            }
+
         }
         private async void KeyInput(object sender, KeyEventArgs e)
         {

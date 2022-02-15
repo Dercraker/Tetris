@@ -332,7 +332,7 @@
         </Grid>
 
         <Grid x:Name="OptionPage"
-            Visibility="Visible">
+            Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
