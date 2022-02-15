@@ -74,6 +74,7 @@ namespace Tetris
             currentTetramino = waitingLine.UpdateTetramino();
             scores = new Scores();
             holdingTetramino = null!;
+            
         }
 
         public void SetTimer()

@@ -22,6 +22,7 @@ namespace Tetris.gameMode
 {
     internal class RevrseTetris : GameMode
     {
+        
         public RevrseTetris(MainWindow mainWindow) : base(mainWindow)
         {
         }

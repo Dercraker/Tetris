@@ -394,7 +394,7 @@
                     Visibility="Collapsed"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
-                    SelectionChanged="SaveGamesList_SelectionChanged">
+                    SelectionChanged="DeleteGame_SelectionChanged">
                 <ComboBoxItem IsSelected="True" Content="Select SaveGame"/>
             </ComboBox>
 
