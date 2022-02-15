@@ -1500,7 +1500,7 @@ namespace Tetris
             DeleteSave.Visibility = Visibility.Collapsed;
             DeleteGamesList.Visibility = Visibility.Visible;
         }
-        private async void SaveGamesList_SelectionChanged(object sender, RoutedEventArgs e)
+        private async void DeleteGame_SelectionChanged(object sender, RoutedEventArgs e)
         {
 
         }
