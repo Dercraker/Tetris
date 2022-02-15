@@ -332,7 +332,7 @@
         </Grid>
 
         <Grid x:Name="OptionPage"
-            Visibility="Visible">
+            Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -365,6 +365,7 @@
 
             <Button x:Name="DeleteAllSave"
                 Content="Delete all save"
+                    IsEnabled="False"
                 Grid.Column="1"
                 Visibility="Visible"
                 Grid.Row="0"
@@ -378,12 +379,13 @@
             <Button x:Name="DeleteSave"
                 Content="Delete save"
                 Grid.Column="1"
+                    IsEnabled="False"
                 Grid.Row="1"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Foreground="Black"
                 Background="Green"
-                Click="Deletesave"/>
+                Click="DeleteSave_Click"/>
 
             <ComboBox x:Name="DeleteGamesList"
                     Grid.Column="1"
@@ -391,7 +393,7 @@
                     Visibility="Collapsed"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
-                    SelectionChanged="DeleteGame_SelectionChanged">
+                    SelectionChanged="DeleteGamesList_SelectionChanged">
                 <ComboBoxItem IsSelected="True" Content="Select SaveGame"/>
             </ComboBox>
 
