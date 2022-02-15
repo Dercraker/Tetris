@@ -332,7 +332,7 @@
         </Grid>
 
         <Grid x:Name="OptionPage"
-            Visibility="Hidden">
+            Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -385,7 +385,18 @@
                 Click="Deletesave"/>
 
             
-            
+
+            <ComboBox x:Name="SaveGamesList"
+                    Margin="0,20,0,0"
+                    Visibility="Collapsed"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    SelectionChanged="SaveGamesList_SelectionChanged">
+                <ComboBoxItem IsSelected="True" Content="Select SaveGame"/>
+            </ComboBox>
+
+
+
 
             <StackPanel
                 Orientation="Horizontal"
