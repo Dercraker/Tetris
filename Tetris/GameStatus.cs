@@ -58,6 +58,8 @@ namespace Tetris
         public int SpeedLevel { get; set; }
         public Scores scores { get; set; }
 
+        public Timer timer { get; set; }
+
         private DispatcherTimer Timer = null!;
         private DispatcherTimer ReverseTotalTimer = null!;
 
@@ -76,47 +78,6 @@ namespace Tetris
             holdingTetramino = null!;
         }
 
-        public void SetTimer()
-        {
-            Timer = new DispatcherTimer();
-            Timer.Interval = new TimeSpan(0, 0, 1);
-            Timer.Tick += Timer_Tick;
-            Timer.Start();
-        }
-        public void SetReverseTimer()
-        {
-            Timer = new DispatcherTimer();
-            Timer.Interval = new TimeSpan(0, 0, 1);
-            Timer.Tick += ReverseTimer_Tick;
-            Timer.Start();
-        }
-        public void StopTimer()
-        {
-            Timer.Stop();
-        }
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            scores.time++;
-        }
-        public void SetTotalTimer()
-        {
-            ReverseTotalTimer = new DispatcherTimer();
-            ReverseTotalTimer.Interval = new TimeSpan(0, 0, 1);
-            ReverseTotalTimer.Tick += TotalTimer_Tick;
-            ReverseTotalTimer.Start();
-        }
-        public void StopTotalTimer()
-        {
-            ReverseTotalTimer.Stop();
-        }
-        private void TotalTimer_Tick(object sender, EventArgs e)
-        {
-            scores.reverseTotalTime++;
-        }
-        private void ReverseTimer_Tick(object sender, EventArgs e)
-        {
-            scores.time--;
-        }
         public void DisplayLine(int r)
         {
             String str = String.Format("Line {0}",r);
@@ -187,10 +148,10 @@ namespace Tetris
             scores.GameScoreBonus(AddScore, gameGrid);
             if (GameMode == "Reverse-Tetris")
             {
-                scores.time += AddScore * 15;
+                timer.time += AddScore * 15;
                 if (IsGameOver())
                 {
-                    scores.time -= gameGrid.ReverseClearGrid() * 10;
+                    timer.time -= gameGrid.ReverseClearGrid() * 10;
                 }
                 else
                 {
@@ -283,7 +244,7 @@ namespace Tetris
         {
             Timer.Stop();
             if (GameMode == "Reverse-Tetris") ReverseTotalTimer.Stop();
-            MainTime.Text = String.Format("Time : {0}'{1}''", scores.time / 60, scores.time % 60);
+            MainTime.Text = String.Format("Time : {0}'{1}''", timer.time / 60, timer.time % 60);
             TotalTime.Text = String.Format("Total Time : {0}'{1}''", scores.reverseTotalTime / 60, scores.reverseTotalTime % 60);
             CurrentScore.Text = String.Format("Score : {0}pts", scores.score);
             BreakLine.Text = String.Format("Nb Line : {0}", scores.nbLine);

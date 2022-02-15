@@ -57,6 +57,8 @@ namespace Tetris
         public gameMode.GameMode game { get; set; }
         public GameStatus gameStatus = new GameStatus();
         public SoundPlayer SoundMenu = new SoundPlayer(Resource1.MainMenuSound);
+        public Timer timer = new Timer();
+        public int time { get; set; }
 
         public MainWindow()
         {
@@ -151,7 +153,7 @@ namespace Tetris
             {
                 CombosText.Visibility = Visibility.Hidden;
             }
-            TimerCount.Text = String.Format("Timer : {0}'{1}''", gameStatus.scores.time / 60, gameStatus.scores.time % 60);
+            TimerCount.Text = String.Format("Timer : {0}'{1}''", timer.time / 60, timer.time % 60);
             GetNextBlock(gameStatus.waitingLine);
             DisplayHoldedTetra();
         }

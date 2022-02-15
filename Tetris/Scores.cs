@@ -8,7 +8,6 @@ namespace Tetris
 {
     public class Scores
     {
-        public int time { get; set; }
         public int reverseTotalTime { get; set; }
         public int lastScoreTime { get; set; }
         public int combos { get; set; }
@@ -16,6 +15,7 @@ namespace Tetris
         public int nbLine { get; set; }
         public int bestCombos { get; set; }
         public int bonusClear { get; set; }
+        public Timer timer { get; set; }
 
         public Scores()
         {
@@ -46,9 +46,9 @@ namespace Tetris
         }
         public int combosTimeBonus(int result)
         {
-            int currentTime = time;
+            int currentTime = timer.time;
             int diff = currentTime - lastScoreTime;
-            if (diff <= 15 && time > 15)
+            if (diff <= 15 && timer.time > 15)
             {
                 if (combos < 10)
                 {

@@ -22,6 +22,7 @@ namespace Tetris.gameMode
 {
     public class Tetris : GameMode
     {
+        public Timer timer = new Timer();
         public Tetris(MainWindow mainWindow) : base(mainWindow)
         {
         }
@@ -36,7 +37,7 @@ namespace Tetris.gameMode
 
         public override async Task Run()
         {
-            gameStatus.SetTimer();
+            timer.SetTimer();
 
             while (!gameStatus.gameOver)
             {
@@ -52,9 +53,9 @@ namespace Tetris.gameMode
         public override void Stop()
         {
             TetrisGM_Sound.Stop();
-            gameStatus.StopTimer();
+            timer.StopTimer();
             mw.GameOverResult.Text = String.Format("Score : {0}", gameStatus.scores.score);
-            mw.GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.scores.time / 60, gameStatus.scores.time % 60);
+            mw.GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.timer.time / 60, gameStatus.timer.time % 60);
             mw.MenuGameOver.Visibility = Visibility.Visible;
         }
 

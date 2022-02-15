@@ -30,21 +30,21 @@ namespace Tetris.gameMode
         {
             gameStatus = gm == null ? new GameStatus() : gm;
             gameStatus.GameMode = "Reverse-Tetris";
-            gameStatus.scores.time = 60;
+            gameStatus.timer.time = 60;
             mw.Draw(gameStatus);
             TetrisGM_Sound.PlayLooping();
         }
 
         public override async Task Run()
         {
-            gameStatus.SetReverseTimer();
-            gameStatus.SetTotalTimer();
+            gameStatus.timer.SetReverseTimer();
+            gameStatus.timer.SetTotalTimer();
 
             while (!gameStatus.gameOver)
             {
-                if (gameStatus.scores.time <= 0)
+                if (gameStatus.timer.time <= 0)
                 {
-                    gameStatus.scores.time = 0;
+                    gameStatus.timer.time = 0;
                     gameStatus.gameOver = true;
                     break;
                 }
@@ -60,10 +60,10 @@ namespace Tetris.gameMode
         public override void Stop()
         {
             TetrisGM_Sound.Stop();
-            gameStatus.StopTimer();
-            gameStatus.StopTotalTimer();
+            gameStatus.timer.StopTimer();
+            gameStatus.timer.StopTotalTimer();
             mw.GameOverResult.Text = String.Format("Score : {0}", gameStatus.scores.score);
-            mw.GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.scores.time / 60, gameStatus.scores.time % 60);
+            mw.GameOverTimer.Text = String.Format("Time : {0}'{1}''", gameStatus.timer.time / 60, gameStatus.timer.time % 60);
             mw.MenuGameOver.Visibility = Visibility.Visible;
         }
 
