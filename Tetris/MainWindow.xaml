@@ -405,7 +405,7 @@
                 Orientation="Horizontal"
                 Grid.Column="0"
                 Grid.Row="0">
-                    <Label
+                <Label
                         Content="Soft drop"
                         Foreground="White"
                         Margin="20,10,110,0"/>
@@ -417,13 +417,13 @@
                     KeyUp="InputSoftD"
                     KeyDown="InputTabSD"/>
 
-                </StackPanel>
-            
-                <StackPanel
+            </StackPanel>
+
+            <StackPanel
                 Orientation="Horizontal"
                 Grid.Column="0"
                 Grid.Row="1">
-                    <Label
+                <Label
                         Content="Hard drop"
                         Foreground="White"
                         Margin="20,10,100,0"/>
@@ -439,7 +439,7 @@
             <StackPanel
                 Orientation="Horizontal"
                 Grid.Row="2">
-                    <Label
+                <Label
                         Content="Right"
                         Foreground="White"
                         Margin="20,20,162,0"/>
@@ -456,7 +456,7 @@
                 Orientation="Horizontal"
                 Grid.Column="0"
                 Grid.Row="3">
-                    <Label
+                <Label
                         Content="Left"
                         Foreground="White"
                         Margin="20,0,181,0"/>
@@ -468,13 +468,13 @@
                     KeyUp="InputLeft"
                     KeyDown="InputTabLeft"/>
 
-                </StackPanel>
-            
-                <StackPanel
+            </StackPanel>
+
+            <StackPanel
                 Orientation="Horizontal"
                 Grid.Column="0"
                 Grid.Row="4">
-                    <Label
+                <Label
                         Content="Rotate right"
                         Foreground="White"
                         Margin="20,0,82,0"/>
@@ -491,7 +491,7 @@
                 Orientation="Horizontal"
                 Grid.Column="0"
                 Grid.Row="5">
-                    <Label
+                <Label
                         Content="Rotate left"
                         Foreground="White"
                         Margin="20,0,102,0"/>
@@ -508,7 +508,7 @@
                 Orientation="Horizontal"
                 Grid.Column="0"
                 Grid.Row="6">
-                    <Label
+                <Label
                         Content="Pause"
                         Foreground="White"
                         Margin="20,0,159,0"/>
@@ -520,13 +520,13 @@
                     KeyUp="Pauses"
                     KeyDown="InputTabPause"/>
 
-                </StackPanel>
-            
-                <StackPanel
+            </StackPanel>
+
+            <StackPanel
                 Orientation="Horizontal"
                 Grid.Column="0"
                 Grid.Row="7">
-                    <Label
+                <Label
                         Content="Demo speed"
                         Foreground="White"
                         Margin="20,25,74,0"/>
@@ -538,11 +538,11 @@
                     MaxLines="1"
                     />
 
-                </StackPanel>
-            
+            </StackPanel>
 
-            
-                <StackPanel
+
+
+            <StackPanel
                 Orientation="Horizontal"
                 Grid.Column="1"
                 Grid.Row="2">
@@ -558,9 +558,9 @@
                     KeyUp="Holds"
                     KeyDown="InputTabHold"/>
 
-                </StackPanel>
-            
-                <StackPanel
+            </StackPanel>
+
+            <StackPanel
                 Orientation="Horizontal"
                 Grid.Column="1"
                 Grid.Row="3">
@@ -574,9 +574,9 @@
                     MaxLength="3"
                     TextAlignment="Center"
                     MaxLines="1"/>
-                </StackPanel>
-            
-                <StackPanel
+            </StackPanel>
+
+            <StackPanel
                 Orientation="Horizontal"
                 Grid.Column="1"
                 Grid.Row="4">
@@ -589,9 +589,9 @@
                     MaxLength="3"
                     TextAlignment="Center"
                     MaxLines="1"/>
-                </StackPanel>
-            
-                <StackPanel
+            </StackPanel>
+
+            <StackPanel
                 Orientation="Horizontal"
                 Grid.Column="1"
                 Grid.Row="5">
@@ -604,9 +604,9 @@
                     MaxLength="3"
                     TextAlignment="Center"
                     MaxLines="1"/>
-                </StackPanel>
-            
-                <StackPanel
+            </StackPanel>
+
+            <StackPanel
                 Orientation="Horizontal"
                 Grid.Column="1"
                 Grid.Row="6">
@@ -619,9 +619,7 @@
                     MaxLength="3"
                     TextAlignment="Center"
                     MaxLines="1"/>
-                </StackPanel>
-            
-
+            </StackPanel>
 
         </Grid>
     </Grid>
