@@ -1546,6 +1546,17 @@ namespace Tetris
             }
 
         }
+        private void DeleteAllSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (Directory.Exists("./SaveGames"))
+            {
+                string[] allfiles = Directory.GetFiles("./SaveGames", "*.*", SearchOption.AllDirectories);
+                foreach(string file in allfiles)
+                {
+                    File.Delete(file);
+                }
+            } 
+        }
         private async void KeyInput(object sender, KeyEventArgs e)
         {
             StringToKey();
