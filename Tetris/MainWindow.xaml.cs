@@ -64,6 +64,7 @@ namespace Tetris
         public MainWindow()
         {
             InitializeComponent();
+
             imgControls = SetUpGameGridCanvas(gameStatus.gameGrid, GameGridCanvas);
             demoImgControls = SetUpGameGridCanvas(gameStatus.gameGrid, DemoGame);
             demoImgControls2 = SetUpGameGridCanvas(gameStatus.gameGrid, DemoGame2);
@@ -168,6 +169,7 @@ namespace Tetris
             demo.DemoStart(demoImgControls2, this);
         }
 
+        public int reverseTimes { get; set; }
         public Key hD;
         public Key sD;
         public Key rights;
@@ -1376,6 +1378,8 @@ namespace Tetris
         {
             OptionPage.Visibility = Visibility.Hidden;
             int.TryParse(ReverseTime.Text, out reverseTime);
+            if (reverseTime == 0) reverseTimes = 60;
+            else reverseTimes = reverseTime;
             int.TryParse(DemoSpeeds.Text, out demoSpeed);
             int.TryParse(MinSpeed.Text, out minSpeed);
             int.TryParse(MaxSpeed.Text, out maxSpeed);
@@ -1496,15 +1500,44 @@ namespace Tetris
 
         private void Deletesave(object sender, RoutedEventArgs e)
         {
+            string[] allfiles = Directory.GetFiles("./SaveGames", "*.*", SearchOption.AllDirectories);
+            foreach (string file in allfiles)
+            {
+                string fileName = file.Split(".json")[0].Substring(12);
+                string gmName = fileName.Split("_")[0];
+                string[] date = fileName.Split("_")[1].Split("-");
+                string[] heur = fileName.Split("_")[2].Split("-");
+                fileName = String.Format("{0} : {1},{2},{3} {4}h{5}m{6}s", gmName, date[0], date[1], date[2], heur[0], heur[1], heur[2]);
+
+                ComboBoxItem item = new ComboBoxItem
+                {
+                    Tag = file.ToString(),
+                    Content = fileName
+                };
+
+                DeleteGamesList.Items.Add(item);
+            }
 
             DeleteSave.Visibility = Visibility.Collapsed;
             DeleteGamesList.Visibility = Visibility.Visible;
         }
         private async void DeleteGame_SelectionChanged(object sender, RoutedEventArgs e)
         {
+            string itemIndex = sender.ToString().Trim().Split(":")[1];
+            if (itemIndex != "1" && DeleteGamesList.SelectedValue.ToString().Split(": ")[1] != "Select SaveGame")
+            {
+                string filePath = ((ComboBoxItem)DeleteGamesList.SelectedItem).Tag.ToString();
 
+
+                DeleteSave.Visibility = Visibility.Visible;
+                DeleteGamesList.Visibility = Visibility.Collapsed;
+
+                DeleteGamesList.Items.RemoveAt(1);
+                DeleteGamesList.SelectedIndex = 0;
+
+                File.Delete(filePath);
+            }
         }
-
         private async void KeyInput(object sender, KeyEventArgs e)
         {
             StringToKey();
@@ -1519,6 +1552,7 @@ namespace Tetris
             else if (e.Key == rL) gameStatus.RotateNextTetramino();
             else if (e.Key == hD) gameStatus.HardDrop();
             else if (e.Key == pose) gameStatus.Pause = gameStatus.Pause ? false : true;
+            else if (e.Key == holds) gameStatus.HoldTetramino();
             Draw(gameStatus);
         }
         private async void RestartGame(object sender, RoutedEventArgs e)
