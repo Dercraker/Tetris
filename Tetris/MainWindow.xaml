@@ -170,25 +170,34 @@
                 Foreground="Black"
                 TextAlignment="Center"/>
 
-            <Button x:Name="ResumeGame"
+            <StackPanel
                 Grid.Row="4"
-                Grid.Column="0"
-                VerticalAlignment="Center"
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal"
                 HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                >
+
+
+                <Button x:Name="ResumeGame"
                 Padding="5,0"
                 Content="Play"
                 Click="ResumeGame_Click"
                 />
-            
-            <Button x:Name="SaveGame"
-                Grid.Row="4"
-                Grid.Column="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
+
+                <Button x:Name="RageQuit"
+                Padding="5,0"
+                Margin="80,0"
+                Content="RageQuit"
+                Click="RageQuit_Click"
+                />
+
+                <Button x:Name="SaveGame"
                 Padding="5,0"
                 Content="SaveGame"
                 Click="SaveGame_Click"
                 />
+            </StackPanel>
 
 
 

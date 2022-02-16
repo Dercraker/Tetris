@@ -1550,11 +1550,11 @@ namespace Tetris
         {
             gameStatus = new GameStatus();
             MainMenu.Visibility = Visibility.Visible;
-
             SoundMenu.Stream.Position = 0;
             SoundMenu.PlayLooping();
 
             MenuGameOver.Visibility = Visibility.Hidden;
+            PausePage.Visibility = Visibility.Hidden;
         }
 
         private void KillProgram(object sender, RoutedEventArgs e)
@@ -1680,5 +1680,10 @@ namespace Tetris
 
             }
         }
+
+        private void RageQuit_Click(object sender, RoutedEventArgs e)
+        {
+            ReturnMainMenu(sender, e);
         }
+    }
 }
