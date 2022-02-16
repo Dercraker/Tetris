@@ -1488,6 +1488,7 @@ namespace Tetris
         }
 
         private void DeleteSave_Click(object sender, RoutedEventArgs e)
+<<<<<<< HEAD
         {
             if (Directory.Exists("./SaveGames"))
             {
@@ -1544,6 +1545,52 @@ namespace Tetris
                     File.Delete(file);
                 }
             }
+=======
+        {
+            if (Directory.Exists("./SaveGames"))
+            {
+                DeleteGamesList.Visibility = Visibility.Visible;
+                DeleteSave.Visibility = Visibility.Collapsed;
+
+                string[] allfiles = Directory.GetFiles("./SaveGames");
+
+                foreach(string file in allfiles)
+                {
+                    string fileName = file.Split(".json")[0].Substring(12);
+                    string gmName = fileName.Split("_")[0];
+                    string[] date = fileName.Split("_")[1].Split("-");
+                    string[] heur = fileName.Split("_")[2].Split("-");
+                    fileName = String.Format("{0} : {1},{2},{3} {4}h{5}m{6}s", gmName, date[0], date[1], date[2], heur[0], heur[1], heur[2]);
+                    
+                    DeleteGamesList.Items.Add(new ComboBoxItem()
+                    {
+                        Tag = file,
+                        Content = fileName
+                    });
+                }
+            }
+        }
+
+        private void DeleteGamesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string itemIndex = sender.ToString().Trim().Split(":")[1];
+
+            if (itemIndex != "1" && DeleteGamesList.SelectedValue.ToString().Split(": ")[1] != "Select SaveGame")
+            {
+                string filePath = ((ComboBoxItem)DeleteGamesList.SelectedItem).Tag.ToString();
+                DeleteGamesList.Items.RemoveAt(1);
+                DeleteGamesList.SelectedIndex = 0;
+                File.Delete(filePath);
+
+                
+            }
+
+
+            DeleteGamesList.Visibility = Visibility.Collapsed;
+            DeleteSave.Visibility = Visibility.Visible;
+
+
+>>>>>>> optionPage
 
         }
         private void DeleteAllSave_Click(object sender, RoutedEventArgs e)
