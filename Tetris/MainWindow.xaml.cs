@@ -1520,11 +1520,11 @@ namespace Tetris
             if (itemIndex != "1" && DeleteGamesList.SelectedValue.ToString().Split(": ")[1] != "Select SaveGame")
             {
                 string filePath = ((ComboBoxItem)DeleteGamesList.SelectedItem).Tag.ToString();
+                DeleteGamesList.Items.RemoveAt(1);
+                DeleteGamesList.SelectedIndex = 0;
                 File.Delete(filePath);
 
                 
-                DeleteGamesList.Items.RemoveAt(1);
-                DeleteGamesList.SelectedIndex = 0;
             }
 
 
