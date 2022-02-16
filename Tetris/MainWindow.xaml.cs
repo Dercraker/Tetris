@@ -61,9 +61,49 @@ namespace Tetris
         public GameStatus gameStatus = new GameStatus();
         public SoundPlayer SoundMenu = new SoundPlayer(Resource1.MainMenuSound);
 
+        public int reverseTimes { get; set; }
+        public Key hD;
+        public Key sD;
+        public Key rights;
+        public Key lefts;
+        public Key rR;
+        public Key rL;
+        public Key pose;
+        public Key holds;
+        public string hardDrop;
+        public int reverseTime;
+        public int demoSpeed;
+        public int minSpeed;
+        public int maxSpeed;
+        public int clearBonus;
+        public string softDrop;
+        public string right;
+        public string left;
+        public string rotateRight;
+        public string rotateLeft;
+        public string pause;
+        public string hold;
+        public string inputSD;
+        public string inputHD;
+        public string inputR;
+        public string inputL;
+        public string inputRR;
+        public string inputRL;
+        public string inputP;
+        public string inputH;
+        public bool usedSD = false;
+        public bool usedHD = false;
+        public bool usedR = false;
+        public bool usedL = false;
+        public bool usedRR = false;
+        public bool usedRL = false;
+        public bool usedP = false;
+        public bool usedH = false;
+
         public MainWindow()
         {
             InitializeComponent();
+
             imgControls = SetUpGameGridCanvas(gameStatus.gameGrid, GameGridCanvas);
             demoImgControls = SetUpGameGridCanvas(gameStatus.gameGrid, DemoGame);
             demoImgControls2 = SetUpGameGridCanvas(gameStatus.gameGrid, DemoGame2);
@@ -167,45 +207,6 @@ namespace Tetris
             Demo demo = new Demo();
             demo.DemoStart(demoImgControls2, this);
         }
-
-        public Key hD;
-        public Key sD;
-        public Key rights;
-        public Key lefts;
-        public Key rR;
-        public Key rL;
-        public Key pose;
-        public Key holds;
-        public string hardDrop;
-        public int reverseTime;
-        public int demoSpeed;
-        public int minSpeed;
-        public int maxSpeed;
-        public int clearBonus;
-        public string softDrop;
-        public string right;
-        public string left;
-        public string rotateRight;
-        public string rotateLeft;
-        public string pause;
-        public string hold;
-        public string inputSD;
-        public string inputHD;
-        public string inputR;
-        public string inputL;
-        public string inputRR;
-        public string inputRL;
-        public string inputP;
-        public string inputH;
-        public bool usedSD = false;
-        public bool usedHD = false;
-        public bool usedR = false;
-        public bool usedL = false;
-        public bool usedRR = false;
-        public bool usedRL = false;
-        public bool usedP = false;
-        public bool usedH = false;
-
         private async void InputSoftD(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -477,11 +478,6 @@ namespace Tetris
                 }
             }
         }
-
-        
-    
-
-
         private async void InputRight(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -1298,7 +1294,6 @@ namespace Tetris
                 }
             }
         }
-
         private async void InputTabSD(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Tab)
@@ -1371,11 +1366,12 @@ namespace Tetris
                 Hold.Text = inputH;
             }
         }
-
         private void OutOption(object sender, RoutedEventArgs e)
         {
             OptionPage.Visibility = Visibility.Hidden;
             int.TryParse(ReverseTime.Text, out reverseTime);
+            if (reverseTime == 0) reverseTimes = 60;
+            else reverseTimes = reverseTime;
             int.TryParse(DemoSpeeds.Text, out demoSpeed);
             int.TryParse(MinSpeed.Text, out minSpeed);
             int.TryParse(MaxSpeed.Text, out maxSpeed);
@@ -1383,9 +1379,6 @@ namespace Tetris
             
             StringToKey();
         }
-
-
-
         private void StringToKey()
         {
             hardDrop = HardDrops.Text;
@@ -1494,17 +1487,67 @@ namespace Tetris
             }
         }
 
-        private void Deletesave(object sender, RoutedEventArgs e)
+        private void DeleteSave_Click(object sender, RoutedEventArgs e)
+
         {
+            if (Directory.Exists("./SaveGames"))
+            {
+                DeleteGamesList.Visibility = Visibility.Visible;
+                DeleteSave.Visibility = Visibility.Collapsed;
 
-            DeleteSave.Visibility = Visibility.Collapsed;
-            DeleteGamesList.Visibility = Visibility.Visible;
+                string[] allfiles = Directory.GetFiles("./SaveGames");
+
+                foreach(string file in allfiles)
+                {
+                    string fileName = file.Split(".json")[0].Substring(12);
+                    string gmName = fileName.Split("_")[0];
+                    string[] date = fileName.Split("_")[1].Split("-");
+                    string[] heur = fileName.Split("_")[2].Split("-");
+                    fileName = String.Format("{0} : {1},{2},{3} {4}h{5}m{6}s", gmName, date[0], date[1], date[2], heur[0], heur[1], heur[2]);
+                    
+                    DeleteGamesList.Items.Add(new ComboBoxItem()
+                    {
+                        Tag = file,
+                        Content = fileName
+                    });
+                }
+            }
         }
-        private async void DeleteGame_SelectionChanged(object sender, RoutedEventArgs e)
+
+        private void DeleteGamesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            string itemIndex = sender.ToString().Trim().Split(":")[1];
+
+            if (itemIndex != "1" && DeleteGamesList.SelectedValue.ToString().Split(": ")[1] != "Select SaveGame")
+            {
+                string filePath = ((ComboBoxItem)DeleteGamesList.SelectedItem).Tag.ToString();
+                DeleteGamesList.Items.RemoveAt(1);
+                DeleteGamesList.SelectedIndex = 0;
+                File.Delete(filePath);
+
+                
+            }
+
+
+            DeleteGamesList.Visibility = Visibility.Collapsed;
+            DeleteSave.Visibility = Visibility.Visible;
+
+
+
 
         }
+        private void DeleteAllSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (Directory.Exists("./SaveGames"))
+            {
+                string[] allfiles = Directory.GetFiles("./SaveGames", "*.*", SearchOption.AllDirectories);
+                foreach(string file in allfiles)
+                {
+                    File.Delete(file);
+                }
+            }
 
+        }
         private async void KeyInput(object sender, KeyEventArgs e)
         {
             StringToKey();
@@ -1519,6 +1562,7 @@ namespace Tetris
             else if (e.Key == rL) gameStatus.RotateNextTetramino();
             else if (e.Key == hD) gameStatus.HardDrop();
             else if (e.Key == pose) gameStatus.Pause = gameStatus.Pause ? false : true;
+            else if (e.Key == holds) gameStatus.HoldTetramino();
             Draw(gameStatus);
         }
         private async void RestartGame(object sender, RoutedEventArgs e)
@@ -1590,6 +1634,12 @@ namespace Tetris
         }
         private void Options(object sender, RoutedEventArgs e)
         {
+            if (Directory.Exists("./SaveGames") && Directory.GetFiles("./SaveGames").Any())
+            {
+                DeleteAllSave.IsEnabled = true;
+                DeleteSave.IsEnabled = true;
+            }
+
             OptionPage.Visibility = Visibility.Visible;
         }
         private void ResumeGame_Click(object sender, RoutedEventArgs e)

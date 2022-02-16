@@ -369,45 +369,53 @@
                 VerticalAlignment="Center"
                 Foreground="Black"
                 Background="Green"
-                Margin="0,10,70,10"
+                Margin="0,10"
                 Click="OutOption"/>
 
-            <Button Content="Delete all save"
+            <Button x:Name="DeleteAllSave"
+                Content="Delete all save"
+                    IsEnabled="False"
                 Grid.Column="1"
+                Visibility="Visible"
                 Grid.Row="0"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
+                VerticalAlignment="Center"
                 Foreground="Black"
                 Background="Green"
-                Margin="0,10,70,10"
-                Click="OutOption"/>
+                Click="DeleteAllSave_Click"/>
 
-            
-                <Button x:Name="DeleteSave"
+
+            <Button x:Name="DeleteSave"
                 Content="Delete save"
                 Grid.Column="1"
+                    IsEnabled="False"
                 Grid.Row="1"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Foreground="Black"
                 Background="Green"
-                Margin="0,0,70,0"
-                Click="Deletesave"/>
-
-            
+                Click="DeleteSave_Click"/>
 
             <ComboBox x:Name="DeleteGamesList"
                     Grid.Column="1"
                     Grid.Row="1"
-                    Margin="0,0,70,0"
                     Visibility="Collapsed"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
-                    SelectionChanged="DeleteGame_SelectionChanged">
+                    SelectionChanged="DeleteGamesList_SelectionChanged">
                 <ComboBoxItem IsSelected="True" Content="Select SaveGame"/>
             </ComboBox>
 
+            
 
+            <ComboBox x:Name="SaveGfamesList"
+                    Margin="0,20,0,0"
+                    Visibility="Collapsed"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    SelectionChanged="SaveGamesList_SelectionChanged">
+                <ComboBoxItem IsSelected="True" Content="Select SaveGame"/>
+            </ComboBox>
 
 
             <StackPanel
