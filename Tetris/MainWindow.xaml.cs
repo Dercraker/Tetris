@@ -58,7 +58,6 @@ namespace Tetris
         public GameStatus gameStatus = new GameStatus();
         public SoundPlayer SoundMenu = new SoundPlayer(Resource1.MainMenuSound);
         public Timer timer = new Timer();
-        public int time { get; set; }
 
         public MainWindow()
         {
