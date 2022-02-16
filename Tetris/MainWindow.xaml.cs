@@ -1549,6 +1549,8 @@ namespace Tetris
                     File.Delete(file);
                 }
             }
+            DeleteSave.IsEnabled = false;
+            DeleteAllSave.IsEnabled = false;
 
         }
         private async void KeyInput(object sender, KeyEventArgs e)
