@@ -8,6 +8,7 @@ namespace Tetris
 {
     public class Scores
     {
+        //Initialisation des variables
         public int time { get; set; }
         public int reverseTotalTime { get; set; }
         public int lastScoreTime { get; set; }
@@ -17,6 +18,10 @@ namespace Tetris
         public int bestCombos { get; set; }
         public int bonusClear { get; set; }
 
+
+
+
+        //Constructeur
         public Scores()
         {
             score = 0;
@@ -27,6 +32,9 @@ namespace Tetris
             nbLine = 0;
         }
 
+
+
+        //Permet de calculer l'ensemble des bonus sur un score
         public  int bonusScore(int line)
         {
             nbLine += line;
@@ -35,6 +43,10 @@ namespace Tetris
             result = result == 0 ? 0 : combosTimeBonus(result);
             return result;
         }
+
+
+
+        //Calcul des bonus
         public  int multipleLineBonus(int line)
         {
             int result = 0;

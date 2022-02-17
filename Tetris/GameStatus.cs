@@ -14,6 +14,7 @@ namespace Tetris
 {
     public class GameStatus
     {
+        //Initialisation des variables 
         private Tetramino currentTetramino;
         public Tetramino CurrentTetramino {
             get => currentTetramino;
@@ -26,7 +27,6 @@ namespace Tetris
         private Tetramino holdingTetramino;
         private Tetramino tempoTetramino;
         public int AddScore { get; private set; }
-
         public Tetramino HoldingTetramino
         {
             get => holdingTetramino;
@@ -36,7 +36,6 @@ namespace Tetris
                 holdingTetramino.reset();
             }
         }
-
         public Tetramino TempoTetramino
         {
             get => tempoTetramino;
@@ -47,8 +46,6 @@ namespace Tetris
             }
         }
         public BitmapImage ToImage { get; set; }
-
-
         public GameGrid gameGrid { get; set; }
         public WaitingLine waitingLine { get; set; }
         public bool gameOver { get; set; }
@@ -57,12 +54,13 @@ namespace Tetris
         public bool Pause { get; set; }
         public int SpeedLevel { get; set; }
         public Scores scores { get; set; }
-
         private DispatcherTimer Timer = null!;
         private DispatcherTimer ReverseTotalTimer = null!;
-
         public int pressHoldTetramino = 0;
 
+
+
+        //Constructor
         public GameStatus(Tetramino t = null)
         {
             GameSpeed = 400;
@@ -77,6 +75,9 @@ namespace Tetris
 
         }
 
+
+
+        //Timer
         public void SetTimer()
         {
             Timer = new DispatcherTimer();
@@ -118,6 +119,10 @@ namespace Tetris
         {
             scores.time--;
         }
+
+
+
+        //Affiche une ligne donner 
         public void DisplayLine(int r)
         {
             String str = String.Format("Line {0}",r);
@@ -126,17 +131,10 @@ namespace Tetris
                 str = String.Concat(str, ", ", gameGrid[r, c]);
             }
         }
-        private bool IsValidTetramino()
-        {
-            foreach (Position p in currentTetramino.positionsOfRotation())
-            {
-                if (!gameGrid.IsEmptyBox(p.row, p.column))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+
+
+
+        //Rotation des tetramino
         public void RotateNextTetramino()
         {
             currentTetramino.NextRotate();
@@ -153,6 +151,10 @@ namespace Tetris
                 currentTetramino.NextRotate();
             }
         }
+
+
+
+        //Déplacement des tetramino
         public void MoveRightTetramino()
         {
             currentTetramino.MoveTetramino(0, 1);
@@ -169,6 +171,25 @@ namespace Tetris
                 currentTetramino.MoveTetramino(0, 1);
             }
         }
+
+
+
+        //Controle de placement des tetramino
+        private bool IsValidTetramino()
+        {
+            foreach (Position p in currentTetramino.positionsOfRotation())
+            {
+                if (!gameGrid.IsEmptyBox(p.row, p.column))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
+
+        //GameOver
         public bool IsGameOver()
         {
             if (!gameGrid.IsEmptyRow(0) && !gameGrid.IsEmptyRow(1))
@@ -177,6 +198,10 @@ namespace Tetris
             }
             return false;
         }
+
+
+
+        //Verification multiple avant de placer un tetramnio
         private void PlaceItem()
         {
             foreach (Position p in currentTetramino.positionsOfRotation())
@@ -214,6 +239,10 @@ namespace Tetris
             NewGameSpeed(scores.score);
             
         }
+
+
+
+        //Calcul de la vitesse de jeux en fonction du score
         public void NewGameSpeed(int score)
         {
             while (GameSpeed > 150 && score > SpeedLevel * 5)
@@ -222,6 +251,10 @@ namespace Tetris
                 GameSpeed -= 50;
             }
         }
+
+
+
+        //Mouvement naturel vers le bas
         public void MoveDownTetramino()
         {
             currentTetramino.MoveTetramino(1, 0);
@@ -231,6 +264,10 @@ namespace Tetris
                 PlaceItem();
             }
         }
+
+
+
+        //Mouvement aléatoire pour demo
         public void RandomMove()
         {
             Random rand = new Random();
@@ -253,6 +290,10 @@ namespace Tetris
                 RotatePrevTetramino();
             }
         }
+
+
+
+        //HardDrop
         public int GetHarDropDistance(Position p)
         {
             int dropDistance = 0;
@@ -280,6 +321,10 @@ namespace Tetris
             CurrentTetramino.MoveTetramino(HardDropTetramino(), 0);
             PlaceItem();
         }
+
+
+
+        //Récupération des donner pour la page game
         public async Task GamePause(Grid Page, TextBlock MainTime, TextBlock TotalTime, TextBlock CurrentScore, TextBlock BreakLine, TextBlock BestCombos)
         {
             Timer.Stop();
@@ -305,6 +350,10 @@ namespace Tetris
             Timer.Start();
             if (GameMode == "Reverse-Tetris") ReverseTotalTimer.Start();
         }
+        
+        
+        
+        //Hold
         public void HoldTetramino()
         {
             if (pressHoldTetramino == 0)

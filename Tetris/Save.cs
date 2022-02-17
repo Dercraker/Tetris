@@ -8,6 +8,7 @@ namespace Tetris
 {
     public class Save
     {
+        //Initialisation des variable 
         public Tetramino currentTetramino { get; set; }
         public Tetramino holdingTetramino { get; set; }
         public GameGrid gameGrid { get; set; }
@@ -17,6 +18,9 @@ namespace Tetris
         public int SpeedLevel { get; set; }
         public Scores scores { get; set; }
 
+
+
+        //Permet de charger une instance de save
         public GameStatus LoadSave()
         {
             return new GameStatus()
@@ -35,8 +39,15 @@ namespace Tetris
         }
     }
 
+
+
+    //Permet de crée des methode statique
     public static class SaveFactory
     {
+
+
+
+        //Get tous les params requis et crée une instance de save
         public static Save CreateSave(this GameStatus gm)
         {
             return new Save
@@ -51,6 +62,10 @@ namespace Tetris
                 scores = gm.scores,
             };
         }
+
+
+
+        //Permet d'obtenir un nouveau tetramino grace a un id
         public static Tetramino NewTetramino(this Tetramino t, WaitingLine w) => t.tetraminoId switch
         {
             1 => w.GetTetramino(t.tetraminoId - 1),

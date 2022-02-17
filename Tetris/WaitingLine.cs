@@ -10,6 +10,7 @@ namespace Tetris
 {
     public class WaitingLine
     {
+        //Initialisation des différent tetramino && des variables
         private Tetramino[] tetraminosTab = new Tetramino[]
         {
             new ITetramino(),
@@ -22,6 +23,10 @@ namespace Tetris
         };
         private Random random = new Random();
         public Tetramino NextTetramino { get; set; }
+
+
+        
+        //Avoir une copie d'un Tetramino random dans la liste de tetraminos disponible
         private Tetramino RandomTetramino()
         {
             Tetramino newTetramino = tetraminosTab[random.Next(tetraminosTab.Length)];
@@ -29,6 +34,10 @@ namespace Tetris
             newInstance.reset();
             return newInstance;
         }
+
+
+
+        //Avoir un tetramino en fonction de son id
         public Tetramino GetTetramino(int id)
         {
             Tetramino newTetramino = tetraminosTab[id];
@@ -36,6 +45,10 @@ namespace Tetris
             newInstance.reset();
             return newInstance;
         }
+
+
+
+        //Permet d'obtenir de définir le prochain tetramino
         public WaitingLine(string NextTeraminoId = null)
         {
             if (NextTeraminoId == null)
@@ -47,6 +60,10 @@ namespace Tetris
             }
             
         }
+
+
+
+        //Update le prochain tetramino au current et ajou un rndom tetramino au next
         public Tetramino UpdateTetramino()
         {
             Tetramino tetramino = NextTetramino;

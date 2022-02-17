@@ -30,6 +30,8 @@ namespace Tetris
         public string RiverseTime { get; set; }
 
 
+
+        //Appel des ressources => Image de tetramino
         public ImageSource[] tetraminoImages = new ImageSource[]
         {
             new BitmapImage(new Uri("../Resources/cleanTetramino.png", System.UriKind.Relative)),
@@ -41,7 +43,7 @@ namespace Tetris
             new BitmapImage(new Uri("../Resources/TEmerald.png", System.UriKind.Relative)),
             new BitmapImage(new Uri("../Resources/ZIron.png", System.UriKind.Relative))
         };
-
+        //Appel des ressources => Bloc colorer
         public ImageSource[] boxImages = new ImageSource[]
         {
             new BitmapImage(new Uri("../Resources/CleanBox.png", System.UriKind.Relative)),
@@ -54,14 +56,25 @@ namespace Tetris
             new BitmapImage(new Uri("../Resources/iron_block.png", System.UriKind.Relative))
         };
 
-
+        //Gestion des images
         public Image[,] imgControls;
         public Image[,] demoImgControls;
         public Image[,] demoImgControls2;
+
+
+
+        //Initialisation des parties
         public gameMode.GameMode game { get; set; }
         public GameStatus gameStatus = new GameStatus();
+
+
+
+        //Son du menu
         public SoundPlayer SoundMenu = new SoundPlayer(Resource1.MainMenuSound);
 
+
+
+        //Variables de touches
         public int reverseTimes { get; set; }
         public Key hD;
         public Key sD;
@@ -101,6 +114,9 @@ namespace Tetris
         public bool usedP = false;
         public bool usedH = false;
 
+
+
+        //Constructeur principale du programme
         public MainWindow()
         {
             InitializeComponent();
@@ -113,6 +129,9 @@ namespace Tetris
             if (!Directory.Exists("./SaveGames") || !Directory.GetFiles("./SaveGames").Any()) GameLoad.Visibility = Visibility.Collapsed;
         }
 
+
+
+        //Permet de définir les grilles sur les canvas
         public Image[,] SetUpGameGridCanvas(GameGrid g, Canvas canvas)
         {
             Image[,] imgControls = new Image[g.rows, g.colums];
@@ -134,11 +153,19 @@ namespace Tetris
             }
             return imgControls;
         }
+
+
+
+        //On est laa
         public void GetNextBlock(WaitingLine waitingLine)
         {
             Tetramino nextTetramino = waitingLine.NextTetramino;
             NextImage.Source = tetraminoImages[nextTetramino.tetraminoId];
         }
+
+
+
+        //Affichages des élément sur le canvas
         public void DisplayHoldedTetra()
         {
            Tetramino holdedTetramino = gameStatus.HoldingTetramino;
@@ -200,6 +227,10 @@ namespace Tetris
             GetNextBlock(gameStatus.waitingLine);
             DisplayHoldedTetra();
         }
+
+
+
+        //Chargement et lancement des demo
         private async void DemoGame_Loaded(object sender, RoutedEventArgs e)
         {
             Demo demo = new Demo();
@@ -210,6 +241,10 @@ namespace Tetris
             Demo demo = new Demo();
             demo.DemoStart(demoImgControls2, this);
         }
+
+
+
+        //Management des différentes touches 
         private async void InputSoftD(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -1369,19 +1404,6 @@ namespace Tetris
                 Hold.Text = inputH;
             }
         }
-        private void OutOption(object sender, RoutedEventArgs e)
-        {
-            OptionPage.Visibility = Visibility.Hidden;
-            int.TryParse(ReverseTime.Text, out reverseTime);
-            if (reverseTime == 0) reverseTimes = 60;
-            else reverseTimes = reverseTime;
-            int.TryParse(DemoSpeeds.Text, out demoSpeed);
-            int.TryParse(MinSpeed.Text, out minSpeed);
-            int.TryParse(MaxSpeed.Text, out maxSpeed);
-            int.TryParse(ClearBonus.Text, out clearBonus);
-            
-            StringToKey();
-        }
         private void StringToKey()
         {
             hardDrop = HardDrops.Text;
@@ -1490,69 +1512,9 @@ namespace Tetris
             }
         }
 
-        private void DeleteSave_Click(object sender, RoutedEventArgs e)
-
-        {
-            if (Directory.Exists("./SaveGames"))
-            {
-                DeleteGamesList.Visibility = Visibility.Visible;
-                DeleteSave.Visibility = Visibility.Collapsed;
-
-                string[] allfiles = Directory.GetFiles("./SaveGames");
-
-                foreach(string file in allfiles)
-                {
-                    string fileName = file.Split(".json")[0].Substring(12);
-                    string gmName = fileName.Split("_")[0];
-                    string[] date = fileName.Split("_")[1].Split("-");
-                    string[] heur = fileName.Split("_")[2].Split("-");
-                    fileName = String.Format("{0} : {1},{2},{3} {4}h{5}m{6}s", gmName, date[0], date[1], date[2], heur[0], heur[1], heur[2]);
-                    
-                    DeleteGamesList.Items.Add(new ComboBoxItem()
-                    {
-                        Tag = file,
-                        Content = fileName
-                    });
-                }
-            }
-        }
-
-        private void DeleteGamesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            string itemIndex = sender.ToString().Trim().Split(":")[1];
-
-            if (itemIndex != "1" && DeleteGamesList.SelectedValue.ToString().Split(": ")[1] != "Select SaveGame")
-            {
-                string filePath = ((ComboBoxItem)DeleteGamesList.SelectedItem).Tag.ToString();
-                DeleteGamesList.Items.RemoveAt(1);
-                DeleteGamesList.SelectedIndex = 0;
-                File.Delete(filePath);
-
-                
-            }
 
 
-            DeleteGamesList.Visibility = Visibility.Collapsed;
-            DeleteSave.Visibility = Visibility.Visible;
-
-
-
-
-        }
-        private void DeleteAllSave_Click(object sender, RoutedEventArgs e)
-        {
-            if (Directory.Exists("./SaveGames"))
-            {
-                string[] allfiles = Directory.GetFiles("./SaveGames", "*.*", SearchOption.AllDirectories);
-                foreach(string file in allfiles)
-                {
-                    File.Delete(file);
-                }
-            }
-            DeleteSave.IsEnabled = false;
-            DeleteAllSave.IsEnabled = false;
-
-        }
+        //Listener des touches
         private async void KeyInput(object sender, KeyEventArgs e)
         {
             StringToKey();
@@ -1570,6 +1532,10 @@ namespace Tetris
             else if (e.Key == holds) gameStatus.HoldTetramino();
             Draw(gameStatus);
         }
+
+
+
+        //Page GameOver
         private async void RestartGame(object sender, RoutedEventArgs e)
         {
             
@@ -1605,11 +1571,99 @@ namespace Tetris
             MenuGameOver.Visibility = Visibility.Hidden;
             PausePage.Visibility = Visibility.Hidden;
         }
+        
+        
 
-        private void KillProgram(object sender, RoutedEventArgs e)
+        //Page Options
+        private void Options(object sender, RoutedEventArgs e)
         {
-            System.Windows.Application.Current.Shutdown();
+            if (Directory.Exists("./SaveGames") && Directory.GetFiles("./SaveGames").Any())
+            {
+                DeleteAllSave.IsEnabled = true;
+                DeleteSave.IsEnabled = true;
+            }
+
+            OptionPage.Visibility = Visibility.Visible;
         }
+        private void OutOption(object sender, RoutedEventArgs e)
+        {
+            OptionPage.Visibility = Visibility.Hidden;
+            int.TryParse(ReverseTime.Text, out reverseTime);
+            if (reverseTime == 0) reverseTimes = 60;
+            else reverseTimes = reverseTime;
+            int.TryParse(DemoSpeeds.Text, out demoSpeed);
+            int.TryParse(MinSpeed.Text, out minSpeed);
+            int.TryParse(MaxSpeed.Text, out maxSpeed);
+            int.TryParse(ClearBonus.Text, out clearBonus);
+
+            StringToKey();
+        }
+        private void DeleteSave_Click(object sender, RoutedEventArgs e)
+
+        {
+            if (Directory.Exists("./SaveGames"))
+            {
+                DeleteGamesList.Visibility = Visibility.Visible;
+                DeleteSave.Visibility = Visibility.Collapsed;
+
+                string[] allfiles = Directory.GetFiles("./SaveGames");
+
+                foreach (string file in allfiles)
+                {
+                    string fileName = file.Split(".json")[0].Substring(12);
+                    string gmName = fileName.Split("_")[0];
+                    string[] date = fileName.Split("_")[1].Split("-");
+                    string[] heur = fileName.Split("_")[2].Split("-");
+                    fileName = String.Format("{0} : {1},{2},{3} {4}h{5}m{6}s", gmName, date[0], date[1], date[2], heur[0], heur[1], heur[2]);
+
+                    DeleteGamesList.Items.Add(new ComboBoxItem()
+                    {
+                        Tag = file,
+                        Content = fileName
+                    });
+                }
+            }
+        }
+        private void DeleteGamesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string itemIndex = sender.ToString().Trim().Split(":")[1];
+
+            if (itemIndex != "1" && DeleteGamesList.SelectedValue.ToString().Split(": ")[1] != "Select SaveGame")
+            {
+                string filePath = ((ComboBoxItem)DeleteGamesList.SelectedItem).Tag.ToString();
+                DeleteGamesList.Items.RemoveAt(1);
+                DeleteGamesList.SelectedIndex = 0;
+                File.Delete(filePath);
+
+
+            }
+
+
+            DeleteGamesList.Visibility = Visibility.Collapsed;
+            DeleteSave.Visibility = Visibility.Visible;
+
+
+
+
+        }
+        private void DeleteAllSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (Directory.Exists("./SaveGames"))
+            {
+                string[] allfiles = Directory.GetFiles("./SaveGames", "*.*", SearchOption.AllDirectories);
+                foreach (string file in allfiles)
+                {
+                    File.Delete(file);
+                }
+            }
+            DeleteSave.IsEnabled = false;
+            DeleteAllSave.IsEnabled = false;
+
+        }
+
+
+
+        //Page Main Menu
         private async void LaunchGame(object sender, RoutedEventArgs e)
         {
 
@@ -1637,34 +1691,9 @@ namespace Tetris
                     }
             }
         }
-        private void Options(object sender, RoutedEventArgs e)
+        private void KillProgram(object sender, RoutedEventArgs e)
         {
-            if (Directory.Exists("./SaveGames") && Directory.GetFiles("./SaveGames").Any())
-            {
-                DeleteAllSave.IsEnabled = true;
-                DeleteSave.IsEnabled = true;
-            }
-
-            OptionPage.Visibility = Visibility.Visible;
-        }
-        private void ResumeGame_Click(object sender, RoutedEventArgs e)
-        {
-            gameStatus.Pause = false;
-        }
-        private void SaveGame_Click(object sender, RoutedEventArgs e)
-        {
-            if (!Directory.Exists("./SaveGames")) Directory.CreateDirectory("./SaveGames");
-            GameLoad.Visibility = Visibility.Visible;
-
-            string fileName = String.Format("./SaveGames/{0}.json",gameStatus.GameMode + "_" + DateTime.Now.ToString("dd-MM-yy_H-mm-ss"));
-
-            Save save = gameStatus.CreateSave();
-
-            string jsonString = JsonConvert.SerializeObject(save);
-            //string jsonString = JsonSerializer.Serialize(save, new JsonSerializerOptions() { WriteIndented = true });
-            File.WriteAllText(fileName, jsonString);
-
-            ReturnMainMenu(sender,e);
+            System.Windows.Application.Current.Shutdown();
         }
         private void GameLoading(object sender, RoutedEventArgs e)
         {
@@ -1685,7 +1714,7 @@ namespace Tetris
 
                 SaveGamesList.Items.Add(item);
             }
-            
+
             GameLoad.Visibility = Visibility.Collapsed;
             SaveGamesList.Visibility = Visibility.Visible;
         }
@@ -1709,7 +1738,7 @@ namespace Tetris
                 MainMenu.Visibility = Visibility.Hidden;
 
                 SaveGamesList.Items.RemoveAt(1);
-                SaveGamesList.SelectedIndex= 0;
+                SaveGamesList.SelectedIndex = 0;
 
                 //Launch Game 
                 gameStatus = save.LoadSave();
@@ -1724,10 +1753,35 @@ namespace Tetris
             }
         }
 
+
+
+        //Page Pause
+        private void ResumeGame_Click(object sender, RoutedEventArgs e)
+        {
+            gameStatus.Pause = false;
+        }
         private void RageQuit_Click(object sender, RoutedEventArgs e)
         {
             ReturnMainMenu(sender, e);
         }
+        private void SaveGame_Click(object sender, RoutedEventArgs e)
+        {
+            if (!Directory.Exists("./SaveGames")) Directory.CreateDirectory("./SaveGames");
+            GameLoad.Visibility = Visibility.Visible;
+
+            string fileName = String.Format("./SaveGames/{0}.json",gameStatus.GameMode + "_" + DateTime.Now.ToString("dd-MM-yy_H-mm-ss"));
+
+            Save save = gameStatus.CreateSave();
+
+            string jsonString = JsonConvert.SerializeObject(save);
+            //string jsonString = JsonSerializer.Serialize(save, new JsonSerializerOptions() { WriteIndented = true });
+            File.WriteAllText(fileName, jsonString);
+
+            ReturnMainMenu(sender,e);
+        }
+        
+
+        
     }
 }
  

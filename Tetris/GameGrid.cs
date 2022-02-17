@@ -8,6 +8,7 @@ using System.Windows;
 namespace Tetris
 {
     public class GameGrid{
+        //Initialisation des variables
         public int[][] grid { get; set; }
         public int colums { get; }
         public int rows { get; }
@@ -16,6 +17,10 @@ namespace Tetris
             get => grid[r][c];
             set => grid[r][c] = value;
         }
+
+
+
+        //Divères controle
         public bool IsInsideGrid(int r, int c)
         {
             return  r >= 0 && r < rows && c >= 0 && c < colums;
@@ -40,21 +45,15 @@ namespace Tetris
             }
             return true;
         }
+
+
+
+        //Supression des lignes
         public void CleanRow(int r)
         {
             for (int i = 0; i < colums; i++)
             {
                 grid[r][i] = 0;
-            }
-        }
-        public void SetupGrid(Dictionary<string,int> dicGrid)
-        {
-            for (int r = 0; r < rows; r++)
-            {
-                for (int c = 0; c < colums; c++)
-                {
-                    grid[r][c] = dicGrid[String.Format("{0},{1}",r, c)];
-                }
             }
         }
         public void DownRow(int r, int nbRow)
@@ -65,6 +64,24 @@ namespace Tetris
                 grid[r][c] = 0;
             }
         }
+
+
+
+        //Definition d'une grille de jeux
+        public void SetupGrid(Dictionary<string,int> dicGrid)
+        {
+            for (int r = 0; r < rows; r++)
+            {
+                for (int c = 0; c < colums; c++)
+                {
+                    grid[r][c] = dicGrid[String.Format("{0},{1}",r, c)];
+                }
+            }
+        }
+
+
+
+        //Clear des grille pour les deux mode de jeux
         public int ClearGrid()
         {
             int nbRowClear = 0;
@@ -100,6 +117,10 @@ namespace Tetris
             }
             return nbRowClear;
         }
+
+
+
+        //Constructor
         public GameGrid(int rows = 22, int colums = 10)
         {
             this.rows = rows;

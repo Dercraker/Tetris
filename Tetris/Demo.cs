@@ -19,10 +19,14 @@ namespace Tetris
 {
     public class Demo
     {
+        //Initialisation des varaibles
         private ImageSource[] tetraminoImages { get; set; }
         private Image NextImage { get; set; }
         private ImageSource[] boxImages { get; set; }
 
+
+
+        //Initialisation et lancement d'une demo
         public async void DemoStart(Image[,] imgctrl, MainWindow mw)
         {
             GameStatus g = new GameStatus();
@@ -45,6 +49,10 @@ namespace Tetris
             }
             DemoStart(imgctrl, mw);
         }
+
+
+
+        //Display des demo sur le canvas 
         public void DemoDrawGrid(GameGrid g, Image[,] imgctrl)
         {
             for (int r = 0; r < g.rows; r++)
